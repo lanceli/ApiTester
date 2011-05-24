@@ -13,9 +13,9 @@
 		60F967BB138B98BD009F7BCF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967BA138B98BD009F7BCF /* CoreData.framework */; };
 		60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60F967BF138B98BD009F7BCF /* InfoPlist.strings */; };
 		60F967C4138B98BD009F7BCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F967C3138B98BD009F7BCF /* main.m */; };
-		60F967C7138B98BD009F7BCF /* ApiTesterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F967C6138B98BD009F7BCF /* ApiTesterAppDelegate.m */; };
-		60F967CA138B98BD009F7BCF /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F967C8138B98BD009F7BCF /* MainWindow.xib */; };
 		60F967CD138B98BD009F7BCF /* ApiTester.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60F967CB138B98BD009F7BCF /* ApiTester.xcdatamodeld */; };
+		60F967F2138BF27E009F7BCF /* ApiTesterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F967F1138BF27E009F7BCF /* ApiTesterAppDelegate.m */; };
+		60F967F5138BF330009F7BCF /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F967F4138BF330009F7BCF /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +28,10 @@
 		60F967C0138B98BD009F7BCF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60F967C2138B98BD009F7BCF /* ApiTester-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ApiTester-Prefix.pch"; sourceTree = "<group>"; };
 		60F967C3138B98BD009F7BCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		60F967C5138B98BD009F7BCF /* ApiTesterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApiTesterAppDelegate.h; sourceTree = "<group>"; };
-		60F967C6138B98BD009F7BCF /* ApiTesterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApiTesterAppDelegate.m; sourceTree = "<group>"; };
-		60F967C9138B98BD009F7BCF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		60F967CC138B98BD009F7BCF /* ApiTester.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ApiTester.xcdatamodel; sourceTree = "<group>"; };
+		60F967F0138BF27E009F7BCF /* ApiTesterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiTesterAppDelegate.h; path = Classes/Controller/ApiTesterAppDelegate.h; sourceTree = "<group>"; };
+		60F967F1138BF27E009F7BCF /* ApiTesterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApiTesterAppDelegate.m; path = Classes/Controller/ApiTesterAppDelegate.m; sourceTree = "<group>"; };
+		60F967F4138BF330009F7BCF /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/IBFiles/MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +137,8 @@
 		60F967DF138BEB0D009F7BCF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				60F967C5138B98BD009F7BCF /* ApiTesterAppDelegate.h */,
-				60F967C6138B98BD009F7BCF /* ApiTesterAppDelegate.m */,
+				60F967F0138BF27E009F7BCF /* ApiTesterAppDelegate.h */,
+				60F967F1138BF27E009F7BCF /* ApiTesterAppDelegate.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -160,7 +160,8 @@
 		60F967E2138BEBA1009F7BCF /* IBFiles */ = {
 			isa = PBXGroup;
 			children = (
-				60F967C8138B98BD009F7BCF /* MainWindow.xib */,
+				60F967F4138BF330009F7BCF /* MainWindow.xib */,
+				60F967F3138BF316009F7BCF /* Cells */,
 			);
 			name = IBFiles;
 			sourceTree = "<group>";
@@ -194,6 +195,13 @@
 			children = (
 			);
 			name = Backgrounds;
+			sourceTree = "<group>";
+		};
+		60F967F3138BF316009F7BCF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,7 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */,
-				60F967CA138B98BD009F7BCF /* MainWindow.xib in Resources */,
+				60F967F5138BF330009F7BCF /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +267,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				60F967C4138B98BD009F7BCF /* main.m in Sources */,
-				60F967C7138B98BD009F7BCF /* ApiTesterAppDelegate.m in Sources */,
 				60F967CD138B98BD009F7BCF /* ApiTester.xcdatamodeld in Sources */,
+				60F967F2138BF27E009F7BCF /* ApiTesterAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,14 +281,6 @@
 				60F967C0138B98BD009F7BCF /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		60F967C8138B98BD009F7BCF /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				60F967C9138B98BD009F7BCF /* en */,
-			);
-			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -365,6 +365,7 @@
 				60F967D2138B98BD009F7BCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
