@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6027C2FC138C9FB200486667 /* ApiProviderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6027C2FB138C9FB200486667 /* ApiProviderCell.xib */; };
+		6027C300138CA5F600486667 /* ATProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C2FF138CA5F600486667 /* ATProvider.m */; };
+		6027C303138CB49600486667 /* ATApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C302138CB49600486667 /* ATApi.m */; };
+		6027C306138CBBC000486667 /* ATGithub.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C305138CBBC000486667 /* ATGithub.m */; };
 		60F967B5138B98BD009F7BCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B4138B98BD009F7BCF /* UIKit.framework */; };
 		60F967B7138B98BD009F7BCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B6138B98BD009F7BCF /* Foundation.framework */; };
 		60F967B9138B98BD009F7BCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B8138B98BD009F7BCF /* CoreGraphics.framework */; };
@@ -19,6 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6027C2FB138C9FB200486667 /* ApiProviderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiProviderCell.xib; path = Resources/IBFiles/Cells/ApiProviderCell.xib; sourceTree = "<group>"; };
+		6027C2FE138CA5F600486667 /* ATProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATProvider.h; path = Classes/Domain/ATProvider.h; sourceTree = "<group>"; };
+		6027C2FF138CA5F600486667 /* ATProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATProvider.m; path = Classes/Domain/ATProvider.m; sourceTree = "<group>"; };
+		6027C301138CB49600486667 /* ATApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATApi.h; path = Classes/Domain/ATApi.h; sourceTree = "<group>"; };
+		6027C302138CB49600486667 /* ATApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATApi.m; path = Classes/Domain/ATApi.m; sourceTree = "<group>"; };
+		6027C304138CBBC000486667 /* ATGithub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATGithub.h; path = Classes/Domain/ATGithub.h; sourceTree = "<group>"; };
+		6027C305138CBBC000486667 /* ATGithub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATGithub.m; path = Classes/Domain/ATGithub.m; sourceTree = "<group>"; };
 		60F967B0138B98BD009F7BCF /* ApiTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F967B4138B98BD009F7BCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		60F967B6138B98BD009F7BCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,6 +60,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6027C2FD138CA3D800486667 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6027C304138CBBC000486667 /* ATGithub.h */,
+				6027C305138CBBC000486667 /* ATGithub.m */,
+				6027C301138CB49600486667 /* ATApi.h */,
+				6027C302138CB49600486667 /* ATApi.m */,
+				6027C2FE138CA5F600486667 /* ATProvider.h */,
+				6027C2FF138CA5F600486667 /* ATProvider.m */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
 		60F967A5138B98BD009F7BCF = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +126,7 @@
 		60F967DB138BEABC009F7BCF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6027C2FD138CA3D800486667 /* Domain */,
 				60F967E1138BEB58009F7BCF /* Utils */,
 				60F967E0138BEB19009F7BCF /* View */,
 				60F967DF138BEB0D009F7BCF /* Controller */,
@@ -200,6 +225,7 @@
 		60F967F3138BF316009F7BCF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				6027C2FB138C9FB200486667 /* ApiProviderCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -256,6 +282,7 @@
 			files = (
 				60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */,
 				60F967F5138BF330009F7BCF /* MainWindow.xib in Resources */,
+				6027C2FC138C9FB200486667 /* ApiProviderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +296,9 @@
 				60F967C4138B98BD009F7BCF /* main.m in Sources */,
 				60F967CD138B98BD009F7BCF /* ApiTester.xcdatamodeld in Sources */,
 				60F967F2138BF27E009F7BCF /* ApiTesterAppDelegate.m in Sources */,
+				6027C300138CA5F600486667 /* ATProvider.m in Sources */,
+				6027C303138CB49600486667 /* ATApi.m in Sources */,
+				6027C306138CBBC000486667 /* ATGithub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
