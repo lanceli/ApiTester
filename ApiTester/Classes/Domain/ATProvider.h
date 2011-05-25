@@ -11,6 +11,8 @@
     NSURL *_oauthRequestURL;
     NSURL *_oauthAccessURL;
     NSURL *_oauthAuthorizeURL;
+    NSMutableString *_accessToken;
+    NSMutableString *_accessTokenSecret;
     NSArray *_apis;
 }
 
@@ -21,5 +23,7 @@
 @property(nonatomic,readonly)NSURL *oauthRequestURL;
 @property(nonatomic,readonly)NSURL *oauthAccessURL;
 @property(nonatomic,readonly)NSURL *oauthAuthorizeURL;
+@property(nonatomic,copy)NSMutableString *accessToken;
+@property(nonatomic,copy)NSMutableString *accessTokenSecret;
 @property(nonatomic,retain)NSArray *apis;
 @end
