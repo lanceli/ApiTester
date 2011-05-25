@@ -21,4 +21,5 @@
 @property(nonatomic,readonly)NSURL *oauthRequestURL;
 @property(nonatomic,readonly)NSURL *oauthAccessURL;
 @property(nonatomic,readonly)NSURL *oauthAuthorizeURL;
+@property(nonatomic,retain)NSArray *apis;
 @end

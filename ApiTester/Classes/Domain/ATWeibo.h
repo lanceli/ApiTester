@@ -3,7 +3,7 @@
 //
 #import "ATProvider.h"
 
-@interface ATGithub : ATProvider {
+@interface ATWeibo : ATProvider {
 }
 
 -(id)initWithApis:(NSArray *)apis;

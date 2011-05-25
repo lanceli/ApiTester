@@ -12,6 +12,7 @@
 @synthesize oauthRequestURL=_oauthRequestURL;
 @synthesize oauthAccessURL=_oauthAccessURL;
 @synthesize oauthAuthorizeURL=_oauthAuthorizeURL;
+@synthesize apis=_apis;
 
 - (id)init
 {

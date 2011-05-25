@@ -11,6 +11,8 @@
 		6027C300138CA5F600486667 /* ATProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C2FF138CA5F600486667 /* ATProvider.m */; };
 		6027C303138CB49600486667 /* ATApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C302138CB49600486667 /* ATApi.m */; };
 		6027C306138CBBC000486667 /* ATGithub.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C305138CBBC000486667 /* ATGithub.m */; };
+		6027C30B138CEA2300486667 /* ATTencent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C308138CEA2300486667 /* ATTencent.m */; };
+		6027C30C138CEA2300486667 /* ATWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C30A138CEA2300486667 /* ATWeibo.m */; };
 		60F967B5138B98BD009F7BCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B4138B98BD009F7BCF /* UIKit.framework */; };
 		60F967B7138B98BD009F7BCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B6138B98BD009F7BCF /* Foundation.framework */; };
 		60F967B9138B98BD009F7BCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B8138B98BD009F7BCF /* CoreGraphics.framework */; };
@@ -30,6 +32,10 @@
 		6027C302138CB49600486667 /* ATApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATApi.m; path = Classes/Domain/ATApi.m; sourceTree = "<group>"; };
 		6027C304138CBBC000486667 /* ATGithub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATGithub.h; path = Classes/Domain/ATGithub.h; sourceTree = "<group>"; };
 		6027C305138CBBC000486667 /* ATGithub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATGithub.m; path = Classes/Domain/ATGithub.m; sourceTree = "<group>"; };
+		6027C307138CEA2300486667 /* ATTencent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATTencent.h; path = Classes/Domain/ATTencent.h; sourceTree = "<group>"; };
+		6027C308138CEA2300486667 /* ATTencent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATTencent.m; path = Classes/Domain/ATTencent.m; sourceTree = "<group>"; };
+		6027C309138CEA2300486667 /* ATWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATWeibo.h; path = Classes/Domain/ATWeibo.h; sourceTree = "<group>"; };
+		6027C30A138CEA2300486667 /* ATWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATWeibo.m; path = Classes/Domain/ATWeibo.m; sourceTree = "<group>"; };
 		60F967B0138B98BD009F7BCF /* ApiTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F967B4138B98BD009F7BCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		60F967B6138B98BD009F7BCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,6 +69,10 @@
 		6027C2FD138CA3D800486667 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6027C307138CEA2300486667 /* ATTencent.h */,
+				6027C308138CEA2300486667 /* ATTencent.m */,
+				6027C309138CEA2300486667 /* ATWeibo.h */,
+				6027C30A138CEA2300486667 /* ATWeibo.m */,
 				6027C304138CBBC000486667 /* ATGithub.h */,
 				6027C305138CBBC000486667 /* ATGithub.m */,
 				6027C301138CB49600486667 /* ATApi.h */,
@@ -299,6 +309,8 @@
 				6027C300138CA5F600486667 /* ATProvider.m in Sources */,
 				6027C303138CB49600486667 /* ATApi.m in Sources */,
 				6027C306138CBBC000486667 /* ATGithub.m in Sources */,
+				6027C30B138CEA2300486667 /* ATTencent.m in Sources */,
+				6027C30C138CEA2300486667 /* ATWeibo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

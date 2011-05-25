@@ -3,7 +3,7 @@
 //
 #import "ATProvider.h"
 
-@interface ATGithub : ATProvider {
+@interface ATTencent : ATProvider {
 }
 
 -(id)initWithApis:(NSArray *)apis;
