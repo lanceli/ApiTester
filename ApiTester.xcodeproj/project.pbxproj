@@ -11,7 +11,7 @@
 		60030ECB138E49C800692DDB /* ProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC9138E49C800692DDB /* ProviderViewController.m */; };
 		60030ECE138E49E200692DDB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ECC138E49E200692DDB /* MainWindow.xib */; };
 		60030ECF138E49E200692DDB /* ProviderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ECD138E49E200692DDB /* ProviderViewController.xib */; };
-		60030ED1138E4A3A00692DDB /* ApiProviderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ED0138E4A3A00692DDB /* ApiProviderCell.xib */; };
+		60030ED1138E4A3A00692DDB /* ProviderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ED0138E4A3A00692DDB /* ProviderCell.xib */; };
 		60030ED4138E60C600692DDB /* ATProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED3138E60C600692DDB /* ATProvider.m */; };
 		60030EF2138E652100692DDB /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED6138E652100692DDB /* Base64Transcoder.c */; };
 		60030EF3138E652100692DDB /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED9138E652100692DDB /* NSMutableURLRequest+Parameters.m */; };
@@ -26,6 +26,7 @@
 		60030EFC138E652100692DDB /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EEB138E652100692DDB /* OARequestParameter.m */; };
 		60030EFD138E652100692DDB /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EED138E652100692DDB /* OAServiceTicket.m */; };
 		60030EFE138E652100692DDB /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EF0138E652100692DDB /* OAToken.m */; };
+		60030F10138E9D2F00692DDB /* ProviderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030F0F138E9D2F00692DDB /* ProviderCell.m */; };
 		6027C323138D415100486667 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6027C322138D415100486667 /* Security.framework */; };
 		60F967B5138B98BD009F7BCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B4138B98BD009F7BCF /* UIKit.framework */; };
 		60F967B7138B98BD009F7BCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B6138B98BD009F7BCF /* Foundation.framework */; };
@@ -43,7 +44,7 @@
 		60030EC9138E49C800692DDB /* ProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderViewController.m; sourceTree = "<group>"; };
 		60030ECC138E49E200692DDB /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		60030ECD138E49E200692DDB /* ProviderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProviderViewController.xib; sourceTree = "<group>"; };
-		60030ED0138E4A3A00692DDB /* ApiProviderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiProviderCell.xib; sourceTree = "<group>"; };
+		60030ED0138E4A3A00692DDB /* ProviderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProviderCell.xib; sourceTree = "<group>"; };
 		60030ED2138E60C600692DDB /* ATProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATProvider.h; sourceTree = "<group>"; };
 		60030ED3138E60C600692DDB /* ATProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATProvider.m; sourceTree = "<group>"; };
 		60030ED6138E652100692DDB /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
@@ -74,6 +75,8 @@
 		60030EEF138E652100692DDB /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAToken.h; path = Classes/External/OAuthConsumer/OAToken.h; sourceTree = "<group>"; };
 		60030EF0138E652100692DDB /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAToken.m; path = Classes/External/OAuthConsumer/OAToken.m; sourceTree = "<group>"; };
 		60030EF1138E652100692DDB /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumer.h; path = Classes/External/OAuthConsumer/OAuthConsumer.h; sourceTree = "<group>"; };
+		60030F0E138E9D2F00692DDB /* ProviderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderCell.h; sourceTree = "<group>"; };
+		60030F0F138E9D2F00692DDB /* ProviderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderCell.m; sourceTree = "<group>"; };
 		6027C322138D415100486667 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		60F967B0138B98BD009F7BCF /* ApiTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F967B4138B98BD009F7BCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -260,8 +263,11 @@
 		60F967E0138BEB19009F7BCF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				60030F0E138E9D2F00692DDB /* ProviderCell.h */,
+				60030F0F138E9D2F00692DDB /* ProviderCell.m */,
 			);
 			name = View;
+			path = Classes/View;
 			sourceTree = "<group>";
 		};
 		60F967E1138BEB58009F7BCF /* Utils */ = {
@@ -316,7 +322,7 @@
 		60F967F3138BF316009F7BCF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				60030ED0138E4A3A00692DDB /* ApiProviderCell.xib */,
+				60030ED0138E4A3A00692DDB /* ProviderCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -374,7 +380,7 @@
 				60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */,
 				60030ECE138E49E200692DDB /* MainWindow.xib in Resources */,
 				60030ECF138E49E200692DDB /* ProviderViewController.xib in Resources */,
-				60030ED1138E4A3A00692DDB /* ApiProviderCell.xib in Resources */,
+				60030ED1138E4A3A00692DDB /* ProviderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +409,7 @@
 				60030EFC138E652100692DDB /* OARequestParameter.m in Sources */,
 				60030EFD138E652100692DDB /* OAServiceTicket.m in Sources */,
 				60030EFE138E652100692DDB /* OAToken.m in Sources */,
+				60030F10138E9D2F00692DDB /* ProviderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

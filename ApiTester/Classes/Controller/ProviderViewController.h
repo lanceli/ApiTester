@@ -33,4 +33,6 @@
     NSArray *_providers;
 }
 
+@property (nonatomic,retain) NSArray *providers;
+
 @end
