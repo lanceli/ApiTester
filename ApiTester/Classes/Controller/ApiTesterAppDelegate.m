@@ -7,11 +7,13 @@
 //
 
 #import "ApiTesterAppDelegate.h"
+#import "ProviderViewController.h"
 
 @implementation ApiTesterAppDelegate
 
 
 @synthesize window=_window;
+@synthesize viewController=_viewController;
 
 @synthesize managedObjectContext=__managedObjectContext;
 
@@ -22,6 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self.window addSubview:self.viewController.view];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -65,6 +68,7 @@
 - (void)dealloc
 {
     [_window release];
+    [_viewController release];
     [__managedObjectContext release];
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];
