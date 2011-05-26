@@ -7,6 +7,7 @@
 //
 
 #import "ProviderViewController.h"
+#import "ATProvider.h"
 
 
 @implementation ProviderViewController
@@ -16,6 +17,32 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        ATProvider *github = [[ATProvider alloc] initWithKey:kGithubConsumerKey
+                                                      secret:kGithubConsumerSecret
+                                                       title:kGithubTitle
+                                                  requestURL:[NSURL URLWithString:kGithubRequestURL]
+                                                   accessURL:[NSURL URLWithString:kGithubAccessURL]
+                                                authorizeURL:[NSURL URLWithString:kGithubAuthorizeURL]];
+
+        ATProvider *tencent =[[ATProvider alloc] initWithKey:kTencentConsumerKey
+                                                      secret:kTencentConsumerSecret
+                                                       title:kTencentTitle
+                                                  requestURL:[NSURL URLWithString:kTencentRequestURL]
+                                                   accessURL:[NSURL URLWithString:kTencentAccessURL]
+                                                authorizeURL:[NSURL URLWithString:kTencentAuthorizeURL]];
+
+        ATProvider *weibo =  [[ATProvider alloc] initWithKey:kWeiboConsumerKey
+                                                      secret:kWeiboConsumerSecret
+                                                       title:kWeiboTitle
+                                                  requestURL:[NSURL URLWithString:kWeiboRequestURL]
+                                                   accessURL:[NSURL URLWithString:kWeiboAccessURL]
+                                                authorizeURL:[NSURL URLWithString:kWeiboAuthorizeURL]];
+
+        _providers = [NSArray arrayWithObjects:github,tencent,weibo,nil];
+
+        [github release];
+        [tencent release];
+        [weibo release];
     }
     return self;
 }

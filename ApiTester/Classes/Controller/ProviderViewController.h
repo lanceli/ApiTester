@@ -29,11 +29,8 @@
 #define kWeiboAccessURL @"http://api.t.sina.com.cn/oauth/access_token"
 #define kWeiboAuthorizeURL @"http://api.t.sina.com.cn/oauth/authorize"
 
-#define kAppProviderName @"iPhoneApiTester"
-#define kAppPrefix @"iPhoneApiTester"
-
 @interface ProviderViewController : UITableViewController {
-    
+    NSArray *_providers;
 }
 
 @end
