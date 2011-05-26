@@ -20,9 +20,11 @@
 		60030EBE138E31DB00692DDB /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EAD138E31DB00692DDB /* OARequestParameter.m */; };
 		60030EBF138E31DB00692DDB /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EAF138E31DB00692DDB /* OAServiceTicket.m */; };
 		60030EC0138E31DB00692DDB /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EB2138E31DB00692DDB /* OAToken.m */; };
-		6027C2FC138C9FB200486667 /* ApiProviderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6027C2FB138C9FB200486667 /* ApiProviderCell.xib */; };
-		6027C300138CA5F600486667 /* ATProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C2FF138CA5F600486667 /* ATProvider.m */; };
-		6027C303138CB49600486667 /* ATApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6027C302138CB49600486667 /* ATApi.m */; };
+		60030ECA138E49C800692DDB /* ApiTesterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */; };
+		60030ECB138E49C800692DDB /* ProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC9138E49C800692DDB /* ProviderViewController.m */; };
+		60030ECE138E49E200692DDB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ECC138E49E200692DDB /* MainWindow.xib */; };
+		60030ECF138E49E200692DDB /* ProviderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ECD138E49E200692DDB /* ProviderViewController.xib */; };
+		60030ED1138E4A3A00692DDB /* ApiProviderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ED0138E4A3A00692DDB /* ApiProviderCell.xib */; };
 		6027C323138D415100486667 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6027C322138D415100486667 /* Security.framework */; };
 		60F967B5138B98BD009F7BCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B4138B98BD009F7BCF /* UIKit.framework */; };
 		60F967B7138B98BD009F7BCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B6138B98BD009F7BCF /* Foundation.framework */; };
@@ -31,8 +33,6 @@
 		60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60F967BF138B98BD009F7BCF /* InfoPlist.strings */; };
 		60F967C4138B98BD009F7BCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F967C3138B98BD009F7BCF /* main.m */; };
 		60F967CD138B98BD009F7BCF /* ApiTester.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60F967CB138B98BD009F7BCF /* ApiTester.xcdatamodeld */; };
-		60F967F2138BF27E009F7BCF /* ApiTesterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F967F1138BF27E009F7BCF /* ApiTesterAppDelegate.m */; };
-		60F967F5138BF330009F7BCF /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F967F4138BF330009F7BCF /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,13 +64,14 @@
 		60030EB1138E31DB00692DDB /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAToken.h; path = Classes/Extensions/OAuthConsumer/OAToken.h; sourceTree = "<group>"; };
 		60030EB2138E31DB00692DDB /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAToken.m; path = Classes/Extensions/OAuthConsumer/OAToken.m; sourceTree = "<group>"; };
 		60030EB3138E31DB00692DDB /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumer.h; path = Classes/Extensions/OAuthConsumer/OAuthConsumer.h; sourceTree = "<group>"; };
-		6027C2FB138C9FB200486667 /* ApiProviderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiProviderCell.xib; path = Resources/IBFiles/Cells/ApiProviderCell.xib; sourceTree = "<group>"; };
-		6027C2FE138CA5F600486667 /* ATProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATProvider.h; path = Classes/Domain/ATProvider.h; sourceTree = "<group>"; };
-		6027C2FF138CA5F600486667 /* ATProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATProvider.m; path = Classes/Domain/ATProvider.m; sourceTree = "<group>"; };
-		6027C301138CB49600486667 /* ATApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATApi.h; path = Classes/Domain/ATApi.h; sourceTree = "<group>"; };
-		6027C302138CB49600486667 /* ATApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATApi.m; path = Classes/Domain/ATApi.m; sourceTree = "<group>"; };
+		60030EC6138E49C800692DDB /* ApiTesterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTesterAppDelegate.h; sourceTree = "<group>"; };
+		60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTesterAppDelegate.m; sourceTree = "<group>"; };
+		60030EC8138E49C800692DDB /* ProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderViewController.h; sourceTree = "<group>"; };
+		60030EC9138E49C800692DDB /* ProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderViewController.m; sourceTree = "<group>"; };
+		60030ECC138E49E200692DDB /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		60030ECD138E49E200692DDB /* ProviderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProviderViewController.xib; sourceTree = "<group>"; };
+		60030ED0138E4A3A00692DDB /* ApiProviderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiProviderCell.xib; sourceTree = "<group>"; };
 		6027C322138D415100486667 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		6027C3E7138D4EFC00486667 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		60F967B0138B98BD009F7BCF /* ApiTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F967B4138B98BD009F7BCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		60F967B6138B98BD009F7BCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,9 +82,6 @@
 		60F967C2138B98BD009F7BCF /* ApiTester-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ApiTester-Prefix.pch"; sourceTree = "<group>"; };
 		60F967C3138B98BD009F7BCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60F967CC138B98BD009F7BCF /* ApiTester.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ApiTester.xcdatamodel; sourceTree = "<group>"; };
-		60F967F0138BF27E009F7BCF /* ApiTesterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiTesterAppDelegate.h; path = Classes/Controller/ApiTesterAppDelegate.h; sourceTree = "<group>"; };
-		60F967F1138BF27E009F7BCF /* ApiTesterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApiTesterAppDelegate.m; path = Classes/Controller/ApiTesterAppDelegate.m; sourceTree = "<group>"; };
-		60F967F4138BF330009F7BCF /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/IBFiles/MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,10 +147,6 @@
 		6027C2FD138CA3D800486667 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				6027C301138CB49600486667 /* ATApi.h */,
-				6027C302138CB49600486667 /* ATApi.m */,
-				6027C2FE138CA5F600486667 /* ATProvider.h */,
-				6027C2FF138CA5F600486667 /* ATProvider.m */,
 			);
 			name = Domain;
 			sourceTree = "<group>";
@@ -177,7 +171,6 @@
 		60F967B3138B98BD009F7BCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6027C3E7138D4EFC00486667 /* libxml2.dylib */,
 				6027C322138D415100486667 /* Security.framework */,
 				60F967B4138B98BD009F7BCF /* UIKit.framework */,
 				60F967B6138B98BD009F7BCF /* Foundation.framework */,
@@ -249,10 +242,13 @@
 		60F967DF138BEB0D009F7BCF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				60F967F0138BF27E009F7BCF /* ApiTesterAppDelegate.h */,
-				60F967F1138BF27E009F7BCF /* ApiTesterAppDelegate.m */,
+				60030EC6138E49C800692DDB /* ApiTesterAppDelegate.h */,
+				60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */,
+				60030EC8138E49C800692DDB /* ProviderViewController.h */,
+				60030EC9138E49C800692DDB /* ProviderViewController.m */,
 			);
 			name = Controller;
+			path = Classes/Controller;
 			sourceTree = "<group>";
 		};
 		60F967E0138BEB19009F7BCF /* View */ = {
@@ -272,10 +268,12 @@
 		60F967E2138BEBA1009F7BCF /* IBFiles */ = {
 			isa = PBXGroup;
 			children = (
-				60F967F4138BF330009F7BCF /* MainWindow.xib */,
+				60030ECC138E49E200692DDB /* MainWindow.xib */,
+				60030ECD138E49E200692DDB /* ProviderViewController.xib */,
 				60F967F3138BF316009F7BCF /* Cells */,
 			);
 			name = IBFiles;
+			path = Resources/IBFiles;
 			sourceTree = "<group>";
 		};
 		60F967E3138BEBB0009F7BCF /* Images */ = {
@@ -312,9 +310,9 @@
 		60F967F3138BF316009F7BCF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6027C2FB138C9FB200486667 /* ApiProviderCell.xib */,
+				60030ED0138E4A3A00692DDB /* ApiProviderCell.xib */,
 			);
-			name = Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,8 +366,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */,
-				60F967F5138BF330009F7BCF /* MainWindow.xib in Resources */,
-				6027C2FC138C9FB200486667 /* ApiProviderCell.xib in Resources */,
+				60030ECE138E49E200692DDB /* MainWindow.xib in Resources */,
+				60030ECF138E49E200692DDB /* ProviderViewController.xib in Resources */,
+				60030ED1138E4A3A00692DDB /* ApiProviderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,9 +381,6 @@
 			files = (
 				60F967C4138B98BD009F7BCF /* main.m in Sources */,
 				60F967CD138B98BD009F7BCF /* ApiTester.xcdatamodeld in Sources */,
-				60F967F2138BF27E009F7BCF /* ApiTesterAppDelegate.m in Sources */,
-				6027C300138CA5F600486667 /* ATProvider.m in Sources */,
-				6027C303138CB49600486667 /* ATApi.m in Sources */,
 				60030EB4138E31DB00692DDB /* Base64Transcoder.c in Sources */,
 				60030EB5138E31DB00692DDB /* NSMutableURLRequest+Parameters.m in Sources */,
 				60030EB6138E31DB00692DDB /* NSString+URLEncoding.m in Sources */,
@@ -398,6 +394,8 @@
 				60030EBE138E31DB00692DDB /* OARequestParameter.m in Sources */,
 				60030EBF138E31DB00692DDB /* OAServiceTicket.m in Sources */,
 				60030EC0138E31DB00692DDB /* OAToken.m in Sources */,
+				60030ECA138E49C800692DDB /* ApiTesterAppDelegate.m in Sources */,
+				60030ECB138E49C800692DDB /* ProviderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
