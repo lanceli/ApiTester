@@ -29,8 +29,10 @@
 #define kWeiboAccessURL @"http://api.t.sina.com.cn/oauth/access_token"
 #define kWeiboAuthorizeURL @"http://api.t.sina.com.cn/oauth/authorize"
 
+@class ProviderCell;
 @interface ProviderViewController : UITableViewController {
     NSArray *_providers;
+    IBOutlet ProviderCell *_providerCell;
 }
 
 @property (nonatomic,retain) NSArray *providers;

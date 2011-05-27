@@ -7,6 +7,7 @@
 //
 
 #import "ProviderViewController.h"
+#import "ProviderCell.h"
 
 
 @implementation ProviderViewController
@@ -98,16 +99,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ProviderCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ProviderCell *cell = (ProviderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        [[NSBundle mainBundle] loadNibNamed:@"ProviderCell" owner:self options:nil];
+        cell = _providerCell;
     }
     
     // Configure the cell...
-    NSString *providerTitle = [[_providers objectAtIndex:indexPath.row] title];
-    cell.textLabel.text = providerTitle;
+    ATProvider *p = [_providers objectAtIndex:indexPath.row];
+    cell.provider = p;
     
     return cell;
 }
