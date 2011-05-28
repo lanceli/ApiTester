@@ -14,7 +14,7 @@
 
 
 @synthesize window=_window;
-@synthesize viewController=_viewController;
+@synthesize navigationController=_navigationController;
 @synthesize managedObjectContext=__managedObjectContext;
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
@@ -43,13 +43,11 @@
                                                accessURL:[NSURL URLWithString:kWeiboAccessURL]
                                             authorizeURL:[NSURL URLWithString:kWeiboAuthorizeURL]];
 
-    self.viewController.providers = [NSArray arrayWithObjects:github,tencent,weibo,nil];
-
     [github release];
     [tencent release];
     [weibo release];
 
-    [self.window addSubview:self.viewController.view];
+    [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -93,7 +91,7 @@
 - (void)dealloc
 {
     [_window release];
-    [_viewController release];
+    [_navigationController release];
     [__managedObjectContext release];
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];

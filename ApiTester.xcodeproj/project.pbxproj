@@ -10,7 +10,6 @@
 		60030ECA138E49C800692DDB /* ApiTesterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */; };
 		60030ECB138E49C800692DDB /* ProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC9138E49C800692DDB /* ProviderViewController.m */; };
 		60030ECE138E49E200692DDB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ECC138E49E200692DDB /* MainWindow.xib */; };
-		60030ECF138E49E200692DDB /* ProviderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ECD138E49E200692DDB /* ProviderViewController.xib */; };
 		60030ED4138E60C600692DDB /* ATProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED3138E60C600692DDB /* ATProvider.m */; };
 		60030EF2138E652100692DDB /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED6138E652100692DDB /* Base64Transcoder.c */; };
 		60030EF3138E652100692DDB /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED9138E652100692DDB /* NSMutableURLRequest+Parameters.m */; };
@@ -41,7 +40,6 @@
 		60030EC8138E49C800692DDB /* ProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderViewController.h; sourceTree = "<group>"; };
 		60030EC9138E49C800692DDB /* ProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderViewController.m; sourceTree = "<group>"; };
 		60030ECC138E49E200692DDB /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		60030ECD138E49E200692DDB /* ProviderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProviderViewController.xib; sourceTree = "<group>"; };
 		60030ED2138E60C600692DDB /* ATProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATProvider.h; sourceTree = "<group>"; };
 		60030ED3138E60C600692DDB /* ATProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATProvider.m; sourceTree = "<group>"; };
 		60030ED6138E652100692DDB /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				60030ECC138E49E200692DDB /* MainWindow.xib */,
-				60030ECD138E49E200692DDB /* ProviderViewController.xib */,
 				60F967F3138BF316009F7BCF /* Cells */,
 			);
 			name = IBFiles;
@@ -371,7 +368,6 @@
 			files = (
 				60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */,
 				60030ECE138E49E200692DDB /* MainWindow.xib in Resources */,
-				60030ECF138E49E200692DDB /* ProviderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
