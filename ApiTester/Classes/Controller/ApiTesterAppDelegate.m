@@ -43,6 +43,9 @@
                                                accessURL:[NSURL URLWithString:kWeiboAccessURL]
                                             authorizeURL:[NSURL URLWithString:kWeiboAuthorizeURL]];
 
+    ProviderViewController *pvc = (ProviderViewController *) self.navigationController.topViewController;
+    pvc.providers = [NSArray arrayWithObjects:github,tencent,weibo,nil];
+
     [github release];
     [tencent release];
     [weibo release];
