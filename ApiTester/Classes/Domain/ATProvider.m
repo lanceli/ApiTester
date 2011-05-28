@@ -14,6 +14,7 @@
 @synthesize consumer=_consumer;
 @synthesize accessToken=_accessToken;
 @synthesize title=_title;
+@synthesize logo=_logo;
 @synthesize requestURL=_requestURL;
 @synthesize accessURL=_accessURL;
 @synthesize authorizeURL=_authorizeURL;
@@ -23,6 +24,7 @@
 -(id)initWithKey:(NSString *)key
           secret:(NSString *)secret
            title:(NSString *)title
+            logo:(UIImage *)logo
       requestURL:(NSURL *)requestURL
        accessURL:(NSURL *)accessURL
     authorizeURL:(NSURL *)authorizeURL
@@ -33,6 +35,7 @@
         self.accessToken = [[OAToken alloc] initWithUserDefaultsUsingServiceProviderName:kAppProviderName
                                                                                   prefix:title];
         self.title = title;
+        self.logo = logo;
         self.requestURL = requestURL;
         self.accessURL = accessURL;
         self.authorizeURL = authorizeURL;
@@ -46,6 +49,7 @@
     [_consumer release];
     [_accessToken release];
     [_title release];
+    [_logo release];
     [_requestURL release];
     [_accessURL release];
     [_authorizeURL release];

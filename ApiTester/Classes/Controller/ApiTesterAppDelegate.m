@@ -25,26 +25,29 @@
     ATProvider *github = [[ATProvider alloc] initWithKey:kGithubConsumerKey
                                                   secret:kGithubConsumerSecret
                                                    title:kGithubTitle
+                                                    logo:[UIImage imageNamed:kGithubLogo]
                                               requestURL:[NSURL URLWithString:kGithubRequestURL]
                                                accessURL:[NSURL URLWithString:kGithubAccessURL]
                                             authorizeURL:[NSURL URLWithString:kGithubAuthorizeURL]];
 
-    ATProvider *tencent =[[ATProvider alloc] initWithKey:kTencentConsumerKey
-                                                  secret:kTencentConsumerSecret
-                                                   title:kTencentTitle
-                                              requestURL:[NSURL URLWithString:kTencentRequestURL]
-                                               accessURL:[NSURL URLWithString:kTencentAccessURL]
-                                            authorizeURL:[NSURL URLWithString:kTencentAuthorizeURL]];
-
     ATProvider *weibo =  [[ATProvider alloc] initWithKey:kWeiboConsumerKey
                                                   secret:kWeiboConsumerSecret
                                                    title:kWeiboTitle
+                                                    logo:[UIImage imageNamed:kWeiboLogo]
                                               requestURL:[NSURL URLWithString:kWeiboRequestURL]
                                                accessURL:[NSURL URLWithString:kWeiboAccessURL]
                                             authorizeURL:[NSURL URLWithString:kWeiboAuthorizeURL]];
 
+    ATProvider *tencent =[[ATProvider alloc] initWithKey:kTencentConsumerKey
+                                                  secret:kTencentConsumerSecret
+                                                   title:kTencentTitle
+                                                    logo:[UIImage imageNamed:kTencentLogo]
+                                              requestURL:[NSURL URLWithString:kTencentRequestURL]
+                                               accessURL:[NSURL URLWithString:kTencentAccessURL]
+                                            authorizeURL:[NSURL URLWithString:kTencentAuthorizeURL]];
+
     ProviderViewController *pvc = (ProviderViewController *) self.navigationController.topViewController;
-    pvc.providers = [NSArray arrayWithObjects:github,tencent,weibo,nil];
+    pvc.providers = [NSArray arrayWithObjects:github,weibo,tencent,nil];
 
     [github release];
     [tencent release];

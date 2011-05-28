@@ -108,6 +108,7 @@
     ATProvider *p = [self.providers objectAtIndex:indexPath.row];
 
     cell.textLabel.text = p.title;
+    cell.imageView.image = p.logo;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     // Configure the cell...
