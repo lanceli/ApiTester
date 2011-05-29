@@ -30,6 +30,14 @@
                                                accessURL:[NSURL URLWithString:kGithubAccessURL]
                                             authorizeURL:[NSURL URLWithString:kGithubAuthorizeURL]];
 
+    ATProvider *twitter =[[ATProvider alloc] initWithKey:kTwitterConsumerKey
+                                                  secret:kTwitterConsumerSecret
+                                                   title:kTwitterTitle
+                                                    logo:[UIImage imageNamed:kTwitterLogo]
+                                              requestURL:[NSURL URLWithString:kTwitterRequestURL]
+                                               accessURL:[NSURL URLWithString:kTwitterAccessURL]
+                                            authorizeURL:[NSURL URLWithString:kTwitterAuthorizeURL]];
+
     ATProvider *weibo =  [[ATProvider alloc] initWithKey:kWeiboConsumerKey
                                                   secret:kWeiboConsumerSecret
                                                    title:kWeiboTitle
@@ -46,12 +54,31 @@
                                                accessURL:[NSURL URLWithString:kTencentAccessURL]
                                             authorizeURL:[NSURL URLWithString:kTencentAuthorizeURL]];
 
+    ATProvider *facebook=[[ATProvider alloc] initWithKey:kFacebookConsumerKey
+                                                  secret:kFacebookConsumerSecret
+                                                   title:kFacebookTitle
+                                                    logo:[UIImage imageNamed:kFacebookLogo]
+                                              requestURL:[NSURL URLWithString:kFacebookRequestURL]
+                                               accessURL:[NSURL URLWithString:kFacebookAccessURL]
+                                            authorizeURL:[NSURL URLWithString:kFacebookAuthorizeURL]];
+
+    ATProvider *linkedin=[[ATProvider alloc] initWithKey:kLinkedinConsumerKey
+                                                  secret:kLinkedinConsumerSecret
+                                                   title:kLinkedinTitle
+                                                    logo:[UIImage imageNamed:kLinkedinLogo]
+                                              requestURL:[NSURL URLWithString:kLinkedinRequestURL]
+                                               accessURL:[NSURL URLWithString:kLinkedinAccessURL]
+                                            authorizeURL:[NSURL URLWithString:kLinkedinAuthorizeURL]];
+
     ProviderViewController *pvc = (ProviderViewController *) self.navigationController.topViewController;
-    pvc.providers = [NSArray arrayWithObjects:github,weibo,tencent,nil];
+    pvc.providers = [NSArray arrayWithObjects:github,twitter,weibo,tencent,facebook,linkedin,nil];
 
     [github release];
-    [tencent release];
+    [twitter release];
     [weibo release];
+    [tencent release];
+    [facebook release];
+    [linkedin release];
 
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
