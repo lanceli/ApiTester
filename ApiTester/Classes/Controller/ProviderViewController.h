@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kGithubTitle @"Github v2"
+#define kGithubTitle @"Github"
 #define kGithubLogo @"octocat"
 #define kGithubConsumerKey @"ef4a0ff8a0d391632ccf"
 #define kGithubConsumerSecret @"6df83097b04f791cf2261db25827b657ed5fc199"

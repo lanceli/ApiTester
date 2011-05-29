@@ -56,5 +56,45 @@
     [super dealloc];
 }
 
+-(BOOL)isAuthenticated
+{
+    return self.accessToken == nil ? NO : YES;
+}
 
+-(void)authenticate
+{
+    NSLog(@"authenticate %@",self.title);
+    OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:self.requestURL
+                                                                    consumer:self.consumer
+                                                                       token:nil
+                                                                       realm:nil
+                                                           signatureProvider:nil] autorelease];
+    [request setHTTPMethod:@"POST"];
+    OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
+    NSArray *params = [NSArray arrayWithObject:p0];
+    [request setParameters:params];
+
+    OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(requestToken:didFinishWithData:)
+                  didFailSelector:@selector(requestToken:didFailWithError:)];
+    
+    [p0 release];
+}
+
+#pragma mark - ATOauthDelegate
+
+-(void)requestToken:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+}
+-(void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+}
+-(void)accessToken:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+}
+-(void)accessToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+}
 @end

@@ -13,8 +13,14 @@
 #define kAppProviderName @"iPhoneApiTester"
 #define kAppPrefix @"iPhoneApiTester"
 
+@protocol ATOauthDelegate <NSObject>
+-(void)requestToken:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+-(void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+-(void)accessToken:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+-(void)accessToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+@end
 
-@interface ATProvider : NSObject {
+@interface ATProvider : NSObject<ATOauthDelegate> {
     OAConsumer *_consumer;
     OAToken *_accessToken;
     NSString *_title;
@@ -39,5 +45,8 @@
       requestURL:(NSURL *)requestURL
        accessURL:(NSURL *)accessURL
     authorizeURL:(NSURL *)authorizeURL;
+
+-(BOOL)isAuthenticated;
+-(void)authenticate;
 
 @end
