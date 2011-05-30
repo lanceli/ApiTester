@@ -1,18 +1,15 @@
 //
-//  ProviderViewController.m
+//  ApiViewController.m
 //  ApiTester
 //
-//  Created by WU Kai on 5/26/11.
+//  Created by WU Kai on 5/30/11.
 //  Copyright 2011 None. All rights reserved.
 //
 
-#import "ProviderViewController.h"
-#import "AuthorizeWebViewController.h"
-#import "ATProvider.h"
+#import "ApiViewController.h"
 
-@implementation ProviderViewController
 
-@synthesize providers=_providers;
+@implementation ApiViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,7 +22,6 @@
 
 - (void)dealloc
 {
-    [_providers release];
     [super dealloc];
 }
 
@@ -88,31 +84,26 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_providers count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ProviderCell";
+    static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-
-    ATProvider *p = [self.providers objectAtIndex:indexPath.row];
-
-    cell.textLabel.text = p.title;
-    cell.imageView.image = p.logo;
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     // Configure the cell...
+    
     return cell;
 }
 
@@ -167,11 +158,6 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
-    AuthorizeWebViewController *vc = [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController" bundle:nil];
-    vc.provider = [self.providers objectAtIndex:indexPath.row];
-    [self presentModalViewController:vc animated:YES];
-    
-    [vc release];
 }
 
 @end

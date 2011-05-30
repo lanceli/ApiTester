@@ -24,6 +24,10 @@
 		60030EFC138E652100692DDB /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EEB138E652100692DDB /* OARequestParameter.m */; };
 		60030EFD138E652100692DDB /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EED138E652100692DDB /* OAServiceTicket.m */; };
 		60030EFE138E652100692DDB /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EF0138E652100692DDB /* OAToken.m */; };
+		601B3DDE1393917600FEFF49 /* AuthorizeWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601B3DDC1393917600FEFF49 /* AuthorizeWebViewController.m */; };
+		601B3DE2139391E800FEFF49 /* AuthorizeWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601B3DE1139391E800FEFF49 /* AuthorizeWebViewController.xib */; };
+		601B3DE61393921D00FEFF49 /* ApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601B3DE41393921D00FEFF49 /* ApiViewController.m */; };
+		601B3DE91393924900FEFF49 /* ApiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601B3DE81393924900FEFF49 /* ApiViewController.xib */; };
 		6027C323138D415100486667 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6027C322138D415100486667 /* Security.framework */; };
 		602D1592139149A300BD1F96 /* sina.png in Resources */ = {isa = PBXBuildFile; fileRef = 602D1591139149A200BD1F96 /* sina.png */; };
 		602D1594139149B600BD1F96 /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = 602D1593139149B600BD1F96 /* octocat.png */; };
@@ -76,6 +80,12 @@
 		60030EEF138E652100692DDB /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAToken.h; path = Classes/External/OAuthConsumer/OAToken.h; sourceTree = "<group>"; };
 		60030EF0138E652100692DDB /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAToken.m; path = Classes/External/OAuthConsumer/OAToken.m; sourceTree = "<group>"; };
 		60030EF1138E652100692DDB /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumer.h; path = Classes/External/OAuthConsumer/OAuthConsumer.h; sourceTree = "<group>"; };
+		601B3DDB1393917600FEFF49 /* AuthorizeWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeWebViewController.h; sourceTree = "<group>"; };
+		601B3DDC1393917600FEFF49 /* AuthorizeWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeWebViewController.m; sourceTree = "<group>"; };
+		601B3DE1139391E800FEFF49 /* AuthorizeWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthorizeWebViewController.xib; sourceTree = "<group>"; };
+		601B3DE31393921D00FEFF49 /* ApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiViewController.h; sourceTree = "<group>"; };
+		601B3DE41393921D00FEFF49 /* ApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiViewController.m; sourceTree = "<group>"; };
+		601B3DE81393924900FEFF49 /* ApiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApiViewController.xib; sourceTree = "<group>"; };
 		6027C322138D415100486667 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		602D1591139149A200BD1F96 /* sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sina.png; sourceTree = "<group>"; };
 		602D1593139149B600BD1F96 /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
@@ -260,6 +270,10 @@
 				60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */,
 				60030EC8138E49C800692DDB /* ProviderViewController.h */,
 				60030EC9138E49C800692DDB /* ProviderViewController.m */,
+				601B3DDB1393917600FEFF49 /* AuthorizeWebViewController.h */,
+				601B3DDC1393917600FEFF49 /* AuthorizeWebViewController.m */,
+				601B3DE31393921D00FEFF49 /* ApiViewController.h */,
+				601B3DE41393921D00FEFF49 /* ApiViewController.m */,
 			);
 			name = Controller;
 			path = Classes/Controller;
@@ -283,6 +297,8 @@
 		60F967E2138BEBA1009F7BCF /* IBFiles */ = {
 			isa = PBXGroup;
 			children = (
+				601B3DE81393924900FEFF49 /* ApiViewController.xib */,
+				601B3DE1139391E800FEFF49 /* AuthorizeWebViewController.xib */,
 				60030ECC138E49E200692DDB /* MainWindow.xib */,
 				60F967F3138BF316009F7BCF /* Cells */,
 			);
@@ -393,6 +409,8 @@
 				60EBDBFD1391F10400CA739B /* twitter.png in Resources */,
 				60EBDC001391F2F300CA739B /* facebook.png in Resources */,
 				60EBDC02139200BA00CA739B /* linkedin.png in Resources */,
+				601B3DE2139391E800FEFF49 /* AuthorizeWebViewController.xib in Resources */,
+				601B3DE91393924900FEFF49 /* ApiViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +439,8 @@
 				60030EFC138E652100692DDB /* OARequestParameter.m in Sources */,
 				60030EFD138E652100692DDB /* OAServiceTicket.m in Sources */,
 				60030EFE138E652100692DDB /* OAToken.m in Sources */,
+				601B3DDE1393917600FEFF49 /* AuthorizeWebViewController.m in Sources */,
+				601B3DE61393921D00FEFF49 /* ApiViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
