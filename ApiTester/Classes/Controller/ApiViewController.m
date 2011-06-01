@@ -11,6 +11,8 @@
 
 @implementation ApiViewController
 
+@synthesize provider=_provider;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -22,6 +24,7 @@
 
 - (void)dealloc
 {
+    [_provider release];
     [super dealloc];
 }
 
@@ -33,7 +36,8 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
+#pragma mark -
+#pragma mark View lifecycle
 
 - (void)viewDidLoad
 {
@@ -79,7 +83,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -146,7 +151,8 @@
 }
 */
 
-#pragma mark - Table view delegate
+#pragma mark -
+#pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

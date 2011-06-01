@@ -39,5 +39,6 @@
        accessURL:(NSURL *)accessURL
     authorizeURL:(NSURL *)authorizeURL;
 
--(BOOL)isAuthenticated;
+-(BOOL)isAuthorized;
+-(NSComparisonResult)compare:(ATProvider *)provider;
 @end

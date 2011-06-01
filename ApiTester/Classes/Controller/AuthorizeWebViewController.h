@@ -22,9 +22,13 @@
 {
     ATProvider *_provider;
 }
+@property (nonatomic, retain) IBOutlet UIView *overlay;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *cancelButton;
 @property (nonatomic, retain) ATProvider *provider;
 
 - (IBAction)doneButtonAction;
+- (IBAction)cancelButtonAction;
+
 @end

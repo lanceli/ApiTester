@@ -19,7 +19,8 @@
 @synthesize accessURL=_accessURL;
 @synthesize authorizeURL=_authorizeURL;
 
-#pragma mark - init
+#pragma mark -
+#pragma mark init
 
 -(id)initWithKey:(NSString *)key
           secret:(NSString *)secret
@@ -56,10 +57,14 @@
     [super dealloc];
 }
 
--(BOOL)isAuthenticated
+-(BOOL)isAuthorized
 {
     return self.accessToken == nil ? NO : YES;
 }
 
+-(NSComparisonResult)compare:(ATProvider *)provider
+{
+    return [self.title compare:provider.title];
+}
 
 @end

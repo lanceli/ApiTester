@@ -42,6 +42,7 @@
 		60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60F967BF138B98BD009F7BCF /* InfoPlist.strings */; };
 		60F967C4138B98BD009F7BCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F967C3138B98BD009F7BCF /* main.m */; };
 		60F967CD138B98BD009F7BCF /* ApiTester.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60F967CB138B98BD009F7BCF /* ApiTester.xcdatamodeld */; };
+		60FE81941394891200241246 /* ATModalAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FE81931394891200241246 /* ATModalAlert.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,8 @@
 		60F967C2138B98BD009F7BCF /* ApiTester-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ApiTester-Prefix.pch"; sourceTree = "<group>"; };
 		60F967C3138B98BD009F7BCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60F967CC138B98BD009F7BCF /* ApiTester.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ApiTester.xcdatamodel; sourceTree = "<group>"; };
+		60FE81921394891200241246 /* ATModalAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATModalAlert.h; sourceTree = "<group>"; };
+		60FE81931394891200241246 /* ATModalAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATModalAlert.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,8 +293,11 @@
 		60F967E1138BEB58009F7BCF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				60FE81921394891200241246 /* ATModalAlert.h */,
+				60FE81931394891200241246 /* ATModalAlert.m */,
 			);
 			name = Utils;
+			path = Classes/Utils;
 			sourceTree = "<group>";
 		};
 		60F967E2138BEBA1009F7BCF /* IBFiles */ = {
@@ -441,6 +447,7 @@
 				60030EFE138E652100692DDB /* OAToken.m in Sources */,
 				601B3DDE1393917600FEFF49 /* AuthorizeWebViewController.m in Sources */,
 				601B3DE61393921D00FEFF49 /* ApiViewController.m in Sources */,
+				60FE81941394891200241246 /* ATModalAlert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "ProviderViewController.h"
 #import "AuthorizeWebViewController.h"
+#import "ApiViewController.h"
 #import "ATProvider.h"
 
 @implementation ProviderViewController
@@ -37,7 +38,8 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
+#pragma mark -
+#pragma mark View lifecycle
 
 - (void)viewDidLoad
 {
@@ -83,7 +85,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -109,6 +112,7 @@
     ATProvider *p = [self.providers objectAtIndex:indexPath.row];
 
     cell.textLabel.text = p.title;
+    cell.detailTextLabel.text = [p isAuthorized] ? @"Authorized" : @"Authorization required";
     cell.imageView.image = p.logo;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
@@ -155,7 +159,8 @@
 }
 */
 
-#pragma mark - Table view delegate
+#pragma mark -
+#pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -167,11 +172,21 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
-    AuthorizeWebViewController *vc = [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController" bundle:nil];
-    vc.provider = [self.providers objectAtIndex:indexPath.row];
-    [self presentModalViewController:vc animated:YES];
-    
-    [vc release];
+    ATProvider *provider = [self.providers objectAtIndex:indexPath.row];
+    if (YES==[provider isAuthorized]) {
+        NSLog(@"%@ is already authorized",provider.title);
+        ApiViewController *pvc = [[ApiViewController alloc] initWithNibName:@"ApiViewController" bundle:nil];
+        pvc.provider = provider;
+        [self.navigationController pushViewController:pvc animated:YES];
+        [pvc release];
+    }
+    else {
+        NSLog(@"%@ is not yet authorized",provider.title);
+        AuthorizeWebViewController *avc = [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController" bundle:nil];
+        avc.provider = provider;
+        [self presentModalViewController:avc animated:YES];
+        [avc release];
+    }
 }
 
 @end

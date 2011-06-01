@@ -71,7 +71,7 @@
                                             authorizeURL:[NSURL URLWithString:kLinkedinAuthorizeURL]];
 
     ProviderViewController *pvc = (ProviderViewController *) self.navigationController.topViewController;
-    pvc.providers = [NSArray arrayWithObjects:github,twitter,weibo,tencent,facebook,linkedin,nil];
+    pvc.providers = [[NSArray arrayWithObjects:github,twitter,weibo,tencent,facebook,linkedin,nil] sortedArrayUsingSelector:@selector(compare:)];
 
     [github release];
     [twitter release];
@@ -158,7 +158,8 @@
     }
 }
 
-#pragma mark - Core Data stack
+#pragma mark -
+#pragma mark Core Data stack
 
 /**
  Returns the managed object context for the application.
@@ -242,7 +243,8 @@
     return __persistentStoreCoordinator;
 }
 
-#pragma mark - Application's Documents directory
+#pragma mark -
+#pragma mark Application's Documents directory
 
 /**
  Returns the URL to the application's Documents directory.

@@ -8,11 +8,14 @@
 
 #import "AuthorizeWebViewController.h"
 #import "ATProvider.h"
+#import "ATModalAlert.h"
 
 @implementation AuthorizeWebViewController
 
+@synthesize overlay;
 @synthesize webView;
 @synthesize doneButton;
+@synthesize cancelButton;
 @synthesize provider=_provider;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -26,8 +29,10 @@
 
 - (void)dealloc
 {
+    [overlay release];
     [webView release];
     [doneButton release];
+    [cancelButton release];
     [_provider release];
     [super dealloc];
 }
@@ -40,12 +45,15 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
+#pragma mark -
+#pragma mark View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.doneButton.title = @"Authorize";
+    [self.overlay removeFromSuperview];
 }
 
 - (void)viewDidUnload
@@ -62,13 +70,16 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    //[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; 
+    //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; 
+    [self.view addSubview:self.overlay];
+    [(UIActivityIndicatorView *)[self.overlay viewWithTag:101] startAnimating];
 }
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];  
+    //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];  
+    [(UIActivityIndicatorView *)[self.overlay viewWithTag:101] stopAnimating];
+    [self.overlay removeFromSuperview];
 }
 
 
@@ -79,49 +90,82 @@
     return YES;
 }
 
-- (IBAction)doneButtonAction {
-    NSLog(@"doneButtonAction");
-    
-    NSString *script;
-    script = @"(function() { return document.getElementById(\"oauth_pin\").firstChild.textContent; } ())";
-    
-    NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:script];
-    
-    if ([pin length] > 0) {
-    }
-    else {
-    }
 
+- (IBAction)cancelButtonAction {
+    self.provider.accessToken = nil;
     [self dismissModalViewControllerAnimated:YES];
 }
 
--(void)authenticateButtoneAction
-{
-    NSLog(@"authenticate %@",self.provider.title);
-    OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:self.provider.requestURL
-                                                                    consumer:self.provider.consumer
-                                                                       token:nil
-                                                                       realm:nil
-                                                           signatureProvider:nil] autorelease];
-    [request setHTTPMethod:@"POST"];
-    OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
-    NSArray *params = [NSArray arrayWithObject:p0];
-    [request setParameters:params];
-
-    OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(requestToken:didFinishWithData:)
-                  didFailSelector:@selector(requestToken:didFailWithError:)];
+- (IBAction)doneButtonAction {
+    NSLog(@"doneButtonAction");
     
-    [p0 release];
+    if (NO == [self.provider isAuthorized]) {
+        NSLog(@"asking for request token from %@",self.provider.title);
+        OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:self.provider.requestURL
+                                                                        consumer:self.provider.consumer
+                                                                           token:nil
+                                                                           realm:nil
+                                                               signatureProvider:nil] autorelease];
+        [request setHTTPMethod:@"POST"];
+        OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
+        NSArray *params = [NSArray arrayWithObject:p0];
+        [request setParameters:params];
+
+        OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+        [fetcher fetchDataWithRequest:request
+                             delegate:self
+                    didFinishSelector:@selector(requestToken:didFinishWithData:)
+                      didFailSelector:@selector(requestToken:didFailWithError:)];
+        
+        [p0 release];
+    }
+    else {
+        NSString *script;
+        script = @"(function() { return document.getElementById(\"oauth_pin\").firstChild.textContent; } ())";
+        
+        NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:script];
+        if ([pin length] == 0) {
+            NSString *html = [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+            NSLog(html);
+            pin = [ATModalAlert ask:@"What was the given PIN?" withTextPrompt:@"PIN"];
+        }
+
+        NSLog(@"successfully authorize with pin:%@", pin);
+        OAMutableURLRequest *request
+                = [[[OAMutableURLRequest alloc] initWithURL:self.provider.accessURL
+                                                   consumer:self.provider.consumer
+                                                      token:self.provider.accessToken
+                                                      realm:nil
+                                          signatureProvider:nil] autorelease];
+        
+        
+        OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_token"
+                                                                    value:self.provider.accessToken.key];
+        OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"oauth_verifier"
+                                                                    value:pin];
+        NSArray *params = [NSArray arrayWithObjects:p0, p1, nil];
+        [request setParameters:params];
+        
+        OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+        [fetcher fetchDataWithRequest:request
+                             delegate:self
+                    didFinishSelector:@selector(accessToken:didFinishWithData:)
+                      didFailSelector:@selector(accessToken:didFailWithError:)];
+        
+        [p0 release];
+        [p1 release];
+
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
-#pragma mark - ATOauthDelegate
+#pragma mark -
+#pragma mark ATOauthDelegate
 
 -(void)requestToken:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
     if (ticket.didSucceed) {
+        NSLog(@"requestToken is granted");
         NSString *responseBody = [[NSString alloc] initWithData:data
                                                        encoding:NSUTF8StringEncoding];
         
@@ -140,22 +184,46 @@
                                                                     value:self.provider.accessToken.key];
         NSArray *params = [NSArray arrayWithObject:p0];
         [request setParameters:params];
+        [self.webView loadRequest:request];
+        self.doneButton.title = @"Done";
 
         [p0 release];
     }
     else {
-        
+        [ATModalAlert say:@"Cannot get the oauth request token from %@",self.provider.title];
+        self.provider.accessToken = nil;
+        [self dismissModalViewControllerAnimated:YES];
     }
 }
 
 -(void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
     NSLog(@"%@", error);
+    [ATModalAlert say:@"Cannot get the oauth request token from %@",self.provider.title];
+    self.provider.accessToken = nil;
+    [self dismissModalViewControllerAnimated:YES];
 }
+
 -(void)accessToken:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
+    if (ticket.didSucceed) {
+        NSLog(@"accessToken is granted");
+        
+        NSString *responseBody = [[NSString alloc] initWithData:data
+                                                       encoding:NSUTF8StringEncoding];
+        self.provider.accessToken = nil;
+        self.provider.accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+        [responseBody release];
+        
+        [self.provider.accessToken storeInUserDefaultsWithServiceProviderName:kAppProviderName
+                                                                       prefix:self.provider.title];
+    }
 }
+
 -(void)accessToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+    NSLog(@"%@", error);
+    [ATModalAlert say:@"Cannot get the oauth access token from %@",self.provider.title];
+    self.provider.accessToken = nil;
 }
 @end
