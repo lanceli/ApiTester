@@ -120,13 +120,10 @@
         [p0 release];
     }
     else {
-        NSString *script;
-        script = @"(function() { return document.getElementById(\"oauth_pin\").firstChild.textContent; } ())";
+        NSString *script = @"(function() { return document.getElementById(\"oauth_pin\").firstChild.textContent; } ())";
         
         NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:script];
         if ([pin length] == 0) {
-            NSString *html = [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-            NSLog(html);
             pin = [ATModalAlert ask:@"What was the given PIN?" withTextPrompt:@"PIN"];
         }
 
@@ -190,6 +187,7 @@
         [p0 release];
     }
     else {
+        NSLog(@"request ticket is returned but not succeeded");
         [ATModalAlert say:@"Cannot get the oauth request token from %@",self.provider.title];
         self.provider.accessToken = nil;
         [self dismissModalViewControllerAnimated:YES];

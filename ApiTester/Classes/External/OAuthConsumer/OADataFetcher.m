@@ -39,11 +39,32 @@
     didFinishSelector = finishSelector;
     didFailSelector = failSelector;
     
+    NSDictionary *headers = nil;
+    NSString *body = nil;
+
     [request prepare];
+    NSLog(@"Request==>");
+    NSLog(@"URL: %@",[request URL]);
+    headers = [request allHTTPHeaderFields];
+    NSLog(@"Headers: %@",headers);
+    body = [[NSString alloc] initWithData:[request HTTPBody]
+                                 encoding:NSUTF8StringEncoding];
+    NSLog(@"Body: %@",body);
+    [body release];
     
     responseData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response
                                                      error:&error];
+
+    headers = [(NSHTTPURLResponse *)response allHeaderFields];
+    NSLog(@"Response<==");
+    NSLog(@"Code: %d",[(NSHTTPURLResponse *)response statusCode]);
+    NSLog(@"Headers: %@",headers);
+    body = [[NSString alloc] initWithData:responseData
+                                 encoding:NSUTF8StringEncoding];
+    NSLog(@"Body: %@",body);
+
+    [body release];
 	
     if (response == nil || responseData == nil || error != nil) {
         OAServiceTicket *ticket= [[OAServiceTicket alloc] initWithRequest:request
