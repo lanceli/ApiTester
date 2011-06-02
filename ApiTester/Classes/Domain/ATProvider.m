@@ -18,6 +18,7 @@
 @synthesize requestURL=_requestURL;
 @synthesize accessURL=_accessURL;
 @synthesize authorizeURL=_authorizeURL;
+@synthesize script=_script;
 
 #pragma mark -
 #pragma mark init
@@ -29,6 +30,7 @@
       requestURL:(NSURL *)requestURL
        accessURL:(NSURL *)accessURL
     authorizeURL:(NSURL *)authorizeURL
+          script:(NSString *)script
 {
     if ((self=[super init])) {
         self.consumer = [[OAConsumer alloc] initWithKey:key
@@ -40,6 +42,7 @@
         self.requestURL = requestURL;
         self.accessURL = accessURL;
         self.authorizeURL = authorizeURL;
+        self.script = script;
     }
     return self;
 }
@@ -54,6 +57,7 @@
     [_requestURL release];
     [_accessURL release];
     [_authorizeURL release];
+    [_script release];
     [super dealloc];
 }
 

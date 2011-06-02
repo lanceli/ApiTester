@@ -15,6 +15,7 @@
 #define kGithubRequestURL @"https://github.com/login/oauth/request_token"
 #define kGithubAccessURL @"https://github.com/login/oauth/access_token"
 #define kGithubAuthorizeURL @"https://github.com/login/oauth/authorize"
+#define kGithubScript @""
 
 #define kTwitterTitle @"Twitter"
 #define kTwitterLogo @"twitter"
@@ -23,6 +24,7 @@
 #define kTwitterRequestURL @"https://api.twitter.com/oauth/request_token"
 #define kTwitterAccessURL @"https://api.twitter.com/oauth/access_token"
 #define kTwitterAuthorizeURL @"https://api.twitter.com/oauth/authorize"
+#define kTwitterScript @""
 
 #define kWeiboTitle @"Sina Weibo"
 #define kWeiboLogo @"sina"
@@ -31,6 +33,7 @@
 #define kWeiboRequestURL @"http://api.t.sina.com.cn/oauth/request_token"
 #define kWeiboAccessURL @"http://api.t.sina.com.cn/oauth/access_token"
 #define kWeiboAuthorizeURL @"http://api.t.sina.com.cn/oauth/authorize"
+#define kWeiboScript @"document.getElementsByClassName(\"fb\")[0].innerText"
 
 #define kTencentTitle @"Tencent Weibo"
 #define kTencentLogo @"tencent"
@@ -39,6 +42,7 @@
 #define kTencentRequestURL @"https://open.t.qq.com/cgi-bin/request_token"
 #define kTencentAccessURL @"https://open.t.qq.com/cgi-bin/access_token"
 #define kTencentAuthorizeURL @"https://open.t.qq.com/cgi-bin/authorize"
+#define kTencentScript @""
 
 #define kFacebookTitle @"Facebook"
 #define kFacebookLogo @"facebook"
@@ -47,6 +51,7 @@
 #define kFacebookRequestURL @""
 #define kFacebookAccessURL @""
 #define kFacebookAuthorizeURL @""
+#define kFacebookScript @""
 
 #define kLinkedinTitle @"LinkedIn"
 #define kLinkedinLogo @"linkedin"
@@ -55,6 +60,7 @@
 #define kLinkedinRequestURL @"https://api.linkedin.com/uas/oauth/requestToken"
 #define kLinkedinAccessURL @"https://api.linkedin.com/uas/oauth/accessToken"
 #define kLinkedinAuthorizeURL @"https://api.linkedin.com/uas/oauth/authorize"
+#define kLinkedinScript @"document.getElementsByClassName(\"access-code\")[0].innerText"
 
 @interface ProviderViewController : UITableViewController {
     NSArray *_providers;

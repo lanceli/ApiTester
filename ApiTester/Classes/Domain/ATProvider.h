@@ -21,6 +21,7 @@
     NSURL *_requestURL;
     NSURL *_accessURL;
     NSURL *_authorizeURL;
+    NSString *_script;
 }
 
 @property (nonatomic,retain) OAConsumer *consumer;
@@ -30,6 +31,7 @@
 @property (nonatomic,retain) NSURL *requestURL;
 @property (nonatomic,retain) NSURL *accessURL;
 @property (nonatomic,retain) NSURL *authorizeURL;
+@property (nonatomic,copy) NSString *script;
 
 -(id)initWithKey:(NSString *)key
           secret:(NSString *)secret
@@ -37,7 +39,8 @@
             logo:(UIImage *)logo
       requestURL:(NSURL *)requestURL
        accessURL:(NSURL *)accessURL
-    authorizeURL:(NSURL *)authorizeURL;
+    authorizeURL:(NSURL *)authorizeURL
+          script:(NSString *)script;
 
 -(BOOL)isAuthorized;
 -(NSComparisonResult)compare:(ATProvider *)provider;

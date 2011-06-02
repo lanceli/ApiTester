@@ -121,7 +121,9 @@
     }
     else {
         NSLog(@"PIN html : %@",[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
-        NSString *pin = [ATModalAlert ask:@"What was the given PIN?" withTextPrompt:@"PIN"];
+        NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:self.provider.script];
+        NSLog(@"PIN: %@",pin);
+        pin = [ATModalAlert ask:[NSString stringWithFormat:@"Input PIN : %@",pin] withTextPrompt:pin];
 
         if ([pin length] > 0) {
             NSLog(@"successfully authorize with pin:%@", pin);
