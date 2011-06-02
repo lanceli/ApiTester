@@ -53,4 +53,9 @@
     [self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [[self URL] URLStringWithoutQuery], oauthParameters]]];
 }
 
+- (void)_generateNonce 
+{
+    [super _generateNonce];
+    nonce = [nonce stringByReplacingOccurrencesOfString:@"-" withString:@""];
+}
 @end

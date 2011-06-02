@@ -14,4 +14,5 @@
     
 }
 - (void)prepare;
+- (void)_generateNonce;
 @end
