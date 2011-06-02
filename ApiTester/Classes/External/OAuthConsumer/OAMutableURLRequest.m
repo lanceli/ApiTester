@@ -147,6 +147,7 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
                                       withSecret:[NSString stringWithFormat:@"%@&%@",
 												  [consumer.secret URLEncodedString],
                                                   [token.secret URLEncodedString]]];
+    NSLog(@"The signature is : %@",signature);
     
     // set OAuth headers
     NSString *oauthToken;
@@ -174,6 +175,8 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
                              timestamp,
                              nonce,
 							 extraParameters];
+
+    NSLog(@"The header is : %@",oauthHeader);
 	
     [self setValue:oauthHeader forHTTPHeaderField:@"Authorization"];
 }
@@ -222,7 +225,8 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
 					 [self HTTPMethod],
 					 [[[self URL] URLStringWithoutQuery] URLEncodedString],
 					 [normalizedRequestParameters URLEncodedString]];
-	
+
+    NSLog(@"The base string is :%@",ret);
 	return ret;
 }
 

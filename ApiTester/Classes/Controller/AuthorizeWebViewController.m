@@ -120,37 +120,32 @@
         [p0 release];
     }
     else {
-        NSString *script = @"(function() { return document.getElementById(\"oauth_pin\").firstChild.textContent; } ())";
-        
-        NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:script];
-        if ([pin length] == 0) {
-            pin = [ATModalAlert ask:@"What was the given PIN?" withTextPrompt:@"PIN"];
-        }
+        NSLog(@"PIN html : %@",[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
+        NSString *pin = [ATModalAlert ask:@"What was the given PIN?" withTextPrompt:@"PIN"];
 
-        NSLog(@"successfully authorize with pin:%@", pin);
-        OAMutableURLRequest *request
-                = [[[OAMutableURLRequest alloc] initWithURL:self.provider.accessURL
-                                                   consumer:self.provider.consumer
-                                                      token:self.provider.accessToken
-                                                      realm:nil
-                                          signatureProvider:nil] autorelease];
-        
-        
-        OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_token"
-                                                                    value:self.provider.accessToken.key];
-        OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"oauth_verifier"
-                                                                    value:pin];
-        NSArray *params = [NSArray arrayWithObjects:p0, p1, nil];
-        [request setParameters:params];
-        
-        OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
-        [fetcher fetchDataWithRequest:request
-                             delegate:self
-                    didFinishSelector:@selector(accessToken:didFinishWithData:)
-                      didFailSelector:@selector(accessToken:didFailWithError:)];
-        
-        [p0 release];
-        [p1 release];
+        if ([pin length] > 0) {
+            NSLog(@"successfully authorize with pin:%@", pin);
+            OAMutableURLRequest *request
+                    = [[[OAMutableURLRequest alloc] initWithURL:self.provider.accessURL
+                                                       consumer:self.provider.consumer
+                                                          token:self.provider.accessToken
+                                                          realm:nil
+                                              signatureProvider:nil] autorelease];
+            
+            
+            OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_verifier"
+                                                                        value:pin];
+            NSArray *params = [NSArray arrayWithObjects: p0, nil];
+            [request setParameters:params];
+            
+            OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+            [fetcher fetchDataWithRequest:request
+                                 delegate:self
+                        didFinishSelector:@selector(accessToken:didFinishWithData:)
+                          didFailSelector:@selector(accessToken:didFailWithError:)];
+            
+            [p0 release];
+        }
 
         [self dismissModalViewControllerAnimated:YES];
     }
@@ -182,7 +177,7 @@
         NSArray *params = [NSArray arrayWithObject:p0];
         [request setParameters:params];
         [self.webView loadRequest:request];
-        self.doneButton.title = @"Done";
+        self.doneButton.title = @"Finish authorization with PIN";
 
         [p0 release];
     }
