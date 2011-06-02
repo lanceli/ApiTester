@@ -9,6 +9,7 @@
 #import "AuthorizeWebViewController.h"
 #import "ATProvider.h"
 #import "ATModalAlert.h"
+#import "ATTencentMutableURLRequest.h"
 
 @implementation AuthorizeWebViewController
 
@@ -106,7 +107,7 @@
                                                                            token:nil
                                                                            realm:nil
                                                                signatureProvider:nil] autorelease];
-        [request setHTTPMethod:@"POST"];
+
         OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
         NSArray *params = [NSArray arrayWithObject:p0];
         [request setParameters:params];
@@ -120,10 +121,10 @@
         [p0 release];
     }
     else {
-        NSLog(@"PIN html : %@",[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
+        //NSLog(@"PIN html : %@",[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
         NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:self.provider.script];
         NSLog(@"PIN: %@",pin);
-        pin = [ATModalAlert ask:[NSString stringWithFormat:@"Input PIN : %@",pin] withTextPrompt:pin];
+        pin = [ATModalAlert ask:[NSString stringWithFormat:@"Input %@ to finish authorization",pin] withTextPrompt:pin];
 
         if ([pin length] > 0) {
             NSLog(@"successfully authorize with pin:%@", pin);
@@ -147,6 +148,10 @@
                           didFailSelector:@selector(accessToken:didFailWithError:)];
             
             [p0 release];
+        }
+        else {
+            NSLog(@"invalid pin:%@", pin);
+            self.provider.accessToken = nil;
         }
 
         [self dismissModalViewControllerAnimated:YES];

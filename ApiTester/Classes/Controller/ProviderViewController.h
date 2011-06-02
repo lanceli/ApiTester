@@ -24,7 +24,7 @@
 #define kTwitterRequestURL @"https://api.twitter.com/oauth/request_token"
 #define kTwitterAccessURL @"https://api.twitter.com/oauth/access_token"
 #define kTwitterAuthorizeURL @"https://api.twitter.com/oauth/authorize"
-#define kTwitterScript @""
+#define kTwitterScript @"document.getElementsByTagName(\"code\")[0].firstChild.innerText"
 
 #define kWeiboTitle @"Sina Weibo"
 #define kWeiboLogo @"sina"

@@ -43,7 +43,7 @@
     NSString *body = nil;
 
     [request prepare];
-    NSLog(@"Request==>");
+    NSLog(@"Request   ==>");
     NSLog(@"URL: %@",[request URL]);
     headers = [request allHTTPHeaderFields];
     NSLog(@"Headers: %@",headers);
@@ -57,7 +57,7 @@
                                                      error:&error];
 
     headers = [(NSHTTPURLResponse *)response allHeaderFields];
-    NSLog(@"Response<==");
+    NSLog(@"Response  <==");
     NSLog(@"Code: %d",[(NSHTTPURLResponse *)response statusCode]);
     NSLog(@"Headers: %@",headers);
     body = [[NSString alloc] initWithData:responseData

@@ -195,6 +195,7 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
     NSMakeCollectable(theUUID);
     nonce = (NSString *)string;
+    //nonce = [(NSString *) string stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
 
 - (NSString *)_signatureBaseString 
