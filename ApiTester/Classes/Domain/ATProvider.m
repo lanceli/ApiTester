@@ -7,7 +7,7 @@
 //
 
 #import "ATProvider.h"
-
+#import "ATTencentMutableURLRequest.h"
 
 @implementation ATProvider
 
@@ -69,6 +69,26 @@
 -(NSComparisonResult)compare:(ATProvider *)provider
 {
     return [self.title compare:provider.title];
+}
+
+-(OAMutableURLRequest *)oauthRequest:(NSURL *)url
+{
+    OAMutableURLRequest *request = nil;
+    if (self.title == kTencentTitle) {
+        request =  [[ATTencentMutableURLRequest alloc] initWithURL:url
+                                                          consumer:self.consumer
+                                                             token:self.accessToken
+                                                             realm:nil
+                                                 signatureProvider:nil];
+    }
+    else {
+        request =  [[OAMutableURLRequest alloc] initWithURL:url
+                                                   consumer:self.consumer
+                                                      token:self.accessToken
+                                                      realm:nil
+                                          signatureProvider:nil];
+    }
+    return request;
 }
 
 @end

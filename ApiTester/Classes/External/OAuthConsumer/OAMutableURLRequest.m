@@ -26,13 +26,6 @@
 
 #import "OAMutableURLRequest.h"
 
-
-@interface OAMutableURLRequest (Private)
-- (void)_generateTimestamp;
-- (void)_generateNonce;
-- (NSString *)_signatureBaseString;
-@end
-
 @implementation OAMutableURLRequest
 @synthesize signature, nonce;
 
@@ -194,8 +187,7 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
     NSMakeCollectable(theUUID);
-    nonce = (NSString *)string;
-    //nonce = [(NSString *) string stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    self.nonce = (NSString *)string;
 }
 
 - (NSString *)_signatureBaseString 

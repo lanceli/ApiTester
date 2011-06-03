@@ -11,6 +11,11 @@
 
 @implementation ATTencentMutableURLRequest
 
+- (void)dealloc
+{
+    [super dealloc];
+}
+
 - (void)prepare 
 {
     // sign
@@ -40,9 +45,8 @@
 	}	
 
     NSString *oauthParameters = [NSString stringWithFormat:
-        @"oauth_callback=null&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature=%@&oauth_signature_method=%@&oauth_timestamp=%@&%@oauth_version=1.0%@",
+        @"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature=%@&oauth_signature_method=%@&oauth_timestamp=%@&%@oauth_version=1.0%@",
         [consumer.key URLEncodedString],
-        //[nonce stringByReplacingOccurrencesOfString:@"-" withString:@""],
         nonce,
         [signature URLEncodedString],
         [[signatureProvider name] URLEncodedString],
@@ -50,12 +54,14 @@
         oauthToken,
         extraParameters];
     NSLog(@"The oauth paramerters are : %@",oauthParameters);
-    [self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [[self URL] URLStringWithoutQuery], oauthParameters]]];
+    NSString *query = [[[self URL] query] length] > 0 ? @"&" : @"?";
+    
+    [self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", [[self URL] absoluteString], query, oauthParameters]]];
 }
 
 - (void)_generateNonce 
 {
     [super _generateNonce];
-    nonce = [nonce stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    self.nonce = [self.nonce stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
 @end

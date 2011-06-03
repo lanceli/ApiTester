@@ -9,7 +9,6 @@
 #import "AuthorizeWebViewController.h"
 #import "ATProvider.h"
 #import "ATModalAlert.h"
-#import "ATTencentMutableURLRequest.h"
 
 @implementation AuthorizeWebViewController
 
@@ -85,9 +84,7 @@
 
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"webView:shouldStartLoadWithRequest:");
-    NSLog(@"%@", [request.URL absoluteString]);
-     
+    NSLog(@"webView:shouldStartLoadWithRequest: %@",[request.URL absoluteString]);
     return YES;
 }
 
@@ -102,13 +99,10 @@
     
     if (NO == [self.provider isAuthorized]) {
         NSLog(@"asking for request token from %@",self.provider.title);
-        OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:self.provider.requestURL
-                                                                        consumer:self.provider.consumer
-                                                                           token:nil
-                                                                           realm:nil
-                                                               signatureProvider:nil] autorelease];
+        OAMutableURLRequest *request = [[self.provider oauthRequest:self.provider.requestURL] autorelease];
 
-        OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
+        OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_callback" 
+                                                                    value:self.provider.title == kTencentTitle ? @"null" : @"oob"];
         NSArray *params = [NSArray arrayWithObject:p0];
         [request setParameters:params];
 
@@ -128,14 +122,7 @@
 
         if ([pin length] > 0) {
             NSLog(@"successfully authorize with pin:%@", pin);
-            OAMutableURLRequest *request
-                    = [[[OAMutableURLRequest alloc] initWithURL:self.provider.accessURL
-                                                       consumer:self.provider.consumer
-                                                          token:self.provider.accessToken
-                                                          realm:nil
-                                              signatureProvider:nil] autorelease];
-            
-            
+            OAMutableURLRequest *request = [[self.provider oauthRequest:self.provider.accessURL] autorelease];
             OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_verifier"
                                                                         value:pin];
             NSArray *params = [NSArray arrayWithObjects: p0, nil];
@@ -172,13 +159,7 @@
         self.provider.accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
         [responseBody release];
         
-        OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:self.provider.authorizeURL
-                                                                        consumer:self.provider.consumer
-                                                                           token:self.provider.accessToken
-                                                                           realm:nil
-                                                               signatureProvider:nil] autorelease];
-            
-        
+        OAMutableURLRequest *request = [[self.provider oauthRequest:self.provider.authorizeURL] autorelease];
         OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_token"
                                                                     value:self.provider.accessToken.key];
         NSArray *params = [NSArray arrayWithObject:p0];
