@@ -67,6 +67,11 @@
 #define kAppProviderName @"iPhoneApiTester"
 #define kAppPrefix @"iPhoneApiTester"
 
+@class ATProvider;
+@protocol ATProviderPropertyProtocol <NSObject>
+-(void)setProvider:(ATProvider *)provider;
+@end
+
 @interface ATProvider : NSObject {
     OAConsumer *_consumer;
     OAToken *_accessToken;

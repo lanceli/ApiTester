@@ -52,8 +52,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.doneButton.title = @"Authorize";
-    [self.overlay removeFromSuperview];
+    [(UIActivityIndicatorView *)[self.overlay viewWithTag:101] setHidden:YES];
 }
 
 - (void)viewDidUnload
@@ -71,7 +70,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]; 
-    [self.view addSubview:self.overlay];
+    [(UIActivityIndicatorView *)[self.overlay viewWithTag:101] setHidden:NO];
     [(UIActivityIndicatorView *)[self.overlay viewWithTag:101] startAnimating];
 }
 

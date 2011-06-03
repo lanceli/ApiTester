@@ -43,6 +43,8 @@
 		60E553231398B14700D3A55E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553131398B14700D3A55E /* SBJsonBase.m */; };
 		60E553241398B14700D3A55E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553151398B14700D3A55E /* SBJsonParser.m */; };
 		60E553251398B14700D3A55E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553171398B14700D3A55E /* SBJsonWriter.m */; };
+		60E5532D1398C5E700D3A55E /* AuthorizeGithubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */; };
+		60E553301398C61E00D3A55E /* AuthorizeGithubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60E5532F1398C61E00D3A55E /* AuthorizeGithubViewController.xib */; };
 		60EBDBFD1391F10400CA739B /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 60EBDBFC1391F10400CA739B /* twitter.png */; };
 		60EBDC001391F2F300CA739B /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 60EBDBFF1391F2F200CA739B /* facebook.png */; };
 		60EBDC02139200BA00CA739B /* linkedin.png in Resources */ = {isa = PBXBuildFile; fileRef = 60EBDC01139200BA00CA739B /* linkedin.png */; };
@@ -138,6 +140,9 @@
 		60E553151398B14700D3A55E /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		60E553161398B14700D3A55E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		60E553171398B14700D3A55E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		60E5532A1398C5E700D3A55E /* AuthorizeGithubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeGithubViewController.h; sourceTree = "<group>"; };
+		60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeGithubViewController.m; sourceTree = "<group>"; };
+		60E5532F1398C61E00D3A55E /* AuthorizeGithubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthorizeGithubViewController.xib; sourceTree = "<group>"; };
 		60EBDBFC1391F10400CA739B /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		60EBDBFF1391F2F200CA739B /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		60EBDC01139200BA00CA739B /* linkedin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linkedin.png; sourceTree = "<group>"; };
@@ -394,6 +399,8 @@
 				601B3DDC1393917600FEFF49 /* AuthorizeWebViewController.m */,
 				601B3DE31393921D00FEFF49 /* ApiViewController.h */,
 				601B3DE41393921D00FEFF49 /* ApiViewController.m */,
+				60E5532A1398C5E700D3A55E /* AuthorizeGithubViewController.h */,
+				60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */,
 			);
 			name = Controller;
 			path = Classes/Controller;
@@ -420,6 +427,7 @@
 		60F967E2138BEBA1009F7BCF /* IBFiles */ = {
 			isa = PBXGroup;
 			children = (
+				60E5532F1398C61E00D3A55E /* AuthorizeGithubViewController.xib */,
 				601B3DE81393924900FEFF49 /* ApiViewController.xib */,
 				601B3DE1139391E800FEFF49 /* AuthorizeWebViewController.xib */,
 				60030ECC138E49E200692DDB /* MainWindow.xib */,
@@ -551,6 +559,7 @@
 				601B3DE2139391E800FEFF49 /* AuthorizeWebViewController.xib in Resources */,
 				601B3DE91393924900FEFF49 /* ApiViewController.xib in Resources */,
 				60E5531C1398B14700D3A55E /* FBDialog.bundle in Resources */,
+				60E553301398C61E00D3A55E /* AuthorizeGithubViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +602,7 @@
 				60E553231398B14700D3A55E /* SBJsonBase.m in Sources */,
 				60E553241398B14700D3A55E /* SBJsonParser.m in Sources */,
 				60E553251398B14700D3A55E /* SBJsonWriter.m in Sources */,
+				60E5532D1398C5E700D3A55E /* AuthorizeGithubViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

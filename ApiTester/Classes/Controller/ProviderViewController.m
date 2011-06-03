@@ -8,6 +8,7 @@
 
 #import "ProviderViewController.h"
 #import "AuthorizeWebViewController.h"
+#import "AuthorizeGithubViewController.h"
 #import "ApiViewController.h"
 #import "ATProvider.h"
 
@@ -161,6 +162,19 @@
 
 #pragma mark -
 #pragma mark Table view delegate
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    ATProvider *provider = [self.providers objectAtIndex:indexPath.row];
+    UIViewController<ATProviderPropertyProtocol> *vc = provider.title == kGithubTitle ? 
+        [[AuthorizeGithubViewController alloc] initWithNibName:@"AuthorizeGithubViewController" 
+                                                        bundle:nil]
+                                                              : 
+           [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController"
+                                                        bundle:nil];
+    [vc setProvider:provider];
+    [self presentModalViewController:vc animated:YES];
+    [vc release];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -182,10 +196,7 @@
     }
     else {
         NSLog(@"%@ is not yet authorized",provider.title);
-        AuthorizeWebViewController *avc = [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController" bundle:nil];
-        avc.provider = provider;
-        [self presentModalViewController:avc animated:YES];
-        [avc release];
+        [self tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
     }
 }
 
