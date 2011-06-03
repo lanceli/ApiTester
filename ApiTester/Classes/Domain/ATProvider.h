@@ -10,13 +10,22 @@
 #import <UIKit/UIKit.h>
 #import "OAuthConsumer.h"
 
+#define kFacebookTitle @"Facebook"
+#define kFacebookLogo @"facebook"
+#define kFacebookConsumerKey @""
+#define kFacebookConsumerSecret @""
+#define kFacebookRequestURL @""
+#define kFacebookAccessURL @""
+#define kFacebookAuthorizeURL @""
+#define kFacebookScript @""
+
 #define kGithubTitle @"Github"
 #define kGithubLogo @"octocat"
-#define kGithubConsumerKey @"ef4a0ff8a0d391632ccf"
-#define kGithubConsumerSecret @"6df83097b04f791cf2261db25827b657ed5fc199"
-#define kGithubRequestURL @"https://github.com/login/oauth/request_token"
-#define kGithubAccessURL @"https://github.com/login/oauth/access_token"
-#define kGithubAuthorizeURL @"https://github.com/login/oauth/authorize"
+#define kGithubConsumerKey @""
+#define kGithubConsumerSecret @""
+#define kGithubRequestURL @""
+#define kGithubAccessURL @""
+#define kGithubAuthorizeURL @""
 #define kGithubScript @""
 
 #define kTwitterTitle @"Twitter"
@@ -45,15 +54,6 @@
 #define kTencentAccessURL @"https://open.t.qq.com/cgi-bin/access_token"
 #define kTencentAuthorizeURL @"https://open.t.qq.com/cgi-bin/authorize"
 #define kTencentScript @"document.getElementById(\"conter\").innerText.replace(/\\D*(\\d*)\\D*/g, \"$1\")"
-
-#define kFacebookTitle @"Facebook"
-#define kFacebookLogo @"facebook"
-#define kFacebookConsumerKey @""
-#define kFacebookConsumerSecret @""
-#define kFacebookRequestURL @""
-#define kFacebookAccessURL @""
-#define kFacebookAuthorizeURL @""
-#define kFacebookScript @""
 
 #define kLinkedinTitle @"LinkedIn"
 #define kLinkedinLogo @"linkedin"
