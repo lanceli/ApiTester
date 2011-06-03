@@ -6,6 +6,7 @@
 //  Copyright 2011 None. All rights reserved.
 //
 
+#import "ApiTesterAppDelegate.h"
 #import "ProviderViewController.h"
 #import "AuthorizeWebViewController.h"
 #import "AuthorizeGithubViewController.h"
@@ -165,15 +166,21 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     ATProvider *provider = [self.providers objectAtIndex:indexPath.row];
-    UIViewController<ATProviderPropertyProtocol> *vc = provider.title == kGithubTitle ? 
-        [[AuthorizeGithubViewController alloc] initWithNibName:@"AuthorizeGithubViewController" 
-                                                        bundle:nil]
-                                                              : 
-           [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController"
-                                                        bundle:nil];
-    [vc setProvider:provider];
-    [self presentModalViewController:vc animated:YES];
-    [vc release];
+    if (provider.title == kFacebookTitle) {
+        ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate.facebook authorize:nil delegate:appDelegate];
+    }
+    else {
+        UIViewController<ATProviderPropertyProtocol> *vc = provider.title == kGithubTitle ? 
+            [[AuthorizeGithubViewController alloc] initWithNibName:@"AuthorizeGithubViewController" 
+                                                            bundle:nil]
+                                                                  : 
+               [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController"
+                                                            bundle:nil];
+        [vc setProvider:provider];
+        [self presentModalViewController:vc animated:YES];
+        [vc release];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBConnect.h"
 
-@interface ApiTesterAppDelegate : NSObject <UIApplicationDelegate> {
+#define kFacebookAppId @"156029251129430"
+
+@interface ApiTesterAppDelegate : NSObject <UIApplicationDelegate,FBSessionDelegate> {
+    Facebook *_facebook;
 
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) Facebook *facebook;
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
@@ -21,5 +26,6 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
 
 @end

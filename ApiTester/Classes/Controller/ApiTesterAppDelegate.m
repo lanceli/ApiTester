@@ -18,6 +18,7 @@
 @synthesize managedObjectContext=__managedObjectContext;
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
+@synthesize facebook=_facebook;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -88,6 +89,7 @@
 
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
+    _facebook = [[Facebook alloc] initWithAppId:kFacebookAppId];
     return YES;
 }
 
@@ -258,6 +260,35 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [_facebook handleOpenURL:url];
+}
+
+#pragma mark -
+#pragma mark FBSessionDelegate
+
+/**
+ * Your application should implement this delegate to receive session callbacks.
+ */
+- (void)fbDidLogin
+{
+}
+
+/**
+ * Called when the user dismissed the dialog without logging in.
+ */
+- (void)fbDidNotLogin:(BOOL)cancelled
+{
+}
+
+/**
+ * Called when the user logged out.
+ */
+- (void)fbDidLogout
+{
 }
 
 @end
