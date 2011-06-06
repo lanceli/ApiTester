@@ -33,6 +33,9 @@
 		602D1594139149B600BD1F96 /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = 602D1593139149B600BD1F96 /* octocat.png */; };
 		602D1596139149CD00BD1F96 /* tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 602D1595139149CD00BD1F96 /* tencent.png */; };
 		60589539139CBDF6004C6DCD /* ATApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 60589538139CBDF6004C6DCD /* ATApi.m */; };
+		60CC9701139D15FB0081ABB8 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CC96FC139D15FB0081ABB8 /* Api.m */; };
+		60CC9702139D15FB0081ABB8 /* ApiParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CC96FE139D15FB0081ABB8 /* ApiParameter.m */; };
+		60CC9703139D15FB0081ABB8 /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CC9700139D15FB0081ABB8 /* Provider.m */; };
 		60E5531B1398B14700D3A55E /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553001398B14700D3A55E /* Facebook.m */; };
 		60E5531C1398B14700D3A55E /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60E553031398B14700D3A55E /* FBDialog.bundle */; };
 		60E5531D1398B14700D3A55E /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553051398B14700D3A55E /* FBDialog.m */; };
@@ -118,6 +121,12 @@
 		602D1595139149CD00BD1F96 /* tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tencent.png; sourceTree = "<group>"; };
 		60589537139CBDF6004C6DCD /* ATApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApi.h; sourceTree = "<group>"; };
 		60589538139CBDF6004C6DCD /* ATApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApi.m; sourceTree = "<group>"; };
+		60CC96FB139D15FB0081ABB8 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
+		60CC96FC139D15FB0081ABB8 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Api.m; sourceTree = "<group>"; };
+		60CC96FD139D15FB0081ABB8 /* ApiParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiParameter.h; sourceTree = "<group>"; };
+		60CC96FE139D15FB0081ABB8 /* ApiParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiParameter.m; sourceTree = "<group>"; };
+		60CC96FF139D15FB0081ABB8 /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
+		60CC9700139D15FB0081ABB8 /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		60E552FC1398B14700D3A55E /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		60E552FF1398B14700D3A55E /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		60E553001398B14700D3A55E /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
@@ -228,6 +237,7 @@
 		6027C2FD138CA3D800486667 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				60CC96FA139D15C20081ABB8 /* Entity */,
 				60F55E6F1397854600631D29 /* Tencent */,
 				60030ED2138E60C600692DDB /* ATProvider.h */,
 				60030ED3138E60C600692DDB /* ATProvider.m */,
@@ -236,6 +246,19 @@
 			);
 			name = Domain;
 			path = Classes/Domain;
+			sourceTree = "<group>";
+		};
+		60CC96FA139D15C20081ABB8 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				60CC96FB139D15FB0081ABB8 /* Api.h */,
+				60CC96FC139D15FB0081ABB8 /* Api.m */,
+				60CC96FD139D15FB0081ABB8 /* ApiParameter.h */,
+				60CC96FE139D15FB0081ABB8 /* ApiParameter.m */,
+				60CC96FF139D15FB0081ABB8 /* Provider.h */,
+				60CC9700139D15FB0081ABB8 /* Provider.m */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		60E552F91398B09F00D3A55E /* Facebook */ = {
@@ -609,6 +632,9 @@
 				60E553251398B14700D3A55E /* SBJsonWriter.m in Sources */,
 				60E5532D1398C5E700D3A55E /* AuthorizeGithubViewController.m in Sources */,
 				60589539139CBDF6004C6DCD /* ATApi.m in Sources */,
+				60CC9701139D15FB0081ABB8 /* Api.m in Sources */,
+				60CC9702139D15FB0081ABB8 /* ApiParameter.m in Sources */,
+				60CC9703139D15FB0081ABB8 /* Provider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
