@@ -2,7 +2,7 @@
 //  ApiParameter.m
 //  ApiTester
 //
-//  Created by WU Kai on 6/6/11.
+//  Created by WU Kai on 6/7/11.
 //  Copyright (c) 2011 None. All rights reserved.
 //
 
@@ -11,11 +11,11 @@
 
 
 @implementation ApiParameter
-@dynamic View;
-@dynamic Name;
-@dynamic Value;
-@dynamic Optional;
-@dynamic ApiId;
+@dynamic viewClass;
+@dynamic parameterName;
+@dynamic parameterValue;
+@dynamic optional;
+@dynamic api;
 
 
 @end
