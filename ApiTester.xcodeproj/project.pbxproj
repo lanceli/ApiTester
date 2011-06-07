@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		60020D2A139E5E6200D4A332 /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D29139E5E6200D4A332 /* Provider.m */; };
-		60020D2D139E5E6300D4A332 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D2C139E5E6300D4A332 /* Api.m */; };
-		60020D30139E5E6300D4A332 /* ApiParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D2F139E5E6300D4A332 /* ApiParameter.m */; };
+		60020D37139E5F2A00D4A332 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D32139E5F2A00D4A332 /* Api.m */; };
+		60020D38139E5F2A00D4A332 /* ApiParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D34139E5F2A00D4A332 /* ApiParameter.m */; };
+		60020D39139E5F2A00D4A332 /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D36139E5F2A00D4A332 /* Provider.m */; };
 		60030ECA138E49C800692DDB /* ApiTesterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */; };
 		60030ECB138E49C800692DDB /* ProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC9138E49C800692DDB /* ProviderViewController.m */; };
 		60030ECE138E49E200692DDB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60030ECC138E49E200692DDB /* MainWindow.xib */; };
@@ -74,12 +74,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		60020D28139E5E6200D4A332 /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Provider.h; path = ApiTester/Classes/Domain/Provider.h; sourceTree = SOURCE_ROOT; };
-		60020D29139E5E6200D4A332 /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Provider.m; path = ApiTester/Classes/Domain/Provider.m; sourceTree = SOURCE_ROOT; };
-		60020D2B139E5E6300D4A332 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Api.h; path = ApiTester/Classes/Domain/Api.h; sourceTree = SOURCE_ROOT; };
-		60020D2C139E5E6300D4A332 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Api.m; path = ApiTester/Classes/Domain/Api.m; sourceTree = SOURCE_ROOT; };
-		60020D2E139E5E6300D4A332 /* ApiParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApiParameter.h; path = ApiTester/Classes/Domain/ApiParameter.h; sourceTree = SOURCE_ROOT; };
-		60020D2F139E5E6300D4A332 /* ApiParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApiParameter.m; path = ApiTester/Classes/Domain/ApiParameter.m; sourceTree = SOURCE_ROOT; };
+		60020D31139E5F2A00D4A332 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
+		60020D32139E5F2A00D4A332 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Api.m; sourceTree = "<group>"; };
+		60020D33139E5F2A00D4A332 /* ApiParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiParameter.h; sourceTree = "<group>"; };
+		60020D34139E5F2A00D4A332 /* ApiParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiParameter.m; sourceTree = "<group>"; };
+		60020D35139E5F2A00D4A332 /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
+		60020D36139E5F2A00D4A332 /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		60030EC6138E49C800692DDB /* ApiTesterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTesterAppDelegate.h; sourceTree = "<group>"; };
 		60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTesterAppDelegate.m; sourceTree = "<group>"; };
 		60030EC8138E49C800692DDB /* ProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderViewController.h; sourceTree = "<group>"; };
@@ -251,12 +251,12 @@
 		60CC96FA139D15C20081ABB8 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				60020D2E139E5E6300D4A332 /* ApiParameter.h */,
-				60020D2F139E5E6300D4A332 /* ApiParameter.m */,
-				60020D2B139E5E6300D4A332 /* Api.h */,
-				60020D2C139E5E6300D4A332 /* Api.m */,
-				60020D28139E5E6200D4A332 /* Provider.h */,
-				60020D29139E5E6200D4A332 /* Provider.m */,
+				60020D31139E5F2A00D4A332 /* Api.h */,
+				60020D32139E5F2A00D4A332 /* Api.m */,
+				60020D33139E5F2A00D4A332 /* ApiParameter.h */,
+				60020D34139E5F2A00D4A332 /* ApiParameter.m */,
+				60020D35139E5F2A00D4A332 /* Provider.h */,
+				60020D36139E5F2A00D4A332 /* Provider.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -632,9 +632,9 @@
 				60E553251398B14700D3A55E /* SBJsonWriter.m in Sources */,
 				60E5532D1398C5E700D3A55E /* AuthorizeGithubViewController.m in Sources */,
 				60589539139CBDF6004C6DCD /* ATApi.m in Sources */,
-				60020D2A139E5E6200D4A332 /* Provider.m in Sources */,
-				60020D2D139E5E6300D4A332 /* Api.m in Sources */,
-				60020D30139E5E6300D4A332 /* ApiParameter.m in Sources */,
+				60020D37139E5F2A00D4A332 /* Api.m in Sources */,
+				60020D38139E5F2A00D4A332 /* ApiParameter.m in Sources */,
+				60020D39139E5F2A00D4A332 /* Provider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
