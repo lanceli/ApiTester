@@ -20,6 +20,59 @@
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 @synthesize facebook=_facebook;
 
+- (void)initCoreData
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObject *weibo = [NSEntityDescription insertNewObjectForEntityForName:@"Provider"
+                                                           inManagedObjectContext:context];
+
+    [weibo setValue:kWeiboConsumerKey forKey:@"consumerKey"];
+    [weibo setValue:kWeiboConsumerSecret forKey:@"consumerSecret"];
+    [weibo setValue:kWeiboLogo forKey:@"logo"];
+    [weibo setValue:kWeiboTitle forKey:@"title"];
+    [weibo setValue:kWeiboRequestURL forKey:@"requestURL"];
+    [weibo setValue:kWeiboAccessURL forKey:@"accessURL"];
+    [weibo setValue:kWeiboAuthorizeURL forKey:@"authorizeURL"];
+    [weibo setValue:kWeiboScript forKey:@"script"];
+
+    NSManagedObject *publicLine = [NSEntityDescription insertNewObjectForEntityForName:@"Api"
+                                                                inManagedObjectContext:context];
+
+    [publicLine setValue:@"http://open.weibo.com/wiki/index.php/Statuses/public_timeline" forKey:@"descriptionURL"];
+    [publicLine setValue:@"http://api.t.sina.com.cn/statuses/public_timeline" forKey:@"endPointURL"];
+
+    NSManagedObject *source = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
+                                                            inManagedObjectContext:context];
+    [source setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
+    [source setValue:@"source" forKey:@"parameterName"];
+    [source setValue:@"source" forKey:@"parameterValue"];
+    [source setValue:@"UITextField" forKey:@"viewClass"];
+
+    NSManagedObject *count = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
+                                                           inManagedObjectContext:context];
+    [count setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
+    [count setValue:@"count" forKey:@"parameterName"];
+    [count setValue:@"20" forKey:@"parameterValue"];
+    [count setValue:@"UITextField" forKey:@"viewClass"];
+
+    NSManagedObject *baseApp = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
+                                                             inManagedObjectContext:context];
+    [baseApp setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
+    [baseApp setValue:@"base_app" forKey:@"parameterName"];
+    [baseApp setValue:@"0" forKey:@"parameterValue"];
+    [baseApp setValue:@"UISwitch" forKey:@"viewClass"];
+
+    [weibo setValue:[NSSet setWithObject:publicLine] forKey:@"apis"];
+    [publicLine setValue:weibo forKey:@"provider"];
+
+    [source setValue:publicLine forKey:@"api"];
+    [count setValue:publicLine forKey:@"api"];
+    [baseApp setValue:publicLine forKey:@"api"];
+    [publicLine setValue:[NSSet setWithObjects:source,count,baseApp,nil] forKey:@"apiParameters"];
+
+    [self saveContext];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -90,6 +143,7 @@
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     _facebook = [[Facebook alloc] initWithAppId:kFacebookAppId];
+    [self initCoreData];
     return YES;
 }
 
