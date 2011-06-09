@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class ATProvider;
+@class Provider;
 @interface AuthorizeGithubViewController : UIViewController {
-    ATProvider *_provider;
+    Provider *_provider;
 }
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *cancelButton;
 @property (nonatomic, retain) IBOutlet UITextField *userName;
 @property (nonatomic, retain) IBOutlet UITextField *apiToken;
-@property (nonatomic, retain) ATProvider *provider;
+@property (nonatomic, retain) Provider *provider;
 
 - (IBAction)doneButtonAction;
 - (IBAction)cancelButtonAction;

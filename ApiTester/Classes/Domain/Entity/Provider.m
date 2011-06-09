@@ -2,23 +2,29 @@
 //  Provider.m
 //  ApiTester
 //
-//  Created by WU Kai on 6/7/11.
+//  Created by WU Kai on 6/9/11.
 //  Copyright (c) 2011 None. All rights reserved.
 //
 
 #import "Provider.h"
+#import "ATTencentMutableURLRequest.h"
 #import "Api.h"
 
+static NSString *kFacebookTitle  = @"Facebook";
+static NSString *kGithubTitle = @"Github";
+static NSString *kTencentTitle = @"Tencent Weibo";
 
 @implementation Provider
 @dynamic script;
-@dynamic consumerSecret;
-@dynamic accessURL;
 @dynamic requestURL;
-@dynamic consumerKey;
-@dynamic logo;
 @dynamic title;
+@dynamic accessURL;
+@dynamic consumerKey;
 @dynamic authorizeURL;
+@dynamic logo;
+@dynamic consumerSecret;
+@dynamic accessTokenKey;
+@dynamic accessTokenSecret;
 @dynamic apis;
 
 - (void)addApisObject:(Api *)value {    
@@ -49,5 +55,71 @@
     [self didChangeValueForKey:@"apis" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
 
+-(BOOL)isAuthorized
+{
+    return [self.accessTokenSecret length] > 0;
+}
 
+-(void)revoke
+{
+    self.accessTokenKey = nil;
+    self.accessTokenSecret = nil;
+}
+
+-(OAMutableURLRequest *)oauthRequest:(NSURL *)url
+{
+    OAMutableURLRequest *request = nil;
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:self.consumerKey secret:self.consumerSecret];
+    OAToken *accessToken = [[OAToken alloc] initWithKey:self.accessTokenKey secret:self.accessTokenSecret];
+
+    if ([self.title isEqual:kTencentTitle]) {
+        request =  [[ATTencentMutableURLRequest alloc] initWithURL:url
+                                                          consumer:consumer
+                                                             token:accessToken
+                                                             realm:nil
+                                                 signatureProvider:nil];
+    }
+    else {
+        request =  [[OAMutableURLRequest alloc] initWithURL:url
+                                                   consumer:consumer
+                                                      token:accessToken
+                                                      realm:nil
+                                          signatureProvider:nil];
+    }
+
+    [consumer release];
+    [accessToken release];
+    return request;
+}
+
+-(NSString *)description
+{
+    NSString *desc = [NSString stringWithFormat:@"title=%@\nlogo=%@\nscript=%@\nrequestURL=%@\nauthorizeURL=%@\naccessURL=%@\nconsumerKey=%@\nconsumerSecret=%@\naccessTokenKey=%@\naccessTokenSecret=%@",
+             self.title,
+             self.logo,
+             self.script,
+             self.requestURL,
+             self.authorizeURL,
+             self.accessURL,
+             self.consumerKey,
+             self.consumerSecret,
+             self.accessTokenKey,
+             self.accessTokenSecret];
+    return desc;
+}
+
+-(NSString *)oauthCallback
+{
+    return [self.title isEqual:kTencentTitle] ? @"null" : @"oob";
+}
+
+-(BOOL)isFacebook
+{
+    return [self.title isEqual:kFacebookTitle];
+}
+
+-(BOOL)isGithub
+{
+    return [self.title isEqual:kGithubTitle];
+}
 @end

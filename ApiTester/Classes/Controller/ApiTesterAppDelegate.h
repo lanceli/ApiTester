@@ -27,5 +27,6 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
+- (void)createEditableCopyOfDatabaseIfNeeded;
 
 @end

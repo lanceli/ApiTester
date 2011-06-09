@@ -11,7 +11,7 @@
 #import "AuthorizeWebViewController.h"
 #import "AuthorizeGithubViewController.h"
 #import "ApiViewController.h"
-#import "ATProvider.h"
+#import "Provider.h"
 
 @implementation ProviderViewController
 
@@ -64,6 +64,26 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = appDelegate.managedObjectContext;
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Provider" inManagedObjectContext:managedObjectContext];
+	[request setEntity:entityDescription];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
+	
+	NSError *error;
+	NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+	if (results == nil) {
+		// Handle error
+	}
+	
+	self.providers = results;
+	[request release];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -111,11 +131,11 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
 
-    ATProvider *p = [self.providers objectAtIndex:indexPath.row];
+    Provider *p = [self.providers objectAtIndex:indexPath.row];
 
     cell.textLabel.text = p.title;
     cell.detailTextLabel.text = [p isAuthorized] ? @"Authorized" : @"Authorization required";
-    cell.imageView.image = p.logo;
+    cell.imageView.image = [UIImage imageNamed:p.logo];
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     // Configure the cell...
@@ -165,13 +185,13 @@
 #pragma mark Table view delegate
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    ATProvider *provider = [self.providers objectAtIndex:indexPath.row];
-    if (provider.title == kFacebookTitle) {
+    Provider *provider = [self.providers objectAtIndex:indexPath.row];
+    if ([provider isFacebook]) {
         ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate.facebook authorize:nil delegate:appDelegate];
     }
     else {
-        UIViewController<ATProviderPropertyProtocol> *vc = provider.title == kGithubTitle ? 
+        UIViewController<ProviderPropertyProtocol> *vc = [provider isGithub] ? 
             [[AuthorizeGithubViewController alloc] initWithNibName:@"AuthorizeGithubViewController" 
                                                             bundle:nil]
                                                                   : 
@@ -193,8 +213,8 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
-    ATProvider *provider = [self.providers objectAtIndex:indexPath.row];
-    if (YES==[provider isAuthorized]) {
+    Provider *provider = [self.providers objectAtIndex:indexPath.row];
+    if ([provider isAuthorized]) {
         NSLog(@"%@ is already authorized",provider.title);
         ApiViewController *pvc = [[ApiViewController alloc] initWithNibName:@"ApiViewController" bundle:nil];
         pvc.provider = provider;

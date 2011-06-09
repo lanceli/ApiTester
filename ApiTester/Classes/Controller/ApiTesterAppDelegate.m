@@ -8,7 +8,6 @@
 
 #import "ApiTesterAppDelegate.h"
 #import "ProviderViewController.h"
-#import "ATProvider.h"
 
 @implementation ApiTesterAppDelegate
 
@@ -26,14 +25,16 @@
     NSManagedObject *weibo = [NSEntityDescription insertNewObjectForEntityForName:@"Provider"
                                                            inManagedObjectContext:context];
 
-    [weibo setValue:kWeiboConsumerKey forKey:@"consumerKey"];
-    [weibo setValue:kWeiboConsumerSecret forKey:@"consumerSecret"];
-    [weibo setValue:kWeiboLogo forKey:@"logo"];
-    [weibo setValue:kWeiboTitle forKey:@"title"];
-    [weibo setValue:kWeiboRequestURL forKey:@"requestURL"];
-    [weibo setValue:kWeiboAccessURL forKey:@"accessURL"];
-    [weibo setValue:kWeiboAuthorizeURL forKey:@"authorizeURL"];
-    [weibo setValue:kWeiboScript forKey:@"script"];
+    [weibo setValue:@"111" forKey:@"consumerKey"];
+    [weibo setValue:@"222" forKey:@"consumerSecret"];
+    [weibo setValue:@"sina" forKey:@"logo"];
+    [weibo setValue:@"weibo" forKey:@"title"];
+    [weibo setValue:@"request" forKey:@"requestURL"];
+    [weibo setValue:@"access" forKey:@"accessURL"];
+    [weibo setValue:@"authorize" forKey:@"authorizeURL"];
+    [weibo setValue:@"document" forKey:@"script"];
+    [weibo setValue:@"" forKey:@"accessTokenKey"];
+    [weibo setValue:@"" forKey:@"accessTokenSecret"];
 
     NSManagedObject *publicLine = [NSEntityDescription insertNewObjectForEntityForName:@"Api"
                                                                 inManagedObjectContext:context];
@@ -73,77 +74,34 @@
     [self saveContext];
 }
 
+
+- (void)createEditableCopyOfDatabaseIfNeeded
+{
+	// First, test for existence - we don't want to wipe out a user's DB
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSURL *documentDirectory = [self applicationDocumentsDirectory];
+	NSString *writableDBPath = [[documentDirectory path] stringByAppendingPathComponent:@"ApiTester.sqlite"];
+	
+	BOOL dbexits = [fileManager fileExistsAtPath:writableDBPath];
+	if (!dbexits) {
+		// The writable database does not exist, so copy the default to the appropriate location.
+		NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ApiTester.sqlite"];
+		
+		NSError *error;
+		BOOL success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
+		if (!success) {
+			NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
+		}
+	}
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    ATProvider *github = [[ATProvider alloc] initWithKey:kGithubConsumerKey
-                                                  secret:kGithubConsumerSecret
-                                                   title:kGithubTitle
-                                                    logo:[UIImage imageNamed:kGithubLogo]
-                                              requestURL:[NSURL URLWithString:kGithubRequestURL]
-                                               accessURL:[NSURL URLWithString:kGithubAccessURL]
-                                            authorizeURL:[NSURL URLWithString:kGithubAuthorizeURL]
-                                                  script:kGithubScript];
-
-    ATProvider *twitter =[[ATProvider alloc] initWithKey:kTwitterConsumerKey
-                                                  secret:kTwitterConsumerSecret
-                                                   title:kTwitterTitle
-                                                    logo:[UIImage imageNamed:kTwitterLogo]
-                                              requestURL:[NSURL URLWithString:kTwitterRequestURL]
-                                               accessURL:[NSURL URLWithString:kTwitterAccessURL]
-                                            authorizeURL:[NSURL URLWithString:kTwitterAuthorizeURL]
-                                                  script:kTwitterScript];
-
-    ATProvider *weibo =  [[ATProvider alloc] initWithKey:kWeiboConsumerKey
-                                                  secret:kWeiboConsumerSecret
-                                                   title:kWeiboTitle
-                                                    logo:[UIImage imageNamed:kWeiboLogo]
-                                              requestURL:[NSURL URLWithString:kWeiboRequestURL]
-                                               accessURL:[NSURL URLWithString:kWeiboAccessURL]
-                                            authorizeURL:[NSURL URLWithString:kWeiboAuthorizeURL]
-                                                  script:kWeiboScript];
-
-    ATProvider *tencent =[[ATProvider alloc] initWithKey:kTencentConsumerKey
-                                                  secret:kTencentConsumerSecret
-                                                   title:kTencentTitle
-                                                    logo:[UIImage imageNamed:kTencentLogo]
-                                              requestURL:[NSURL URLWithString:kTencentRequestURL]
-                                               accessURL:[NSURL URLWithString:kTencentAccessURL]
-                                            authorizeURL:[NSURL URLWithString:kTencentAuthorizeURL]
-                                                  script:kTencentScript];
-
-    ATProvider *facebook=[[ATProvider alloc] initWithKey:kFacebookConsumerKey
-                                                  secret:kFacebookConsumerSecret
-                                                   title:kFacebookTitle
-                                                    logo:[UIImage imageNamed:kFacebookLogo]
-                                              requestURL:[NSURL URLWithString:kFacebookRequestURL]
-                                               accessURL:[NSURL URLWithString:kFacebookAccessURL]
-                                            authorizeURL:[NSURL URLWithString:kFacebookAuthorizeURL]
-                                                  script:kFacebookScript];
-
-    ATProvider *linkedin=[[ATProvider alloc] initWithKey:kLinkedinConsumerKey
-                                                  secret:kLinkedinConsumerSecret
-                                                   title:kLinkedinTitle
-                                                    logo:[UIImage imageNamed:kLinkedinLogo]
-                                              requestURL:[NSURL URLWithString:kLinkedinRequestURL]
-                                               accessURL:[NSURL URLWithString:kLinkedinAccessURL]
-                                            authorizeURL:[NSURL URLWithString:kLinkedinAuthorizeURL]
-                                                  script:kLinkedinScript];
-
-    ProviderViewController *pvc = (ProviderViewController *) self.navigationController.topViewController;
-    pvc.providers = [[NSArray arrayWithObjects:github,twitter,weibo,tencent,facebook,linkedin,nil] sortedArrayUsingSelector:@selector(compare:)];
-
-    [github release];
-    [twitter release];
-    [weibo release];
-    [tencent release];
-    [facebook release];
-    [linkedin release];
-
+    _facebook = [[Facebook alloc] initWithAppId:kFacebookAppId];
+    //[self initCoreData];
+    [self createEditableCopyOfDatabaseIfNeeded];
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
-    _facebook = [[Facebook alloc] initWithAppId:kFacebookAppId];
-    [self initCoreData];
     return YES;
 }
 

@@ -16,17 +16,17 @@
 -(void)accessToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 @end
 
-@class ATProvider;
+@class Provider;
 @interface AuthorizeWebViewController : UIViewController
 <UIWebViewDelegate,ATOauthDelegate>
 {
-    ATProvider *_provider;
+    Provider *_provider;
 }
 @property (nonatomic, retain) IBOutlet UIView *overlay;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *cancelButton;
-@property (nonatomic, retain) ATProvider *provider;
+@property (nonatomic, retain) Provider *provider;
 
 - (IBAction)doneButtonAction;
 - (IBAction)cancelButtonAction;

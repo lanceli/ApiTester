@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		60020D37139E5F2A00D4A332 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D32139E5F2A00D4A332 /* Api.m */; };
 		60020D38139E5F2A00D4A332 /* ApiParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D34139E5F2A00D4A332 /* ApiParameter.m */; };
-		60020D39139E5F2A00D4A332 /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60020D36139E5F2A00D4A332 /* Provider.m */; };
 		60030ECA138E49C800692DDB /* ApiTesterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */; };
 		60030ECB138E49C800692DDB /* ProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EC9138E49C800692DDB /* ProviderViewController.m */; };
-		60030ED4138E60C600692DDB /* ATProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED3138E60C600692DDB /* ATProvider.m */; };
 		60030EF2138E652100692DDB /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED6138E652100692DDB /* Base64Transcoder.c */; };
 		60030EF3138E652100692DDB /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030ED9138E652100692DDB /* NSMutableURLRequest+Parameters.m */; };
 		60030EF4138E652100692DDB /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EDB138E652100692DDB /* NSString+URLEncoding.m */; };
@@ -40,7 +38,7 @@
 		60412F6A139FB83D00403376 /* tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 60412F66139FB83D00403376 /* tencent.png */; };
 		60412F6C139FB85800403376 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 60412F6B139FB85800403376 /* facebook.png */; };
 		60412F6E139FB86100403376 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 60412F6D139FB86100403376 /* twitter.png */; };
-		60589539139CBDF6004C6DCD /* ATApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 60589538139CBDF6004C6DCD /* ATApi.m */; };
+		60E47ACF13A0514F00A674BB /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E47ACE13A0514F00A674BB /* Provider.m */; };
 		60E5531B1398B14700D3A55E /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553001398B14700D3A55E /* Facebook.m */; };
 		60E5531C1398B14700D3A55E /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60E553031398B14700D3A55E /* FBDialog.bundle */; };
 		60E5531D1398B14700D3A55E /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553051398B14700D3A55E /* FBDialog.m */; };
@@ -79,14 +77,10 @@
 		60020D32139E5F2A00D4A332 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Api.m; sourceTree = "<group>"; };
 		60020D33139E5F2A00D4A332 /* ApiParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiParameter.h; sourceTree = "<group>"; };
 		60020D34139E5F2A00D4A332 /* ApiParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiParameter.m; sourceTree = "<group>"; };
-		60020D35139E5F2A00D4A332 /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
-		60020D36139E5F2A00D4A332 /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		60030EC6138E49C800692DDB /* ApiTesterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTesterAppDelegate.h; sourceTree = "<group>"; };
 		60030EC7138E49C800692DDB /* ApiTesterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTesterAppDelegate.m; sourceTree = "<group>"; };
 		60030EC8138E49C800692DDB /* ProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderViewController.h; sourceTree = "<group>"; };
 		60030EC9138E49C800692DDB /* ProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderViewController.m; sourceTree = "<group>"; };
-		60030ED2138E60C600692DDB /* ATProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATProvider.h; sourceTree = "<group>"; };
-		60030ED3138E60C600692DDB /* ATProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATProvider.m; sourceTree = "<group>"; };
 		60030ED6138E652100692DDB /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
 		60030ED7138E652100692DDB /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
 		60030ED8138E652100692DDB /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableURLRequest+Parameters.h"; path = "Classes/External/OAuthConsumer/NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
@@ -132,8 +126,8 @@
 		60412F66139FB83D00403376 /* tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tencent.png; path = ApiTester/Resources/Images/tencent.png; sourceTree = SOURCE_ROOT; };
 		60412F6B139FB85800403376 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook.png; path = ApiTester/Resources/Images/facebook.png; sourceTree = SOURCE_ROOT; };
 		60412F6D139FB86100403376 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitter.png; path = ApiTester/Resources/Images/twitter.png; sourceTree = SOURCE_ROOT; };
-		60589537139CBDF6004C6DCD /* ATApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATApi.h; sourceTree = "<group>"; };
-		60589538139CBDF6004C6DCD /* ATApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATApi.m; sourceTree = "<group>"; };
+		60E47ACD13A0514F00A674BB /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
+		60E47ACE13A0514F00A674BB /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		60E552FC1398B14700D3A55E /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		60E552FF1398B14700D3A55E /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		60E553001398B14700D3A55E /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
@@ -242,10 +236,6 @@
 			children = (
 				60CC96FA139D15C20081ABB8 /* Entity */,
 				60F55E6F1397854600631D29 /* Tencent */,
-				60030ED2138E60C600692DDB /* ATProvider.h */,
-				60030ED3138E60C600692DDB /* ATProvider.m */,
-				60589537139CBDF6004C6DCD /* ATApi.h */,
-				60589538139CBDF6004C6DCD /* ATApi.m */,
 			);
 			name = Domain;
 			path = Classes/Domain;
@@ -258,8 +248,8 @@
 				60020D32139E5F2A00D4A332 /* Api.m */,
 				60020D33139E5F2A00D4A332 /* ApiParameter.h */,
 				60020D34139E5F2A00D4A332 /* ApiParameter.m */,
-				60020D35139E5F2A00D4A332 /* Provider.h */,
-				60020D36139E5F2A00D4A332 /* Provider.m */,
+				60E47ACD13A0514F00A674BB /* Provider.h */,
+				60E47ACE13A0514F00A674BB /* Provider.m */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -608,7 +598,6 @@
 				60F967CD138B98BD009F7BCF /* ApiTester.xcdatamodeld in Sources */,
 				60030ECA138E49C800692DDB /* ApiTesterAppDelegate.m in Sources */,
 				60030ECB138E49C800692DDB /* ProviderViewController.m in Sources */,
-				60030ED4138E60C600692DDB /* ATProvider.m in Sources */,
 				60030EF2138E652100692DDB /* Base64Transcoder.c in Sources */,
 				60030EF3138E652100692DDB /* NSMutableURLRequest+Parameters.m in Sources */,
 				60030EF4138E652100692DDB /* NSString+URLEncoding.m in Sources */,
@@ -637,10 +626,9 @@
 				60E553241398B14700D3A55E /* SBJsonParser.m in Sources */,
 				60E553251398B14700D3A55E /* SBJsonWriter.m in Sources */,
 				60E5532D1398C5E700D3A55E /* AuthorizeGithubViewController.m in Sources */,
-				60589539139CBDF6004C6DCD /* ATApi.m in Sources */,
 				60020D37139E5F2A00D4A332 /* Api.m in Sources */,
 				60020D38139E5F2A00D4A332 /* ApiParameter.m in Sources */,
-				60020D39139E5F2A00D4A332 /* Provider.m in Sources */,
+				60E47ACF13A0514F00A674BB /* Provider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

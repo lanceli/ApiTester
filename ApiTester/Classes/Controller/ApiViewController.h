@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 
-@class ATProvider;
+@class Provider;
 @interface ApiViewController : UITableViewController {
-    ATProvider *_provider;
+    Provider *_provider;
     
 }
 
-@property (nonatomic,retain) ATProvider *provider;
+@property (nonatomic,retain) Provider *provider;
 
 @end

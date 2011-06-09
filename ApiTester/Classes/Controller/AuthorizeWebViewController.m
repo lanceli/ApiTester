@@ -7,8 +7,8 @@
 //
 
 #import "AuthorizeWebViewController.h"
-#import "ATProvider.h"
 #import "ATModalAlert.h"
+#import "Provider.h"
 
 @implementation AuthorizeWebViewController
 
@@ -89,7 +89,6 @@
 
 
 - (IBAction)cancelButtonAction {
-    self.provider.accessToken = nil;
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -98,10 +97,10 @@
     
     if (NO == [self.provider isAuthorized]) {
         NSLog(@"asking for request token from %@",self.provider.title);
-        OAMutableURLRequest *request = [[self.provider oauthRequest:self.provider.requestURL] autorelease];
+        OAMutableURLRequest *request = [[self.provider oauthRequest:[NSURL URLWithString:self.provider.requestURL]] autorelease];
 
         OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_callback" 
-                                                                    value:self.provider.title == kTencentTitle ? @"null" : @"oob"];
+                                                                    value:[self.provider oauthCallback]];
         NSArray *params = [NSArray arrayWithObject:p0];
         [request setParameters:params];
 
@@ -121,7 +120,7 @@
 
         if ([pin length] > 0) {
             NSLog(@"successfully authorize with pin:%@", pin);
-            OAMutableURLRequest *request = [[self.provider oauthRequest:self.provider.accessURL] autorelease];
+            OAMutableURLRequest *request = [[self.provider oauthRequest:[NSURL URLWithString:self.provider.accessURL]] autorelease];
             OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_verifier"
                                                                         value:pin];
             NSArray *params = [NSArray arrayWithObjects: p0, nil];
@@ -137,7 +136,7 @@
         }
         else {
             NSLog(@"invalid pin:%@", pin);
-            self.provider.accessToken = nil;
+            [self.provider revoke];
         }
 
         [self dismissModalViewControllerAnimated:YES];
@@ -153,14 +152,17 @@
         NSLog(@"requestToken is granted");
         NSString *responseBody = [[NSString alloc] initWithData:data
                                                        encoding:NSUTF8StringEncoding];
+
+        OAToken *requestToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
         
-        self.provider.accessToken = nil;
-        self.provider.accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+        self.provider.accessTokenKey = requestToken.key;
+        self.provider.accessTokenSecret = requestToken.secret;
         [responseBody release];
+        [requestToken release];
         
-        OAMutableURLRequest *request = [[self.provider oauthRequest:self.provider.authorizeURL] autorelease];
+        OAMutableURLRequest *request = [[self.provider oauthRequest:[NSURL URLWithString:self.provider.authorizeURL]] autorelease];
         OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_token"
-                                                                    value:self.provider.accessToken.key];
+                                                                    value:self.provider.accessTokenKey];
         NSArray *params = [NSArray arrayWithObject:p0];
         [request setParameters:params];
         [self.webView loadRequest:request];
@@ -171,7 +173,7 @@
     else {
         NSLog(@"request ticket is returned but not succeeded");
         [ATModalAlert say:@"Cannot get the oauth request token from %@",self.provider.title];
-        self.provider.accessToken = nil;
+        [self.provider revoke];
         [self dismissModalViewControllerAnimated:YES];
     }
 }
@@ -180,7 +182,7 @@
 {
     NSLog(@"%@", error);
     [ATModalAlert say:@"Cannot get the oauth request token from %@",self.provider.title];
-    self.provider.accessToken = nil;
+    [self.provider revoke];
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -191,12 +193,12 @@
         
         NSString *responseBody = [[NSString alloc] initWithData:data
                                                        encoding:NSUTF8StringEncoding];
-        self.provider.accessToken = nil;
-        self.provider.accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+        OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+        self.provider.accessTokenKey = accessToken.key;
+        self.provider.accessTokenSecret = accessToken.secret;
+
         [responseBody release];
-        
-        [self.provider.accessToken storeInUserDefaultsWithServiceProviderName:kAppProviderName
-                                                                       prefix:self.provider.title];
+        [accessToken release];
     }
 }
 
@@ -204,6 +206,6 @@
 {
     NSLog(@"%@", error);
     [ATModalAlert say:@"Cannot get the oauth access token from %@",self.provider.title];
-    self.provider.accessToken = nil;
+    [self.provider revoke];
 }
 @end

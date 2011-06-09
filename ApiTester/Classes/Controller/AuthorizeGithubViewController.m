@@ -7,7 +7,7 @@
 //
 
 #import "AuthorizeGithubViewController.h"
-#import "ATProvider.h"
+#import "Provider.h"
 #import "ATModalAlert.h"
 
 @implementation AuthorizeGithubViewController
@@ -50,8 +50,8 @@
 - (void)viewDidLoad
 {
     if (YES == [self.provider isAuthorized]) {
-        self.userName.text = self.provider.accessToken.key;
-        self.apiToken.text = self.provider.accessToken.secret;
+        self.userName.text = self.provider.accessTokenKey;
+        self.apiToken.text = self.provider.accessTokenSecret;
         self.doneButton.title = @"Revoke";
     }
     [super viewDidLoad];
@@ -81,11 +81,9 @@
     if (NO == [self.provider isAuthorized]) {
         NSLog(@"authorizeButtonAction");
         if ([self.userName.text length] > 0 && [self.apiToken.text length] > 0) {
-            self.provider.accessToken = nil;
-            self.provider.accessToken = [[OAToken alloc] initWithKey:self.userName.text
-                                                              secret:self.apiToken.text];
-            [self.provider.accessToken storeInUserDefaultsWithServiceProviderName:kAppProviderName
-                                                                           prefix:self.provider.title];
+            [self.provider revoke];
+            self.provider.accessTokenKey= self.userName.text;
+            self.provider.accessTokenSecret= self.apiToken.text;
             [self dismissModalViewControllerAnimated:YES];
         }
         else {
@@ -94,7 +92,7 @@
     }
     else {
         NSLog(@"revokeButtonAction");
-        self.provider.accessToken = nil;
+        [self.provider revoke];
         self.userName.text = @"";
         self.apiToken.text = @"";
         self.doneButton.title = @"Authorize";
