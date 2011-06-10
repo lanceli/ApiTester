@@ -121,7 +121,7 @@
     Provider *p = [self.providers objectAtIndex:indexPath.row];
 
     cell.textLabel.text = p.title;
-    cell.detailTextLabel.text = [p isAuthorized] ? @"Authorized" : @"Authorization required";
+    cell.detailTextLabel.text = [p isAuthorized] ? [NSString stringWithFormat:@"API total: %d ",[p.apis count]] : @"Authorization required";
     cell.imageView.image = [UIImage imageNamed:p.logo];
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     

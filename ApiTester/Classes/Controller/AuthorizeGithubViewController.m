@@ -49,12 +49,12 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     if (YES == [self.provider isAuthorized]) {
         self.userName.text = self.provider.accessTokenKey;
         self.apiToken.text = self.provider.accessTokenSecret;
         self.doneButton.title = @"Revoke";
     }
-    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 

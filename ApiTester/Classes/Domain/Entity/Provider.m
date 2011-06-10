@@ -62,8 +62,8 @@ static NSString *kTencentTitle = @"Tencent Weibo";
 
 -(void)revoke
 {
-    self.accessTokenKey = nil;
-    self.accessTokenSecret = nil;
+    self.accessTokenKey = @"";
+    self.accessTokenSecret = @"";
 }
 
 -(OAMutableURLRequest *)oauthRequest:(NSURL *)url

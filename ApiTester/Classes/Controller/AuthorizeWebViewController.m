@@ -62,6 +62,14 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (YES == [self.provider isAuthorized]) {
+        self.doneButton.title = @"Revoke";
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -94,6 +102,7 @@
 
 - (IBAction)doneButtonAction {
     NSLog(@"doneButtonAction");
+
     
     if (NO == [self.provider isAuthorized]) {
         NSLog(@"asking for request token from %@",self.provider.title);
@@ -114,32 +123,37 @@
     }
     else {
         //NSLog(@"PIN html : %@",[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
-        NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:self.provider.script];
-        NSLog(@"PIN: %@",pin);
-        pin = [ATModalAlert ask:[NSString stringWithFormat:@"Input %@ to finish authorization",pin] withTextPrompt:pin];
-
-        if ([pin length] > 0) {
-            NSLog(@"successfully authorize with pin:%@", pin);
-            OAMutableURLRequest *request = [[self.provider oauthRequest:[NSURL URLWithString:self.provider.accessURL]] autorelease];
-            OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_verifier"
-                                                                        value:pin];
-            NSArray *params = [NSArray arrayWithObjects: p0, nil];
-            [request setParameters:params];
-            
-            OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
-            [fetcher fetchDataWithRequest:request
-                                 delegate:self
-                        didFinishSelector:@selector(accessToken:didFinishWithData:)
-                          didFailSelector:@selector(accessToken:didFailWithError:)];
-            
-            [p0 release];
+        if ([self.doneButton.title isEqualToString:@"Revoke"]) {
+            [self.provider revoke];
+            self.doneButton.title = @"Authorize";
         }
         else {
-            NSLog(@"invalid pin:%@", pin);
-            [self.provider revoke];
-        }
+            NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:self.provider.script];
+            NSLog(@"PIN: %@",pin);
+            pin = [ATModalAlert ask:[NSString stringWithFormat:@"Input %@ to finish authorization",pin] withTextPrompt:pin];
 
-        [self dismissModalViewControllerAnimated:YES];
+            if ([pin length] > 0) {
+                NSLog(@"successfully authorize with pin:%@", pin);
+                OAMutableURLRequest *request = [[self.provider oauthRequest:[NSURL URLWithString:self.provider.accessURL]] autorelease];
+                OARequestParameter *p0 = [[OARequestParameter alloc] initWithName:@"oauth_verifier"
+                                                                            value:pin];
+                NSArray *params = [NSArray arrayWithObjects: p0, nil];
+                [request setParameters:params];
+                
+                OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+                [fetcher fetchDataWithRequest:request
+                                     delegate:self
+                            didFinishSelector:@selector(accessToken:didFinishWithData:)
+                              didFailSelector:@selector(accessToken:didFailWithError:)];
+                
+                [p0 release];
+            }
+            else {
+                NSLog(@"invalid pin:%@", pin);
+                [self.provider revoke];
+            }
+            [self dismissModalViewControllerAnimated:YES];
+        }
     }
 }
 
