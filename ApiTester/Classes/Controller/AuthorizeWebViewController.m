@@ -10,6 +10,10 @@
 #import "ATModalAlert.h"
 #import "Provider.h"
 
+static NSString *kAuthorizeButton = @"Authorize";
+static NSString *kRevokeButton = @"Revoke";
+static NSString *kPinButton = @"Finish authorization with PIN";
+
 @implementation AuthorizeWebViewController
 
 @synthesize overlay;
@@ -66,7 +70,7 @@
 {
     [super viewWillAppear:animated];
     if (YES == [self.provider isAuthorized]) {
-        self.doneButton.title = @"Revoke";
+        self.doneButton.title = kRevokeButton;
     }
 }
 
@@ -97,6 +101,9 @@
 
 
 - (IBAction)cancelButtonAction {
+    if ([self.doneButton.title isEqualToString:kPinButton]) {
+        [self.provider revoke];
+    }
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -123,9 +130,9 @@
     }
     else {
         //NSLog(@"PIN html : %@",[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
-        if ([self.doneButton.title isEqualToString:@"Revoke"]) {
+        if ([self.doneButton.title isEqualToString:kRevokeButton]) {
             [self.provider revoke];
-            self.doneButton.title = @"Authorize";
+            self.doneButton.title = kAuthorizeButton;
         }
         else {
             NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:self.provider.script];
@@ -180,7 +187,7 @@
         NSArray *params = [NSArray arrayWithObject:p0];
         [request setParameters:params];
         [self.webView loadRequest:request];
-        self.doneButton.title = @"Finish authorization with PIN";
+        self.doneButton.title = kPinButton;
 
         [p0 release];
     }

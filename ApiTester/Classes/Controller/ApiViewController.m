@@ -14,7 +14,10 @@
 @implementation ApiViewController
 
 @synthesize provider=_provider;
-@synthesize apis=_apis;
+@synthesize sections=_sections;
+@synthesize filtered=_filtered;
+@synthesize searchBar=_searchBar;
+@synthesize searchDC=_searchDC;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,7 +31,10 @@
 - (void)dealloc
 {
     [_provider release];
-    [_apis release];
+    [_sections release];
+    [_filtered release];
+    [_searchBar release];
+    [_searchDC release];
     [super dealloc];
 }
 
@@ -46,8 +52,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.apis = [[self.provider.apis allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *apis = [[self.provider.apis allObjects] sortedArrayUsingSelector:@selector(compare:)];
     self.title = self.provider.title;
+    self.sections = [NSMutableArray array];
+    self.filtered = [NSArray array];
+    NSMutableArray *sections = [NSMutableArray array];
+    for (Api *api in apis) {
+        NSUInteger slashLetter = [api.name rangeOfString:@"/"].location;
+        NSString *section = slashLetter != NSNotFound ? [api.name substringToIndex:slashLetter] : api.name;
+        if (![sections containsObject:section]) {
+              [sections addObject:section];
+              [self.sections addObject:[NSMutableArray array]];
+        }
+        NSUInteger count = [self.sections count] - 1;
+        [[self.sections objectAtIndex:count] addObject:api];
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -89,19 +108,41 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar setText:@""];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
+    if (tableView == self.tableView) return [self.sections count];
     return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (tableView == self.tableView) {
+        Api *api = [[self.sections objectAtIndex:section] objectAtIndex:0];
+        NSUInteger slashLetter = [api.name rangeOfString:@"/"].location;
+        return slashLetter != NSNotFound ? [api.name substringToIndex:slashLetter] : api.name;
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.apis count];
+    if (tableView == self.tableView) {
+        return [[self.sections objectAtIndex:section] count];
+    }
+    NSArray *apis = [[self.provider.apis allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@",self.searchBar.text];
+    self.filtered = [apis filteredArrayUsingPredicate:predicate];
+    return [self.filtered count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,8 +153,14 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    Api *api = [self.apis objectAtIndex:indexPath.row];
+
+    Api *api = nil;
+    if (tableView == self.tableView) {
+        api = [[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    }
+    else {
+        api = [self.filtered objectAtIndex:indexPath.row];
+    }
     // Configure the cell...
     cell.textLabel.text = api.name;
     cell.detailTextLabel.text = api.briefing;

@@ -12,11 +12,16 @@
 @class Provider;
 @interface ApiViewController : UITableViewController {
     Provider *_provider;
-    NSArray *_apis;
-    
+    NSMutableArray *_sections;
+    NSArray *_filtered;
+    UISearchBar *_searchBar;
+    UISearchDisplayController *_searchDC;
 }
 
 @property (nonatomic,retain) Provider *provider;
-@property (nonatomic,retain) NSArray *apis;
+@property (nonatomic,retain) NSMutableArray *sections;
+@property (nonatomic,retain) NSArray *filtered;
+@property (nonatomic,retain) IBOutlet UISearchBar *searchBar;
+@property (nonatomic,retain) IBOutlet UISearchDisplayController *searchDC;
 
 @end

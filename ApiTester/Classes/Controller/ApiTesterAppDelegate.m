@@ -84,8 +84,8 @@
 	NSURL *documentDirectory = [self applicationDocumentsDirectory];
 	NSString *writableDBPath = [[documentDirectory path] stringByAppendingPathComponent:@"ApiTester.sqlite"];
 	
-	BOOL dbexits = [fileManager fileExistsAtPath:writableDBPath];
-	if (!dbexits) {
+	BOOL dbexists = [fileManager fileExistsAtPath:writableDBPath];
+	if (!dbexists) {
 		// The writable database does not exist, so copy the default to the appropriate location.
 		NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ApiTester.sqlite"];
 		
