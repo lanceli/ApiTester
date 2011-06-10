@@ -18,8 +18,8 @@ INSERT INTO ZPROVIDER (Z_PK,Z_ENT,Z_OPT,ZTITLE,ZCONSUMERKEY,ZCONSUMERSECRET,ZREQ
 VALUES ("6","3","1","Github","","","","","","octocat","","","");
 
 -- APIS
-INSERT INTO ZAPI (Z_PK,Z_ENT,Z_OPT,ZPROVIDER,ZENDPOINTURL,ZDESCRIPTIONURL)
-VALUES ("1","1","1","1","http://api.t.sina.com.cn/statuses/public_timeline","http://open.weibo.com/wiki/index.php/Statuses/public_timeline");
+INSERT INTO ZAPI (Z_PK,Z_ENT,Z_OPT,ZPROVIDER,ZNAME,ZBRIEFING,ZENDPOINTURL,ZDESCRIPTIONURL)
+VALUES ("1","1","1","1","statuses/public_timeline","获取最新的公共微博消息","http://api.t.sina.com.cn/statuses/public_timeline","http://open.weibo.com/wiki/index.php/Statuses/public_timeline");
 
 -- API PARAMETERS
 INSERT INTO ZAPIPARAMETER (Z_PK,Z_ENT,Z_OPT,ZOPTIONAL,ZAPI,ZPARAMETERNAME,ZPARAMETERVALUE,ZVIEWCLASS)

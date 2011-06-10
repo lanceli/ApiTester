@@ -11,8 +11,10 @@
 
 @interface ProviderViewController : UITableViewController {
     NSArray *_providers;
+    NSIndexPath *_reloadCell;
 }
 
 @property (nonatomic,retain) NSArray *providers;
+@property (nonatomic,retain) NSIndexPath *reloadCell;
 
 @end

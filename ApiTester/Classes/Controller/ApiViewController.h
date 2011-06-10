@@ -12,9 +12,11 @@
 @class Provider;
 @interface ApiViewController : UITableViewController {
     Provider *_provider;
+    NSArray *_apis;
     
 }
 
 @property (nonatomic,retain) Provider *provider;
+@property (nonatomic,retain) NSArray *apis;
 
 @end

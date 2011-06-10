@@ -2,7 +2,7 @@
 //  Api.m
 //  ApiTester
 //
-//  Created by WU Kai on 6/7/11.
+//  Created by WU Kai on 6/10/11.
 //  Copyright (c) 2011 None. All rights reserved.
 //
 
@@ -14,8 +14,11 @@
 @implementation Api
 @dynamic endPointURL;
 @dynamic descriptionURL;
-@dynamic apiParameters;
+@dynamic name;
+@dynamic briefing;
 @dynamic provider;
+@dynamic apiParameters;
+
 
 - (void)addApiParametersObject:(ApiParameter *)value {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
@@ -45,6 +48,9 @@
     [self didChangeValueForKey:@"apiParameters" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
 }
 
-
+- (NSComparisonResult) compare:(Api *)api
+{
+    return [self.name compare:api.name];
+}
 
 @end

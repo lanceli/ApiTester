@@ -7,11 +7,14 @@
 //
 
 #import "ApiViewController.h"
+#import "Provider.h"
+#import "Api.h"
 
 
 @implementation ApiViewController
 
 @synthesize provider=_provider;
+@synthesize apis=_apis;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,6 +28,7 @@
 - (void)dealloc
 {
     [_provider release];
+    [_apis release];
     [super dealloc];
 }
 
@@ -42,6 +46,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.apis = [[self.provider.apis allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    self.title = self.provider.title;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -89,25 +95,29 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return [self.apis count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ApiCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
+    Api *api = [self.apis objectAtIndex:indexPath.row];
     // Configure the cell...
+    cell.textLabel.text = api.name;
+    cell.detailTextLabel.text = api.briefing;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

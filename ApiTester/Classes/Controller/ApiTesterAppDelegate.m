@@ -25,43 +25,45 @@
     NSManagedObject *weibo = [NSEntityDescription insertNewObjectForEntityForName:@"Provider"
                                                            inManagedObjectContext:context];
 
-    [weibo setValue:@"111" forKey:@"consumerKey"];
-    [weibo setValue:@"222" forKey:@"consumerSecret"];
-    [weibo setValue:@"sina" forKey:@"logo"];
-    [weibo setValue:@"weibo" forKey:@"title"];
-    [weibo setValue:@"request" forKey:@"requestURL"];
-    [weibo setValue:@"access" forKey:@"accessURL"];
-    [weibo setValue:@"authorize" forKey:@"authorizeURL"];
-    [weibo setValue:@"document" forKey:@"script"];
+    [weibo setValue:@"" forKey:@"consumerKey"];
+    [weibo setValue:@"" forKey:@"consumerSecret"];
+    [weibo setValue:@"" forKey:@"logo"];
+    [weibo setValue:@"" forKey:@"title"];
+    [weibo setValue:@"" forKey:@"requestURL"];
+    [weibo setValue:@"" forKey:@"accessURL"];
+    [weibo setValue:@"" forKey:@"authorizeURL"];
+    [weibo setValue:@"" forKey:@"script"];
     [weibo setValue:@"" forKey:@"accessTokenKey"];
     [weibo setValue:@"" forKey:@"accessTokenSecret"];
 
     NSManagedObject *publicLine = [NSEntityDescription insertNewObjectForEntityForName:@"Api"
                                                                 inManagedObjectContext:context];
 
-    [publicLine setValue:@"http://open.weibo.com/wiki/index.php/Statuses/public_timeline" forKey:@"descriptionURL"];
-    [publicLine setValue:@"http://api.t.sina.com.cn/statuses/public_timeline" forKey:@"endPointURL"];
+    [publicLine setValue:@"" forKey:@"descriptionURL"];
+    [publicLine setValue:@"" forKey:@"endPointURL"];
+    [publicLine setValue:@"" forKey:@"name"];
+    [publicLine setValue:@"" forKey:@"briefing"];
 
     NSManagedObject *source = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
                                                             inManagedObjectContext:context];
     [source setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
-    [source setValue:@"source" forKey:@"parameterName"];
-    [source setValue:@"source" forKey:@"parameterValue"];
-    [source setValue:@"UITextField" forKey:@"viewClass"];
+    [source setValue:@"" forKey:@"parameterName"];
+    [source setValue:@"" forKey:@"parameterValue"];
+    [source setValue:@"" forKey:@"viewClass"];
 
     NSManagedObject *count = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
                                                            inManagedObjectContext:context];
     [count setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
-    [count setValue:@"count" forKey:@"parameterName"];
-    [count setValue:@"20" forKey:@"parameterValue"];
-    [count setValue:@"UITextField" forKey:@"viewClass"];
+    [count setValue:@"" forKey:@"parameterName"];
+    [count setValue:@"" forKey:@"parameterValue"];
+    [count setValue:@"" forKey:@"viewClass"];
 
     NSManagedObject *baseApp = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
                                                              inManagedObjectContext:context];
     [baseApp setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
-    [baseApp setValue:@"base_app" forKey:@"parameterName"];
-    [baseApp setValue:@"0" forKey:@"parameterValue"];
-    [baseApp setValue:@"UISwitch" forKey:@"viewClass"];
+    [baseApp setValue:@"" forKey:@"parameterName"];
+    [baseApp setValue:@"" forKey:@"parameterValue"];
+    [baseApp setValue:@"" forKey:@"viewClass"];
 
     [weibo setValue:[NSSet setWithObject:publicLine] forKey:@"apis"];
     [publicLine setValue:weibo forKey:@"provider"];
@@ -100,6 +102,26 @@
     _facebook = [[Facebook alloc] initWithAppId:kFacebookAppId];
     //[self initCoreData];
     [self createEditableCopyOfDatabaseIfNeeded];
+
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Provider" inManagedObjectContext:[self managedObjectContext]];
+	[request setEntity:entityDescription];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
+	
+	NSError *error;
+	NSArray *results = [[self managedObjectContext] executeFetchRequest:request error:&error];
+	if (results == nil) {
+		// Handle error
+	}
+
+    ProviderViewController *pvc = (ProviderViewController *) self.navigationController.topViewController;
+    pvc.providers = results;
+	
+	[request release];
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     return YES;
@@ -119,6 +141,7 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    [self saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

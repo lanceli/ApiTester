@@ -16,12 +16,14 @@
 @implementation ProviderViewController
 
 @synthesize providers=_providers;
+@synthesize reloadCell=_reloadCell;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.reloadCell = nil;
     }
     return self;
 }
@@ -29,6 +31,7 @@
 - (void)dealloc
 {
     [_providers release];
+    [_reloadCell release];
     [super dealloc];
 }
 
@@ -64,26 +67,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = appDelegate.managedObjectContext;
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Provider" inManagedObjectContext:managedObjectContext];
-	[request setEntity:entityDescription];
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptors release];
-	[sortDescriptor release];
-	
-	NSError *error;
-	NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-	if (results == nil) {
-		// Handle error
-	}
-	
-	self.providers = results;
-	[request release];
+    if (self.reloadCell) {
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:self.reloadCell] withRowAnimation:NO];
+    }
+    self.reloadCell = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -200,6 +187,7 @@
         [vc setProvider:provider];
         [self presentModalViewController:vc animated:YES];
         [vc release];
+        self.reloadCell = indexPath;
     }
 }
 
