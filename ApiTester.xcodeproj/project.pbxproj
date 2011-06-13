@@ -37,7 +37,11 @@
 		60412F6A139FB83D00403376 /* tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 60412F66139FB83D00403376 /* tencent.png */; };
 		60412F6C139FB85800403376 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 60412F6B139FB85800403376 /* facebook.png */; };
 		60412F6E139FB86100403376 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 60412F6D139FB86100403376 /* twitter.png */; };
+		607323FE13A5CC0D00536C11 /* JeansLiteCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 607323FD13A5CC0D00536C11 /* JeansLiteCell.png */; };
 		6099438213A1E22E007EA2C7 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 6099438113A1E22E007EA2C7 /* Api.m */; };
+		60DE292513A5B242001E9D6D /* MetalDarkCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DE292413A5B242001E9D6D /* MetalDarkCell.png */; };
+		60DE292713A5B495001E9D6D /* JeansDarkCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DE292613A5B495001E9D6D /* JeansDarkCell.png */; };
+		60DE292913A5B586001E9D6D /* MetalLiteCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DE292813A5B586001E9D6D /* MetalLiteCell.png */; };
 		60E47ACF13A0514F00A674BB /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E47ACE13A0514F00A674BB /* Provider.m */; };
 		60E5531B1398B14700D3A55E /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553001398B14700D3A55E /* Facebook.m */; };
 		60E5531C1398B14700D3A55E /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60E553031398B14700D3A55E /* FBDialog.bundle */; };
@@ -124,8 +128,12 @@
 		60412F66139FB83D00403376 /* tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tencent.png; path = ApiTester/Resources/Images/tencent.png; sourceTree = SOURCE_ROOT; };
 		60412F6B139FB85800403376 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook.png; path = ApiTester/Resources/Images/facebook.png; sourceTree = SOURCE_ROOT; };
 		60412F6D139FB86100403376 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twitter.png; path = ApiTester/Resources/Images/twitter.png; sourceTree = SOURCE_ROOT; };
+		607323FD13A5CC0D00536C11 /* JeansLiteCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JeansLiteCell.png; path = ApiTester/Resources/Images/JeansLiteCell.png; sourceTree = SOURCE_ROOT; };
 		6099438013A1E22E007EA2C7 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
 		6099438113A1E22E007EA2C7 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Api.m; sourceTree = "<group>"; };
+		60DE292413A5B242001E9D6D /* MetalDarkCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetalDarkCell.png; path = ApiTester/Resources/Images/MetalDarkCell.png; sourceTree = SOURCE_ROOT; };
+		60DE292613A5B495001E9D6D /* JeansDarkCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JeansDarkCell.png; path = ApiTester/Resources/Images/JeansDarkCell.png; sourceTree = SOURCE_ROOT; };
+		60DE292813A5B586001E9D6D /* MetalLiteCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetalLiteCell.png; path = ApiTester/Resources/Images/MetalLiteCell.png; sourceTree = SOURCE_ROOT; };
 		60E47ACD13A0514F00A674BB /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
 		60E47ACE13A0514F00A674BB /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		60E552FC1398B14700D3A55E /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
@@ -463,6 +471,10 @@
 		60F967E3138BEBB0009F7BCF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				607323FD13A5CC0D00536C11 /* JeansLiteCell.png */,
+				60DE292813A5B586001E9D6D /* MetalLiteCell.png */,
+				60DE292613A5B495001E9D6D /* JeansDarkCell.png */,
+				60DE292413A5B242001E9D6D /* MetalDarkCell.png */,
 				60412F6D139FB86100403376 /* twitter.png */,
 				60412F6B139FB85800403376 /* facebook.png */,
 				60412F63139FB83D00403376 /* linkedin.png */,
@@ -584,6 +596,10 @@
 				60412F6A139FB83D00403376 /* tencent.png in Resources */,
 				60412F6C139FB85800403376 /* facebook.png in Resources */,
 				60412F6E139FB86100403376 /* twitter.png in Resources */,
+				60DE292513A5B242001E9D6D /* MetalDarkCell.png in Resources */,
+				60DE292713A5B495001E9D6D /* JeansDarkCell.png in Resources */,
+				60DE292913A5B586001E9D6D /* MetalLiteCell.png in Resources */,
+				607323FE13A5CC0D00536C11 /* JeansLiteCell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

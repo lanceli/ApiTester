@@ -169,6 +169,29 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIColor *lite = [UIColor colorWithPatternImage:[UIImage imageNamed:@"JeansLiteCell.png"]];
+    UIColor *dark = [UIColor colorWithPatternImage:[UIImage imageNamed:@"JeansDarkCell.png"]];
+    if (indexPath.row%2>0 ) {
+        cell.backgroundColor = lite ;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.shadowColor = [UIColor whiteColor];
+        cell.textLabel.shadowOffset = CGSizeMake(0.0,1.0);
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+        cell.detailTextLabel.shadowColor = [UIColor whiteColor];
+        cell.detailTextLabel.shadowOffset = CGSizeMake(0.0,1.0);
+    }
+    else {
+        cell.backgroundColor = dark ;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.shadowColor = [UIColor whiteColor];
+        cell.textLabel.shadowOffset = CGSizeMake(0.0,1.0);
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+        cell.detailTextLabel.shadowColor = [UIColor whiteColor];
+        cell.detailTextLabel.shadowOffset = CGSizeMake(0.0,1.0);
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
