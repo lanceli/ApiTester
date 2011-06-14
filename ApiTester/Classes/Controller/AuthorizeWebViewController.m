@@ -70,7 +70,10 @@ static NSString *kPinButton = @"Finish authorization with PIN";
 {
     [super viewWillAppear:animated];
     if (YES == [self.provider isAuthorized]) {
-        self.doneButton.title = kRevokeButton;
+        self.doneButton.title = [kRevokeButton stringByAppendingFormat:@" %@",self.provider.title];
+    }
+    else {
+        self.doneButton.title = [kAuthorizeButton stringByAppendingFormat:@" %@",self.provider.title];
     }
 }
 
@@ -130,9 +133,9 @@ static NSString *kPinButton = @"Finish authorization with PIN";
     }
     else {
         //NSLog(@"PIN html : %@",[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
-        if ([self.doneButton.title isEqualToString:kRevokeButton]) {
+        if ([self.doneButton.title isEqualToString:[kRevokeButton stringByAppendingFormat:@" %@",self.provider.title]]) {
             [self.provider revoke];
-            self.doneButton.title = kAuthorizeButton;
+            self.doneButton.title = [kAuthorizeButton stringByAppendingFormat:@" %@",self.provider.title];
         }
         else {
             NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:self.provider.script];

@@ -53,7 +53,10 @@
     if (YES == [self.provider isAuthorized]) {
         self.userName.text = self.provider.accessTokenKey;
         self.apiToken.text = self.provider.accessTokenSecret;
-        self.doneButton.title = @"Revoke";
+        self.doneButton.title = [NSString stringWithFormat:@"Revoke %@",self.provider.title];
+    }
+    else {
+        self.doneButton.title = [NSString stringWithFormat:@"Authorize %@",self.provider.title];
     }
     // Do any additional setup after loading the view from its nib.
 }
@@ -97,6 +100,19 @@
         self.apiToken.text = @"";
         self.doneButton.title = @"Authorize";
     }
+}
+
+#pragma mark - UITextField delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 @end

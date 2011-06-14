@@ -2,26 +2,38 @@
 //  ApiViewController.h
 //  ApiTester
 //
-//  Created by WU Kai on 5/30/11.
+//  Created by WU Kai on 6/14/11.
 //  Copyright 2011 None. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    ApiMandatorySection = 0,
+    ApiOptionalSection,
+    ApiResultSection
+} ApiSection;
 
-@class Provider;
-@interface ApiViewController : UITableViewController {
-    Provider *_provider;
-    NSMutableArray *_sections;
-    NSArray *_filtered;
-    UISearchBar *_searchBar;
-    UISearchDisplayController *_searchDC;
+@class Api;
+@interface ApiViewController : UIViewController
+    <UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource> {
+    Api *_api;
+    NSMutableArray *_parameters;
+    NSMutableString *_result;
 }
+@property (nonatomic,retain) Api *api;
+@property (nonatomic,getter=isParameterTable) BOOL parameterTable;
+@property (nonatomic,retain) NSMutableArray *parameters;
+@property (nonatomic,retain) NSMutableString *result;
+@property (nonatomic,retain) IBOutlet UITableViewCell *none;
+@property (nonatomic,retain) IBOutlet UIButton *infoButton;
+@property (nonatomic,retain) IBOutlet UIButton *parametersButton;
+@property (nonatomic,retain) IBOutlet UIButton *resultButton;
+@property (nonatomic,retain) IBOutlet UITableView *tableView;
 
-@property (nonatomic,retain) Provider *provider;
-@property (nonatomic,retain) NSMutableArray *sections;
-@property (nonatomic,retain) NSArray *filtered;
-@property (nonatomic,retain) IBOutlet UISearchBar *searchBar;
-@property (nonatomic,retain) IBOutlet UISearchDisplayController *searchDC;
+- (IBAction)testButtonAction:(id) sender;
+- (IBAction)infoButtonAction:(id) sender;
+- (IBAction)parametersButtonAction:(id) sender;
+- (IBAction)resultButtonAction:(id) sender;
 
 @end

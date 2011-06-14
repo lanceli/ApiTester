@@ -24,10 +24,9 @@
 		60030EFD138E652100692DDB /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EED138E652100692DDB /* OAServiceTicket.m */; };
 		60030EFE138E652100692DDB /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 60030EF0138E652100692DDB /* OAToken.m */; };
 		601B3DDE1393917600FEFF49 /* AuthorizeWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601B3DDC1393917600FEFF49 /* AuthorizeWebViewController.m */; };
-		601B3DE61393921D00FEFF49 /* ApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601B3DE41393921D00FEFF49 /* ApiViewController.m */; };
+		601B3DE61393921D00FEFF49 /* ApiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601B3DE41393921D00FEFF49 /* ApiListViewController.m */; };
 		6027C323138D415100486667 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6027C322138D415100486667 /* Security.framework */; };
 		60412F50139F835300403376 /* ApiTester.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 60412F4F139F835300403376 /* ApiTester.sqlite */; };
-		60412F5F139FB7F200403376 /* ApiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60412F5B139FB7F200403376 /* ApiViewController.xib */; };
 		60412F60139FB7F200403376 /* AuthorizeGithubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60412F5C139FB7F200403376 /* AuthorizeGithubViewController.xib */; };
 		60412F61139FB7F200403376 /* AuthorizeWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60412F5D139FB7F200403376 /* AuthorizeWebViewController.xib */; };
 		60412F62139FB7F200403376 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60412F5E139FB7F200403376 /* MainWindow.xib */; };
@@ -55,6 +54,13 @@
 		60E553241398B14700D3A55E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553151398B14700D3A55E /* SBJsonParser.m */; };
 		60E553251398B14700D3A55E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553171398B14700D3A55E /* SBJsonWriter.m */; };
 		60E5532D1398C5E700D3A55E /* AuthorizeGithubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */; };
+		60EA8D1E13A706E300D997DF /* ApiListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D1D13A706E300D997DF /* ApiListViewController.xib */; };
+		60EA8D2913A70D4200D997DF /* ApiParameterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA8D2813A70D4200D997DF /* ApiParameterCell.m */; };
+		60EA8D2D13A70E2600D997DF /* ApiParameterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D2C13A70E2600D997DF /* ApiParameterCell.xib */; };
+		60EA8D3413A710B500D997DF /* ApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA8D3213A710B500D997DF /* ApiViewController.m */; };
+		60EA8D3713A7111500D997DF /* ApiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D3613A7111500D997DF /* ApiViewController.xib */; };
+		60EA8D3A13A713FF00D997DF /* ApiResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA8D3913A713FF00D997DF /* ApiResultCell.m */; };
+		60EA8D3C13A7142E00D997DF /* ApiResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D3B13A7142E00D997DF /* ApiResultCell.xib */; };
 		60F55E731397858600631D29 /* ATTencentMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F55E721397858600631D29 /* ATTencentMutableURLRequest.m */; };
 		60F967B5138B98BD009F7BCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B4138B98BD009F7BCF /* UIKit.framework */; };
 		60F967B7138B98BD009F7BCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B6138B98BD009F7BCF /* Foundation.framework */; };
@@ -113,12 +119,11 @@
 		60030EF1138E652100692DDB /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumer.h; path = Classes/External/OAuthConsumer/OAuthConsumer.h; sourceTree = "<group>"; };
 		601B3DDB1393917600FEFF49 /* AuthorizeWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeWebViewController.h; sourceTree = "<group>"; };
 		601B3DDC1393917600FEFF49 /* AuthorizeWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeWebViewController.m; sourceTree = "<group>"; };
-		601B3DE31393921D00FEFF49 /* ApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiViewController.h; sourceTree = "<group>"; };
-		601B3DE41393921D00FEFF49 /* ApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiViewController.m; sourceTree = "<group>"; };
+		601B3DE31393921D00FEFF49 /* ApiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiListViewController.h; sourceTree = "<group>"; };
+		601B3DE41393921D00FEFF49 /* ApiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiListViewController.m; sourceTree = "<group>"; };
 		6027C322138D415100486667 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		60412F4F139F835300403376 /* ApiTester.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ApiTester.sqlite; sourceTree = "<group>"; };
 		60412F51139F842E00403376 /* ApiTester.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ApiTester.sql; sourceTree = "<group>"; };
-		60412F5B139FB7F200403376 /* ApiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiViewController.xib; path = ApiTester/Resources/IBFiles/ApiViewController.xib; sourceTree = SOURCE_ROOT; };
 		60412F5C139FB7F200403376 /* AuthorizeGithubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AuthorizeGithubViewController.xib; path = ApiTester/Resources/IBFiles/AuthorizeGithubViewController.xib; sourceTree = SOURCE_ROOT; };
 		60412F5D139FB7F200403376 /* AuthorizeWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AuthorizeWebViewController.xib; path = ApiTester/Resources/IBFiles/AuthorizeWebViewController.xib; sourceTree = SOURCE_ROOT; };
 		60412F5E139FB7F200403376 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ApiTester/Resources/IBFiles/MainWindow.xib; sourceTree = SOURCE_ROOT; };
@@ -163,6 +168,16 @@
 		60E553171398B14700D3A55E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		60E5532A1398C5E700D3A55E /* AuthorizeGithubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeGithubViewController.h; sourceTree = "<group>"; };
 		60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeGithubViewController.m; sourceTree = "<group>"; };
+		60EA8D1D13A706E300D997DF /* ApiListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiListViewController.xib; path = ApiTester/Resources/IBFiles/ApiListViewController.xib; sourceTree = SOURCE_ROOT; };
+		60EA8D2713A70D4200D997DF /* ApiParameterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiParameterCell.h; sourceTree = "<group>"; };
+		60EA8D2813A70D4200D997DF /* ApiParameterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiParameterCell.m; sourceTree = "<group>"; };
+		60EA8D2C13A70E2600D997DF /* ApiParameterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiParameterCell.xib; path = ApiTester/Resources/IBFiles/Cells/ApiParameterCell.xib; sourceTree = SOURCE_ROOT; };
+		60EA8D3113A710B500D997DF /* ApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiViewController.h; sourceTree = "<group>"; };
+		60EA8D3213A710B500D997DF /* ApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiViewController.m; sourceTree = "<group>"; };
+		60EA8D3613A7111500D997DF /* ApiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiViewController.xib; path = ApiTester/Resources/IBFiles/ApiViewController.xib; sourceTree = SOURCE_ROOT; };
+		60EA8D3813A713FF00D997DF /* ApiResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiResultCell.h; sourceTree = "<group>"; };
+		60EA8D3913A713FF00D997DF /* ApiResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiResultCell.m; sourceTree = "<group>"; };
+		60EA8D3B13A7142E00D997DF /* ApiResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiResultCell.xib; path = ApiTester/Resources/IBFiles/Cells/ApiResultCell.xib; sourceTree = SOURCE_ROOT; };
 		60F55E711397858600631D29 /* ATTencentMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTencentMutableURLRequest.h; sourceTree = "<group>"; };
 		60F55E721397858600631D29 /* ATTencentMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTencentMutableURLRequest.m; sourceTree = "<group>"; };
 		60F967B0138B98BD009F7BCF /* ApiTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -428,10 +443,12 @@
 				60030EC9138E49C800692DDB /* ProviderViewController.m */,
 				601B3DDB1393917600FEFF49 /* AuthorizeWebViewController.h */,
 				601B3DDC1393917600FEFF49 /* AuthorizeWebViewController.m */,
-				601B3DE31393921D00FEFF49 /* ApiViewController.h */,
-				601B3DE41393921D00FEFF49 /* ApiViewController.m */,
+				601B3DE31393921D00FEFF49 /* ApiListViewController.h */,
+				601B3DE41393921D00FEFF49 /* ApiListViewController.m */,
 				60E5532A1398C5E700D3A55E /* AuthorizeGithubViewController.h */,
 				60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */,
+				60EA8D3113A710B500D997DF /* ApiViewController.h */,
+				60EA8D3213A710B500D997DF /* ApiViewController.m */,
 			);
 			name = Controller;
 			path = Classes/Controller;
@@ -440,6 +457,10 @@
 		60F967E0138BEB19009F7BCF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				60EA8D2713A70D4200D997DF /* ApiParameterCell.h */,
+				60EA8D2813A70D4200D997DF /* ApiParameterCell.m */,
+				60EA8D3813A713FF00D997DF /* ApiResultCell.h */,
+				60EA8D3913A713FF00D997DF /* ApiResultCell.m */,
 			);
 			name = View;
 			path = Classes/View;
@@ -458,7 +479,8 @@
 		60F967E2138BEBA1009F7BCF /* IBFiles */ = {
 			isa = PBXGroup;
 			children = (
-				60412F5B139FB7F200403376 /* ApiViewController.xib */,
+				60EA8D3613A7111500D997DF /* ApiViewController.xib */,
+				60EA8D1D13A706E300D997DF /* ApiListViewController.xib */,
 				60412F5C139FB7F200403376 /* AuthorizeGithubViewController.xib */,
 				60412F5D139FB7F200403376 /* AuthorizeWebViewController.xib */,
 				60412F5E139FB7F200403376 /* MainWindow.xib */,
@@ -513,8 +535,11 @@
 		60F967F3138BF316009F7BCF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				60EA8D2C13A70E2600D997DF /* ApiParameterCell.xib */,
+				60EA8D3B13A7142E00D997DF /* ApiResultCell.xib */,
 			);
-			path = Cells;
+			name = Cells;
+			path = ApiTester/Resources/IBFiles/Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -586,7 +611,6 @@
 				60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */,
 				60E5531C1398B14700D3A55E /* FBDialog.bundle in Resources */,
 				60412F50139F835300403376 /* ApiTester.sqlite in Resources */,
-				60412F5F139FB7F200403376 /* ApiViewController.xib in Resources */,
 				60412F60139FB7F200403376 /* AuthorizeGithubViewController.xib in Resources */,
 				60412F61139FB7F200403376 /* AuthorizeWebViewController.xib in Resources */,
 				60412F62139FB7F200403376 /* MainWindow.xib in Resources */,
@@ -600,6 +624,10 @@
 				60DE292713A5B495001E9D6D /* JeansDarkCell.png in Resources */,
 				60DE292913A5B586001E9D6D /* MetalLiteCell.png in Resources */,
 				607323FE13A5CC0D00536C11 /* JeansLiteCell.png in Resources */,
+				60EA8D1E13A706E300D997DF /* ApiListViewController.xib in Resources */,
+				60EA8D2D13A70E2600D997DF /* ApiParameterCell.xib in Resources */,
+				60EA8D3713A7111500D997DF /* ApiViewController.xib in Resources */,
+				60EA8D3C13A7142E00D997DF /* ApiResultCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,7 +656,7 @@
 				60030EFD138E652100692DDB /* OAServiceTicket.m in Sources */,
 				60030EFE138E652100692DDB /* OAToken.m in Sources */,
 				601B3DDE1393917600FEFF49 /* AuthorizeWebViewController.m in Sources */,
-				601B3DE61393921D00FEFF49 /* ApiViewController.m in Sources */,
+				601B3DE61393921D00FEFF49 /* ApiListViewController.m in Sources */,
 				60FE81941394891200241246 /* ATModalAlert.m in Sources */,
 				60F55E731397858600631D29 /* ATTencentMutableURLRequest.m in Sources */,
 				60E5531B1398B14700D3A55E /* Facebook.m in Sources */,
@@ -645,6 +673,9 @@
 				60020D38139E5F2A00D4A332 /* ApiParameter.m in Sources */,
 				60E47ACF13A0514F00A674BB /* Provider.m in Sources */,
 				6099438213A1E22E007EA2C7 /* Api.m in Sources */,
+				60EA8D2913A70D4200D997DF /* ApiParameterCell.m in Sources */,
+				60EA8D3413A710B500D997DF /* ApiViewController.m in Sources */,
+				60EA8D3A13A713FF00D997DF /* ApiResultCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

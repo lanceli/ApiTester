@@ -2,26 +2,27 @@
 //  ApiViewController.m
 //  ApiTester
 //
-//  Created by WU Kai on 5/30/11.
+//  Created by WU Kai on 6/14/11.
 //  Copyright 2011 None. All rights reserved.
 //
 
 #import "ApiViewController.h"
-#import "Provider.h"
+#import "ApiParameterCell.h"
+#import "ApiResultCell.h"
+#import "ApiParameter.h"
 #import "Api.h"
 
 
 @implementation ApiViewController
+@synthesize api = _api;
+@synthesize parameters = _parameters,result=_result;
+@synthesize parameterTable;
+@synthesize none;
+@synthesize infoButton,parametersButton,resultButton,tableView=_tableView;
 
-@synthesize provider=_provider;
-@synthesize sections=_sections;
-@synthesize filtered=_filtered;
-@synthesize searchBar=_searchBar;
-@synthesize searchDC=_searchDC;
-
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-    self = [super initWithStyle:style];
+    self = [super init];
     if (self) {
         // Custom initialization
     }
@@ -30,11 +31,14 @@
 
 - (void)dealloc
 {
-    [_provider release];
-    [_sections release];
-    [_filtered release];
-    [_searchBar release];
-    [_searchDC release];
+    [_api release];
+    [_parameters release];
+    [_result release];
+    [none release];
+    [infoButton release];
+    [parametersButton release];
+    [resultButton release];
+    [_tableView release];
     [super dealloc];
 }
 
@@ -46,27 +50,49 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark -
-#pragma mark View lifecycle
+- (IBAction)testButtonAction:(id) sender
+{
+    NSLog(@"test %@",self.api.name);
+}
+
+- (IBAction)infoButtonAction:(id) sender
+{
+    NSLog(@"show info for %@",self.api.name);
+}
+
+- (IBAction)parametersButtonAction:(id) sender
+{
+    NSLog(@"show %@ parameters",self.api.name);
+    self.parameterTable = YES;
+    [self.tableView reloadData];
+}
+
+- (IBAction)resultButtonAction:(id) sender
+{
+    NSLog(@"show %@ result",self.api.name);
+    self.parameterTable = NO;
+    [self.tableView reloadData];
+}
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSArray *apis = [[self.provider.apis allObjects] sortedArrayUsingSelector:@selector(compare:)];
-    self.title = self.provider.title;
-    self.sections = [NSMutableArray array];
-    self.filtered = [NSArray array];
-    NSMutableArray *sections = [NSMutableArray array];
-    for (Api *api in apis) {
-        NSUInteger slashLetter = [api.name rangeOfString:@"/"].location;
-        NSString *section = slashLetter != NSNotFound ? [api.name substringToIndex:slashLetter] : api.name;
-        if (![sections containsObject:section]) {
-              [sections addObject:section];
-              [self.sections addObject:[NSMutableArray array]];
-        }
-        NSUInteger count = [self.sections count] - 1;
-        [[self.sections objectAtIndex:count] addObject:api];
+    self.title = self.api.name;
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Test"
+                                                                               style:UIBarButtonItemStylePlain
+                                                                              target:self
+                                                                              action:@selector(testButtonAction:)] autorelease];
+    NSArray *parameters = [self.api.apiParameters allObjects];
+    self.parameters = [NSMutableArray array];
+    [self.parameters addObject:[NSMutableArray array]];//mandatory
+    [self.parameters addObject:[NSMutableArray array]];//optional
+    for (ApiParameter *parameter in parameters) {
+        [[self.parameters objectAtIndex:[parameter.optional intValue]] addObject:parameter];
     }
+    self.parametersButton.highlighted = YES;
+    self.parameterTable = YES;
+    self.result = nil;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -108,90 +134,70 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    [self.searchBar setText:@""];
-}
-
-#pragma mark -
-#pragma mark Table view data source
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    if (tableView == self.tableView) return [self.sections count];
-    return 1;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (tableView == self.tableView) {
-        Api *api = [[self.sections objectAtIndex:section] objectAtIndex:0];
-        NSUInteger slashLetter = [api.name rangeOfString:@"/"].location;
-        return slashLetter != NSNotFound ? [api.name substringToIndex:slashLetter] : api.name;
-    }
-    return nil;
+    // Return the number of sections: mandatory,optional,result
+    return self.isParameterTable ? 2 : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (tableView == self.tableView) {
-        return [[self.sections objectAtIndex:section] count];
+    if (self.isParameterTable) {
+        NSInteger count = [[self.parameters objectAtIndex:section] count];
+        return count > 0 ? count : 1;
     }
-    NSArray *apis = [[self.provider.apis allObjects] sortedArrayUsingSelector:@selector(compare:)];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@",self.searchBar.text];
-    self.filtered = [apis filteredArrayUsingPredicate:predicate];
-    return [self.filtered count];
+    return 1;//ApiResultSection;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ApiCell";
+    static NSString *ParameterCellIdentifier = @"ParameterCell";
+    static NSString *ResultCellIdentifier = @"ResultCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-
-    Api *api = nil;
-    if (tableView == self.tableView) {
-        api = [[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    if (!self.isParameterTable) {
+        if (!self.result) {
+            return self.none;
+        }
+        else {
+            ApiResultCell *cell = (ApiResultCell *) [tableView dequeueReusableCellWithIdentifier:ResultCellIdentifier];
+            if (cell == nil) {
+                cell = (ApiResultCell *) [[[NSBundle mainBundle] loadNibNamed:@"ApiResultCell" owner:self options:nil] lastObject];
+            }
+            return cell;
+        }
     }
     else {
-        api = [self.filtered objectAtIndex:indexPath.row];
+        NSMutableArray *section = [self.parameters objectAtIndex:indexPath.section];
+
+        if ([section count] == 0) {
+            return self.none;
+        }
+        else {
+            ApiParameter *parameter = [section objectAtIndex:indexPath.row];
+            ApiParameterCell *cell = (ApiParameterCell *) [tableView dequeueReusableCellWithIdentifier:ParameterCellIdentifier];
+            if (cell == nil) {
+                cell = (ApiParameterCell *) [[[NSBundle mainBundle] loadNibNamed:@"ApiParameterCell" owner:self options:nil] lastObject];
+            }
+            // Configure the cell...
+            cell.parameterName.text = parameter.parameterName;
+            cell.parameterValue.text = parameter.parameterValue;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            return cell;
+        }
     }
-    // Configure the cell...
-    cell.textLabel.text = api.name;
-    cell.detailTextLabel.text = api.briefing;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
+
+    return nil;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    UIColor *lite = [UIColor colorWithPatternImage:[UIImage imageNamed:@"JeansLiteCell.png"]];
-    UIColor *dark = [UIColor colorWithPatternImage:[UIImage imageNamed:@"JeansDarkCell.png"]];
-    if (indexPath.row%2>0 ) {
-        cell.backgroundColor = lite ;
-        cell.textLabel.backgroundColor = [UIColor clearColor];
-        cell.textLabel.shadowColor = [UIColor whiteColor];
-        cell.textLabel.shadowOffset = CGSizeMake(0.0,1.0);
-        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-        cell.detailTextLabel.shadowColor = [UIColor whiteColor];
-        cell.detailTextLabel.shadowOffset = CGSizeMake(0.0,1.0);
-    }
-    else {
-        cell.backgroundColor = dark ;
-        cell.textLabel.backgroundColor = [UIColor clearColor];
-        cell.textLabel.shadowColor = [UIColor whiteColor];
-        cell.textLabel.shadowOffset = CGSizeMake(0.0,1.0);
-        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-        cell.detailTextLabel.shadowColor = [UIColor whiteColor];
-        cell.detailTextLabel.shadowOffset = CGSizeMake(0.0,1.0);
-    }
+    NSArray *titles = [NSArray arrayWithObjects:@"Mandatory Parameters",@"Optional Parameters",nil];
+    return self.isParameterTable ? [titles objectAtIndex:section] : @"Result";
 }
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -231,8 +237,7 @@
 }
 */
 
-#pragma mark -
-#pragma mark Table view delegate
+#pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -245,5 +250,24 @@
      [detailViewController release];
      */
 }
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.view endEditing:YES];
+}
+
+#pragma mark - Text field delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
 
 @end

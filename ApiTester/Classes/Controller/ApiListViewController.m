@@ -1,37 +1,41 @@
 //
-//  ProviderViewController.m
+//  ApiListViewController.m
 //  ApiTester
 //
-//  Created by WU Kai on 5/26/11.
+//  Created by WU Kai on 5/30/11.
 //  Copyright 2011 None. All rights reserved.
 //
 
-#import "ApiTesterAppDelegate.h"
-#import "ProviderViewController.h"
-#import "AuthorizeWebViewController.h"
-#import "AuthorizeGithubViewController.h"
 #import "ApiListViewController.h"
+#import "ApiViewController.h"
 #import "Provider.h"
+#import "Api.h"
 
-@implementation ProviderViewController
 
-@synthesize providers=_providers;
-@synthesize reloadCell=_reloadCell;
+@implementation ApiListViewController
+
+@synthesize provider=_provider;
+@synthesize sections=_sections;
+@synthesize filtered=_filtered;
+@synthesize searchBar=_searchBar;
+@synthesize searchDC=_searchDC;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.reloadCell = nil;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [_providers release];
-    [_reloadCell release];
+    [_provider release];
+    [_sections release];
+    [_filtered release];
+    [_searchBar release];
+    [_searchDC release];
     [super dealloc];
 }
 
@@ -49,6 +53,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSArray *apis = [[self.provider.apis allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    self.title = self.provider.title;
+    self.sections = [NSMutableArray array];
+    self.filtered = [NSArray array];
+    NSMutableArray *sections = [NSMutableArray array];
+    for (Api *api in apis) {
+        NSUInteger slashLetter = [api.name rangeOfString:@"/"].location;
+        NSString *section = slashLetter != NSNotFound ? [api.name substringToIndex:slashLetter] : api.name;
+        if (![sections containsObject:section]) {
+              [sections addObject:section];
+              [self.sections addObject:[NSMutableArray array]];
+        }
+        NSUInteger count = [self.sections count] - 1;
+        [[self.sections objectAtIndex:count] addObject:api];
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -67,10 +86,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.reloadCell) {
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:self.reloadCell] withRowAnimation:NO];
-    }
-    self.reloadCell = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -94,45 +109,71 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar setText:@""];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
+    if (tableView == self.tableView) return [self.sections count];
     return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (tableView == self.tableView) {
+        Api *api = [[self.sections objectAtIndex:section] objectAtIndex:0];
+        NSUInteger slashLetter = [api.name rangeOfString:@"/"].location;
+        return slashLetter != NSNotFound ? [api.name substringToIndex:slashLetter] : api.name;
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_providers count];
+    if (tableView == self.tableView) {
+        return [[self.sections objectAtIndex:section] count];
+    }
+    NSArray *apis = [[self.provider.apis allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@",self.searchBar.text];
+    self.filtered = [apis filteredArrayUsingPredicate:predicate];
+    return [self.filtered count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ProviderCell";
+    static NSString *CellIdentifier = @"ApiCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
 
-    Provider *p = [self.providers objectAtIndex:indexPath.row];
-
-    cell.textLabel.text = p.title;
-    cell.detailTextLabel.text = [p isAuthorized] ? [NSString stringWithFormat:@"API total: %d ",[p.apis count]] : @"Authorization required";
-    cell.imageView.image = [UIImage imageNamed:p.logo];
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    
+    Api *api = nil;
+    if (tableView == self.tableView) {
+        api = [[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    }
+    else {
+        api = [self.filtered objectAtIndex:indexPath.row];
+    }
     // Configure the cell...
+    cell.textLabel.text = api.name;
+    cell.detailTextLabel.text = api.briefing;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIColor *lite = [UIColor colorWithPatternImage:[UIImage imageNamed:@"MetalLiteCell.png"]];
-    UIColor *dark = [UIColor colorWithPatternImage:[UIImage imageNamed:@"MetalDarkCell.png"]];
+    UIColor *lite = [UIColor colorWithPatternImage:[UIImage imageNamed:@"JeansLiteCell.png"]];
+    UIColor *dark = [UIColor colorWithPatternImage:[UIImage imageNamed:@"JeansDarkCell.png"]];
     if (indexPath.row%2>0 ) {
         cell.backgroundColor = lite ;
         cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -152,7 +193,6 @@
         cell.detailTextLabel.shadowOffset = CGSizeMake(0.0,1.0);
     }
 }
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -194,26 +234,6 @@
 
 #pragma mark -
 #pragma mark Table view delegate
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    Provider *provider = [self.providers objectAtIndex:indexPath.row];
-    if ([provider isFacebook]) {
-        ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [appDelegate.facebook authorize:nil delegate:appDelegate];
-    }
-    else {
-        UIViewController<ProviderPropertyProtocol> *vc = [provider isGithub] ? 
-            [[AuthorizeGithubViewController alloc] initWithNibName:@"AuthorizeGithubViewController" 
-                                                            bundle:nil]
-                                                                  : 
-               [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController"
-                                                            bundle:nil];
-        [vc setProvider:provider];
-        [self presentModalViewController:vc animated:YES];
-        [vc release];
-        self.reloadCell = indexPath;
-    }
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -225,18 +245,17 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
-    Provider *provider = [self.providers objectAtIndex:indexPath.row];
-    if ([provider isAuthorized]) {
-        NSLog(@"%@ is already authorized",provider.title);
-        ApiListViewController *vc = [[ApiListViewController alloc] initWithNibName:@"ApiListViewController" bundle:nil];
-        vc.provider = provider;
-        [self.navigationController pushViewController:vc animated:YES];
-        [vc release];
+    Api *api = nil;
+    if (tableView == self.tableView) {
+        api = [[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     }
     else {
-        NSLog(@"%@ is not yet authorized",provider.title);
-        [self tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
+        api = [self.filtered objectAtIndex:indexPath.row];
     }
+    ApiViewController *vc = [[ApiViewController alloc] initWithNibName:@"ApiViewController" bundle:nil];
+    vc.api = api;
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Provider;
-@interface AuthorizeGithubViewController : UIViewController {
+@interface AuthorizeGithubViewController : UIViewController<UITextFieldDelegate> {
     Provider *_provider;
 }
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
