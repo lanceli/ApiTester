@@ -16,6 +16,7 @@
 @dynamic descriptionURL;
 @dynamic name;
 @dynamic briefing;
+@dynamic httpMethod;
 @dynamic provider;
 @dynamic apiParameters;
 

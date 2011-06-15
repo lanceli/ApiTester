@@ -11,7 +11,7 @@
 
 
 @implementation ApiParameter
-@dynamic viewClass;
+@dynamic checked;
 @dynamic parameterName;
 @dynamic parameterValue;
 @dynamic optional;

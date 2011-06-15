@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * descriptionURL;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * briefing;
+@property (nonatomic, retain) NSString * httpMethod;
 @property (nonatomic, retain) Provider * provider;
 @property (nonatomic, retain) NSSet* apiParameters;
 

@@ -20,11 +20,13 @@ typedef enum {
     Api *_api;
     NSMutableArray *_parameters;
     NSMutableString *_result;
+    UITextField *_activeField;
 }
 @property (nonatomic,retain) Api *api;
 @property (nonatomic,getter=isParameterTable) BOOL parameterTable;
 @property (nonatomic,retain) NSMutableArray *parameters;
 @property (nonatomic,retain) NSMutableString *result;
+@property (nonatomic,retain) UITextField *activeField;
 @property (nonatomic,retain) IBOutlet UITableViewCell *none;
 @property (nonatomic,retain) IBOutlet UIButton *infoButton;
 @property (nonatomic,retain) IBOutlet UIButton *parametersButton;

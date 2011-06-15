@@ -15,7 +15,7 @@
 
 @implementation ApiViewController
 @synthesize api = _api;
-@synthesize parameters = _parameters,result=_result;
+@synthesize parameters = _parameters,result=_result,activeField=_activeField;
 @synthesize parameterTable;
 @synthesize none,infoButton,parametersButton,resultButton,tableView=aTableView;
 
@@ -33,6 +33,7 @@
     [_api release];
     [_parameters release];
     [_result release];
+    [_activeField release];
 
     [none release];
     [infoButton release];
@@ -63,16 +64,44 @@
 - (IBAction)parametersButtonAction:(id) sender
 {
     NSLog(@"show %@ parameters",self.api.name);
-    self.parameterTable = YES;
-    [self.tableView reloadData];
+    if (!self.parameterTable) {
+        self.parameterTable = YES;
+        [self.tableView reloadData];
+    }
 }
 
 - (IBAction)resultButtonAction:(id) sender
 {
     NSLog(@"show %@ result",self.api.name);
-    self.parameterTable = NO;
-    [self.tableView reloadData];
+    if (self.parameterTable) {
+        self.parameterTable = NO;
+        [self.tableView reloadData];
+    }
 }
+
+-(void)keyboardWillShow:(NSNotification *)notif
+{
+    NSDictionary* userInfo = [notif userInfo];
+
+    // get the size of the keyboard
+    NSValue* boundsValue = [userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGSize keyboardSize = [boundsValue CGRectValue].size;
+
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0,0.0,keyboardSize.height,0.0);
+    self.tableView.contentInset = contentInsets;
+    self.tableView.scrollIndicatorInsets = contentInsets;
+
+    CGRect cell = self.activeField.superview.superview.frame;
+    [self.tableView scrollRectToVisible:cell animated:YES];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notif
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.tableView.contentInset = contentInsets;
+    self.tableView.scrollIndicatorInsets = contentInsets;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -94,6 +123,16 @@
     self.parameterTable = YES;
     self.result = nil;
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:self.view.window];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:self.view.window];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -106,6 +145,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -184,7 +230,7 @@
             // Configure the cell...
             cell.parameterName.text = parameter.parameterName;
             cell.parameterValue.text = parameter.parameterValue;
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.accessoryType = [parameter.checked boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             return cell;
         }
     }
@@ -249,6 +295,20 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    // Toggle checked for optional parameters
+    if (self.isParameterTable && indexPath.section == ApiOptionalSection) {
+        ApiParameter *parameter = [[self.parameters objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        if ([parameter.checked boolValue]) {
+            parameter.checked = [NSNumber numberWithBool:NO];
+            [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];
+            NSLog(@"%@ is deselected", parameter.parameterName);
+        }
+        else {
+            parameter.checked = [NSNumber numberWithBool:YES];
+            [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
+            NSLog(@"%@ is selected", parameter.parameterName);
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -261,6 +321,27 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.activeField = nil;
+    UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
+    if (cell) {
+        UITableView *table = (UITableView *)[cell superview];
+        NSIndexPath *indexPath = [table indexPathForCell:cell];
+        ApiParameter *parameter = [[self.parameters objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        parameter.parameterValue = textField.text;
+        NSLog(@"%@ = %@",parameter.parameterName,parameter.parameterValue);
+    }
+    else {
+        NSLog(@"cell cannot be found for textfield");
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeField = textField;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

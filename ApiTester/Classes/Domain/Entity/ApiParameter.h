@@ -14,7 +14,7 @@
 @interface ApiParameter : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * viewClass;
+@property (nonatomic, retain) NSNumber * checked;
 @property (nonatomic, retain) NSString * parameterName;
 @property (nonatomic, retain) NSString * parameterValue;
 @property (nonatomic, retain) NSNumber * optional;
