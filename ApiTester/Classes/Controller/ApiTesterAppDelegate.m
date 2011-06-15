@@ -43,27 +43,28 @@
     [publicLine setValue:@"" forKey:@"endPointURL"];
     [publicLine setValue:@"" forKey:@"name"];
     [publicLine setValue:@"" forKey:@"briefing"];
+    [publicLine setValue:@"" forKey:@"httpMethod"];
 
     NSManagedObject *source = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
                                                             inManagedObjectContext:context];
     [source setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
     [source setValue:@"" forKey:@"parameterName"];
     [source setValue:@"" forKey:@"parameterValue"];
-    [source setValue:@"" forKey:@"viewClass"];
+    [source setValue:[NSNumber numberWithBool:YES] forKey:@"checked"];
 
     NSManagedObject *count = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
                                                            inManagedObjectContext:context];
     [count setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
     [count setValue:@"" forKey:@"parameterName"];
     [count setValue:@"" forKey:@"parameterValue"];
-    [count setValue:@"" forKey:@"viewClass"];
+    [count setValue:[NSNumber numberWithBool:YES] forKey:@"checked"];
 
     NSManagedObject *baseApp = [NSEntityDescription insertNewObjectForEntityForName:@"ApiParameter"
                                                              inManagedObjectContext:context];
     [baseApp setValue:[NSNumber numberWithBool:YES] forKey:@"optional"];
     [baseApp setValue:@"" forKey:@"parameterName"];
     [baseApp setValue:@"" forKey:@"parameterValue"];
-    [baseApp setValue:@"" forKey:@"viewClass"];
+    [baseApp setValue:[NSNumber numberWithBool:NO] forKey:@"checked"];
 
     [weibo setValue:[NSSet setWithObject:publicLine] forKey:@"apis"];
     [publicLine setValue:weibo forKey:@"provider"];

@@ -17,8 +17,7 @@
 @synthesize api = _api;
 @synthesize parameters = _parameters,result=_result;
 @synthesize parameterTable;
-@synthesize none;
-@synthesize infoButton,parametersButton,resultButton,tableView=_tableView;
+@synthesize none,infoButton,parametersButton,resultButton,tableView=aTableView;
 
 - (id)init
 {
@@ -34,11 +33,12 @@
     [_api release];
     [_parameters release];
     [_result release];
+
     [none release];
     [infoButton release];
     [parametersButton release];
     [resultButton release];
-    [_tableView release];
+    [aTableView release];
     [super dealloc];
 }
 
