@@ -17,4 +17,6 @@
 @property (nonatomic,retain) NSArray *providers;
 @property (nonatomic,retain) NSIndexPath *reloadCell;
 
+- (IBAction)infoButtonAction;
+
 @end

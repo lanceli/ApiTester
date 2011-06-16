@@ -7,6 +7,7 @@
 //
 
 #import "ApiViewController.h"
+#import "ApiInfoViewController.h"
 #import "ApiParameterCell.h"
 #import "ApiResultCell.h"
 #import "ApiParameter.h"
@@ -58,6 +59,12 @@
 - (IBAction)infoButtonAction:(id) sender
 {
     NSLog(@"show info for %@",self.api.name);
+	ApiInfoViewController *vc = [[ApiInfoViewController alloc] initWithNibName:@"ApiInfoViewController" bundle:nil];
+    vc.api = self.api;
+	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+
+	[self presentModalViewController:vc animated:YES];
+    [vc release];
 }
 
 - (IBAction)parametersButtonAction:(id) sender

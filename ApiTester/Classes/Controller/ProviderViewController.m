@@ -43,6 +43,10 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (IBAction)infoButtonAction
+{
+}
+
 #pragma mark -
 #pragma mark View lifecycle
 

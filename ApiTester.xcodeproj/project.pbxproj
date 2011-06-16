@@ -41,6 +41,9 @@
 		60DE292513A5B242001E9D6D /* MetalDarkCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DE292413A5B242001E9D6D /* MetalDarkCell.png */; };
 		60DE292713A5B495001E9D6D /* JeansDarkCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DE292613A5B495001E9D6D /* JeansDarkCell.png */; };
 		60DE292913A5B586001E9D6D /* MetalLiteCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DE292813A5B586001E9D6D /* MetalLiteCell.png */; };
+		60DE66BE13AA0C0600654F79 /* ApiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE66BC13AA0C0600654F79 /* ApiInfoViewController.m */; };
+		60DE66C113AA0C4800654F79 /* ApiInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60DE66C013AA0C4800654F79 /* ApiInfoViewController.xib */; };
+		60DE66CF13AA250400654F79 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DE66CE13AA250400654F79 /* iAd.framework */; };
 		60E47ACF13A0514F00A674BB /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E47ACE13A0514F00A674BB /* Provider.m */; };
 		60E5531B1398B14700D3A55E /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553001398B14700D3A55E /* Facebook.m */; };
 		60E5531C1398B14700D3A55E /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60E553031398B14700D3A55E /* FBDialog.bundle */; };
@@ -139,6 +142,10 @@
 		60DE292413A5B242001E9D6D /* MetalDarkCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetalDarkCell.png; path = ApiTester/Resources/Images/MetalDarkCell.png; sourceTree = SOURCE_ROOT; };
 		60DE292613A5B495001E9D6D /* JeansDarkCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JeansDarkCell.png; path = ApiTester/Resources/Images/JeansDarkCell.png; sourceTree = SOURCE_ROOT; };
 		60DE292813A5B586001E9D6D /* MetalLiteCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetalLiteCell.png; path = ApiTester/Resources/Images/MetalLiteCell.png; sourceTree = SOURCE_ROOT; };
+		60DE66BB13AA0C0600654F79 /* ApiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiInfoViewController.h; sourceTree = "<group>"; };
+		60DE66BC13AA0C0600654F79 /* ApiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiInfoViewController.m; sourceTree = "<group>"; };
+		60DE66C013AA0C4800654F79 /* ApiInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiInfoViewController.xib; path = ApiTester/Resources/IBFiles/ApiInfoViewController.xib; sourceTree = SOURCE_ROOT; };
+		60DE66CE13AA250400654F79 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		60E47ACD13A0514F00A674BB /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
 		60E47ACE13A0514F00A674BB /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		60E552FC1398B14700D3A55E /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
@@ -199,6 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60DE66CF13AA250400654F79 /* iAd.framework in Frameworks */,
 				60F967B5138B98BD009F7BCF /* UIKit.framework in Frameworks */,
 				60F967B7138B98BD009F7BCF /* Foundation.framework in Frameworks */,
 				6027C323138D415100486667 /* Security.framework in Frameworks */,
@@ -363,6 +371,7 @@
 		60F967B3138B98BD009F7BCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60DE66CE13AA250400654F79 /* iAd.framework */,
 				6027C322138D415100486667 /* Security.framework */,
 				60F967B4138B98BD009F7BCF /* UIKit.framework */,
 				60F967B6138B98BD009F7BCF /* Foundation.framework */,
@@ -449,6 +458,8 @@
 				60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */,
 				60EA8D3113A710B500D997DF /* ApiViewController.h */,
 				60EA8D3213A710B500D997DF /* ApiViewController.m */,
+				60DE66BB13AA0C0600654F79 /* ApiInfoViewController.h */,
+				60DE66BC13AA0C0600654F79 /* ApiInfoViewController.m */,
 			);
 			name = Controller;
 			path = Classes/Controller;
@@ -479,6 +490,7 @@
 		60F967E2138BEBA1009F7BCF /* IBFiles */ = {
 			isa = PBXGroup;
 			children = (
+				60DE66C013AA0C4800654F79 /* ApiInfoViewController.xib */,
 				60EA8D3613A7111500D997DF /* ApiViewController.xib */,
 				60EA8D1D13A706E300D997DF /* ApiListViewController.xib */,
 				60412F5C139FB7F200403376 /* AuthorizeGithubViewController.xib */,
@@ -628,6 +640,7 @@
 				60EA8D2D13A70E2600D997DF /* ApiParameterCell.xib in Resources */,
 				60EA8D3713A7111500D997DF /* ApiViewController.xib in Resources */,
 				60EA8D3C13A7142E00D997DF /* ApiResultCell.xib in Resources */,
+				60DE66C113AA0C4800654F79 /* ApiInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,6 +689,7 @@
 				60EA8D2913A70D4200D997DF /* ApiParameterCell.m in Sources */,
 				60EA8D3413A710B500D997DF /* ApiViewController.m in Sources */,
 				60EA8D3A13A713FF00D997DF /* ApiResultCell.m in Sources */,
+				60DE66BE13AA0C0600654F79 /* ApiInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

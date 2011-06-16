@@ -166,6 +166,7 @@
     cell.textLabel.text = api.name;
     cell.detailTextLabel.text = api.briefing;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

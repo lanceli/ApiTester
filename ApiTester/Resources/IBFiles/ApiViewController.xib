@@ -112,7 +112,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<string key="NSFrame">{{12, 12}, {100, 21}}</string>
 								<reference key="NSSuperview" ref="299959869"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="298823503"/>
+								<reference key="NSNextKeyView" ref="706922405"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
 									<string key="IBUIAccessibilityLabel"/>
@@ -149,7 +149,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<string key="NSFrame">{{151, 13}, {18, 19}}</string>
 								<reference key="NSSuperview" ref="299959869"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="952194190"/>
+								<reference key="NSNextKeyView" ref="298823503"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -185,12 +185,17 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="169193659"/>
+								<object class="NSCustomResource" key="IBUISelectedImage" id="644804226">
+									<string key="NSClassName">NSImage</string>
+									<string type="base64-UTF8" key="NSResourceName">CA</string>
+								</object>
+								<reference key="IBUISelectedBackgroundImage" ref="644804226"/>
 							</object>
 						</object>
 						<string key="NSFrame">{{0, 44}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="725614111"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="706922405"/>
+						<reference key="NSNextKeyView" ref="952194190"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -548,7 +553,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{329, 504}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -689,6 +694,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string type="base64-UTF8" key="NS.key.0">CA</string>
+			<string key="NS.object.0">{16, 16}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">300</string>
 	</data>
 </archive>
