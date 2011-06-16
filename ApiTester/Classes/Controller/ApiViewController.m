@@ -15,7 +15,7 @@
 
 @implementation ApiViewController
 @synthesize api = _api;
-@synthesize parameters = _parameters,result=_result,activeField=_activeField;
+@synthesize parameters = _parameters,activeField=_activeField;
 @synthesize parameterTable;
 @synthesize none,infoButton,parametersButton,resultButton,tableView=aTableView;
 
@@ -32,7 +32,6 @@
 {
     [_api release];
     [_parameters release];
-    [_result release];
     [_activeField release];
 
     [none release];
@@ -119,9 +118,7 @@
     for (ApiParameter *parameter in parameters) {
         [[self.parameters objectAtIndex:[parameter.optional intValue]] addObject:parameter];
     }
-    self.parametersButton.highlighted = YES;
     self.parameterTable = YES;
-    self.result = nil;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -185,7 +182,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections: mandatory,optional,result
-    return self.isParameterTable ? 2 : 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -204,16 +201,11 @@
     static NSString *ResultCellIdentifier = @"ResultCell";
     
     if (!self.isParameterTable) {
-        if (!self.result) {
-            return self.none;
+        ApiResultCell *cell = (ApiResultCell *) [tableView dequeueReusableCellWithIdentifier:ResultCellIdentifier];
+        if (cell == nil) {
+            cell = (ApiResultCell *) [[[NSBundle mainBundle] loadNibNamed:@"ApiResultCell" owner:self options:nil] lastObject];
         }
-        else {
-            ApiResultCell *cell = (ApiResultCell *) [tableView dequeueReusableCellWithIdentifier:ResultCellIdentifier];
-            if (cell == nil) {
-                cell = (ApiResultCell *) [[[NSBundle mainBundle] loadNibNamed:@"ApiResultCell" owner:self options:nil] lastObject];
-            }
-            return cell;
-        }
+        return cell;
     }
     else {
         NSMutableArray *section = [self.parameters objectAtIndex:indexPath.section];
@@ -231,6 +223,7 @@
             cell.parameterName.text = parameter.parameterName;
             cell.parameterValue.text = parameter.parameterValue;
             cell.accessoryType = [parameter.checked boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }
@@ -240,8 +233,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSArray *titles = [NSArray arrayWithObjects:@"Mandatory Parameters",@"Optional Parameters",nil];
-    return self.isParameterTable ? [titles objectAtIndex:section] : @"Result";
+    NSArray *pTitles = [NSArray arrayWithObjects:@"Mandatory Parameters",@"Optional Parameters",nil];
+    NSArray *rTitles = [NSArray arrayWithObjects:@"Response",@"Request",nil];
+    return self.isParameterTable ? [pTitles objectAtIndex:section] : [rTitles objectAtIndex:section];
 }
 
 /*
