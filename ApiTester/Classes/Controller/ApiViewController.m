@@ -11,12 +11,14 @@
 #import "ApiParameterCell.h"
 #import "ApiResultCell.h"
 #import "ApiParameter.h"
+#import "OAuthConsumer.h"
+#import "Provider.h"
 #import "Api.h"
 
 
 @implementation ApiViewController
-@synthesize api = _api;
-@synthesize parameters = _parameters,activeField=_activeField;
+@synthesize api=_api,ticket=_ticket;
+@synthesize parameters=_parameters,activeField=_activeField;
 @synthesize parameterTable;
 @synthesize none,infoButton,parametersButton,resultButton,tableView=aTableView;
 
@@ -32,6 +34,7 @@
 - (void)dealloc
 {
     [_api release];
+    [_ticket release];
     [_parameters release];
     [_activeField release];
 
@@ -51,9 +54,58 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void)request:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+    NSString *response = [[NSString alloc] initWithData:data
+                                               encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",response);
+    [response release];
+    self.ticket = ticket;
+    self.parameterTable = NO;
+    [self.tableView reloadData];
+}
+
+-(void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+    NSLog(@"%@", error);
+    self.ticket = ticket;
+    self.parameterTable = NO;
+    [self.tableView reloadData];
+}
+
 - (IBAction)testButtonAction:(id) sender
 {
     NSLog(@"test %@",self.api.name);
+    OAMutableURLRequest *request = [[self.api.provider oauthRequest:[NSURL URLWithString:self.api.endPointURL]] autorelease];
+    [request setHTTPMethod:self.api.httpMethod];
+
+    NSMutableArray *mandatoryParameters = [self.parameters objectAtIndex:0];
+    NSMutableArray *optionalParameters  = [self.parameters objectAtIndex:1];
+    NSMutableArray *params = [NSMutableArray array];
+
+    for (ApiParameter *p in mandatoryParameters) {
+        OARequestParameter *op = [[OARequestParameter alloc] initWithName:p.parameterName
+                                                                    value:p.parameterValue];
+        [params addObject:op];
+        [op release];
+    }
+
+    for (ApiParameter *p in optionalParameters) {
+        if ([p.checked boolValue]) {
+            OARequestParameter *op = [[OARequestParameter alloc] initWithName:p.parameterName
+                                                                        value:p.parameterValue];
+            [params addObject:op];
+            [op release];
+        }
+    }
+
+    [request setParameters:params];
+
+    OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(request:didFinishWithData:)
+                  didFailSelector:@selector(request:didFailWithError:)];
 }
 
 - (IBAction)infoButtonAction:(id) sender

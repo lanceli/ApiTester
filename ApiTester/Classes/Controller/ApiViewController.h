@@ -14,14 +14,16 @@ typedef enum {
     ApiResultSection
 } ApiSection;
 
-@class Api;
+@class Api,OAServiceTicket;
 @interface ApiViewController : UIViewController
     <UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource> {
     Api *_api;
+    OAServiceTicket *_ticket;
     NSMutableArray *_parameters;
     UITextField *_activeField;
 }
 @property (nonatomic,retain) Api *api;
+@property (nonatomic,retain) OAServiceTicket *ticket;
 @property (nonatomic,getter=isParameterTable) BOOL parameterTable;
 @property (nonatomic,retain) NSMutableArray *parameters;
 @property (nonatomic,retain) UITextField *activeField;
