@@ -7,9 +7,9 @@
 //
 
 #import "ApiViewController.h"
+#import "ApiResultViewController.h"
 #import "ApiInfoViewController.h"
 #import "ApiParameterCell.h"
-#import "ApiResultCell.h"
 #import "ApiParameter.h"
 #import "OAuthConsumer.h"
 #import "Provider.h"
@@ -17,7 +17,7 @@
 
 
 @implementation ApiViewController
-@synthesize api=_api,ticket=_ticket;
+@synthesize api=_api,ticket=_ticket,response=_response;
 @synthesize parameters=_parameters,activeField=_activeField;
 @synthesize parameterTable;
 @synthesize none,infoButton,parametersButton,resultButton,tableView=aTableView;
@@ -35,6 +35,7 @@
 {
     [_api release];
     [_ticket release];
+    [_response release];
     [_parameters release];
     [_activeField release];
 
@@ -56,19 +57,19 @@
 
 -(void)request:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-    NSString *response = [[NSString alloc] initWithData:data
-                                               encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",response);
-    [response release];
     self.ticket = ticket;
+    NSString *body = [[NSString alloc] initWithData:data
+                                           encoding:NSUTF8StringEncoding];
+    self.response = body;
+    [body release];
     self.parameterTable = NO;
     [self.tableView reloadData];
 }
 
 -(void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-    NSLog(@"%@", error);
     self.ticket = ticket;
+    self.response = [error localizedDescription];
     self.parameterTable = NO;
     [self.tableView reloadData];
 }
@@ -124,6 +125,7 @@
     NSLog(@"show %@ parameters",self.api.name);
     if (!self.parameterTable) {
         self.parameterTable = YES;
+        self.tableView.rowHeight = 44;
         [self.tableView reloadData];
     }
 }
@@ -236,12 +238,33 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (NSString *) formatRequest:(NSURLRequest *)request
+{
+    if (!request) return @"No request";
+    return [NSString stringWithFormat:@"%@ %@\n%@\n\n%@",
+           [request HTTPMethod],
+           [request URL],
+           [request allHTTPHeaderFields],
+           [request HTTPBody]];
+}
+
+- (NSString *) formatResponse:(NSURLResponse *)response withBody:(NSString *)body
+{
+    if (!response) return @"No response";
+    NSInteger code = [(NSHTTPURLResponse *) response statusCode];
+    return [NSString stringWithFormat:@"%d %@\n%@\n\n%@",
+           code,
+           [NSHTTPURLResponse localizedStringForStatusCode:code],
+           [(NSHTTPURLResponse *) response allHeaderFields],
+           body];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections: mandatory,optional,result
-    return 2;
+    // Return the number of sections: mandatory,optional
+   return self.isParameterTable ? 2 : self.ticket == nil ? 1 : 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -251,20 +274,50 @@
         NSInteger count = [[self.parameters objectAtIndex:section] count];
         return count > 0 ? count : 1;
     }
-    return 1;//ApiResultSection;
+    return section == ApiCodeSection ? 1 : [[(NSHTTPURLResponse *) self.ticket.response allHeaderFields] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *CodeCellIdentifier = @"CodeCell";
+    static NSString *HeaderCellIdentifier = @"HeaderCell";
     static NSString *ParameterCellIdentifier = @"ParameterCell";
-    static NSString *ResultCellIdentifier = @"ResultCell";
     
     if (!self.isParameterTable) {
-        ApiResultCell *cell = (ApiResultCell *) [tableView dequeueReusableCellWithIdentifier:ResultCellIdentifier];
-        if (cell == nil) {
-            cell = (ApiResultCell *) [[[NSBundle mainBundle] loadNibNamed:@"ApiResultCell" owner:self options:nil] lastObject];
+        if (self.ticket == nil) {
+            return self.none;
         }
-        return cell;
+        if (indexPath.section == ApiCodeSection) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CodeCellIdentifier];
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CodeCellIdentifier] autorelease];
+            }
+
+            cell.textLabel.text = [NSString stringWithFormat:@"%d",[(NSHTTPURLResponse *) self.ticket.response statusCode]];
+            cell.textLabel.textColor = self.ticket.didSucceed ? [UIColor greenColor] : [UIColor redColor];
+            cell.textLabel.shadowColor = [UIColor lightGrayColor];
+            cell.textLabel.shadowOffset = CGSizeMake(0.0,1.0);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            // Configure the cell...
+            return cell;
+        }
+        else {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HeaderCellIdentifier];
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:HeaderCellIdentifier] autorelease];
+            }
+
+            NSArray *keys = [[(NSHTTPURLResponse *) self.ticket.response allHeaderFields] allKeys];
+            NSArray *values = [[(NSHTTPURLResponse *) self.ticket.response allHeaderFields] allValues];
+            cell.textLabel.text = [keys objectAtIndex:indexPath.row];
+            cell.detailTextLabel.text = [values objectAtIndex:indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            // Configure the cell...
+            return cell;
+        }
     }
     else {
         NSMutableArray *section = [self.parameters objectAtIndex:indexPath.section];
@@ -293,8 +346,8 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSArray *pTitles = [NSArray arrayWithObjects:@"Mandatory Parameters",@"Optional Parameters",nil];
-    NSArray *rTitles = [NSArray arrayWithObjects:@"Response",@"Request",nil];
-    return self.isParameterTable ? [pTitles objectAtIndex:section] : [rTitles objectAtIndex:section];
+    NSArray *rTitles = [NSArray arrayWithObjects:@"Code",@"Headers",nil];
+    return self.isParameterTable ? [pTitles objectAtIndex:section] : self.ticket == nil ? @"" : [rTitles objectAtIndex:section];
 }
 
 /*
@@ -361,6 +414,13 @@
             [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
             NSLog(@"%@ is selected", parameter.parameterName);
         }
+    }
+    if (!self.isParameterTable && indexPath.section == ApiCodeSection && self.ticket != nil) {
+        ApiResultViewController *vc = [[ApiResultViewController alloc] initWithNibName:@"ApiResultViewController" bundle:nil];
+        vc.api = self.api;
+        vc.text = self.response;
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
     }
 }
 

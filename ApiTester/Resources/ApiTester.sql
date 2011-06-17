@@ -19,11 +19,11 @@ VALUES ("6","3","1","Github","","","","","","octocat","","","");
 
 -- APIS
 INSERT INTO ZAPI (Z_PK,Z_ENT,Z_OPT,ZPROVIDER,ZNAME,ZHTTPMETHOD,ZBRIEFING,ZENDPOINTURL,ZDESCRIPTIONURL)
-VALUES ("1","1","1","1","statuses/public_timeline","GET","获取最新的公共微博消息","http://api.t.sina.com.cn/statuses/public_timeline","http://open.weibo.com/wiki/index.php/Statuses/public_timeline");
+VALUES ("1","1","1","1","statuses/public_timeline","GET","获取最新的公共微博消息","http://api.t.sina.com.cn/statuses/public_timeline.json","http://open.weibo.com/wiki/index.php/Statuses/public_timeline");
 INSERT INTO ZAPI (Z_PK,Z_ENT,Z_OPT,ZPROVIDER,ZNAME,ZHTTPMETHOD,ZBRIEFING,ZENDPOINTURL,ZDESCRIPTIONURL)
-VALUES ("2","1","1","1","statuses/friends_timeline","GET","获取当前登录用户及其所关注用户的最新微博消息","http://api.t.sina.com.cn/statuses/friends_timeline","http://open.weibo.com/wiki/index.php/Statuses/friends_timeline");
+VALUES ("2","1","1","1","statuses/friends_timeline","GET","获取当前登录用户及其所关注用户的最新微博消息","http://api.t.sina.com.cn/statuses/friends_timeline.json","http://open.weibo.com/wiki/index.php/Statuses/friends_timeline");
 INSERT INTO ZAPI (Z_PK,Z_ENT,Z_OPT,ZPROVIDER,ZNAME,ZHTTPMETHOD,ZBRIEFING,ZENDPOINTURL,ZDESCRIPTIONURL)
-VALUES ("3","1","1","1","users/show","GET","根据用户ID获取用户资料（授权用户）","http://api.t.sina.com.cn/users/show","http://open.weibo.com/wiki/index.php/Users/show");
+VALUES ("3","1","1","1","users/show","GET","根据用户ID获取用户资料（授权用户）","http://api.t.sina.com.cn/users/show.json","http://open.weibo.com/wiki/index.php/Users/show");
 
 -- API PARAMETERS
 INSERT INTO ZAPIPARAMETER (Z_PK,Z_ENT,Z_OPT,ZOPTIONAL,ZAPI,ZPARAMETERNAME,ZPARAMETERVALUE,ZCHECKED)

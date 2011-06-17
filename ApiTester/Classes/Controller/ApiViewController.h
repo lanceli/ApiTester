@@ -10,20 +10,26 @@
 
 typedef enum {
     ApiMandatorySection = 0,
-    ApiOptionalSection,
-    ApiResultSection
-} ApiSection;
+    ApiOptionalSection
+} ApiParameterSection;
+
+typedef enum {
+    ApiCodeSection = 0,
+    ApiHeaderSection
+} ApiResultSection;
 
 @class Api,OAServiceTicket;
 @interface ApiViewController : UIViewController
     <UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource> {
     Api *_api;
     OAServiceTicket *_ticket;
+    NSString *_response;
     NSMutableArray *_parameters;
     UITextField *_activeField;
 }
 @property (nonatomic,retain) Api *api;
 @property (nonatomic,retain) OAServiceTicket *ticket;
+@property (nonatomic,copy) NSString *response;
 @property (nonatomic,getter=isParameterTable) BOOL parameterTable;
 @property (nonatomic,retain) NSMutableArray *parameters;
 @property (nonatomic,retain) UITextField *activeField;
