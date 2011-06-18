@@ -125,7 +125,6 @@
     NSLog(@"show %@ parameters",self.api.name);
     if (!self.parameterTable) {
         self.parameterTable = YES;
-        self.tableView.rowHeight = 44;
         [self.tableView reloadData];
     }
 }

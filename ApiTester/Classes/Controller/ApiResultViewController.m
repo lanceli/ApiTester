@@ -53,7 +53,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     // self.title = self.api.name;
-    self.textView.text = [_writer stringWithObject:[_parser objectWithString:self.text]];
+    id json = [_parser objectWithString:self.text];
+    self.textView.text = json == nil ? self.text : [_writer stringWithObject:json];
 }
 
 - (void)viewDidUnload
