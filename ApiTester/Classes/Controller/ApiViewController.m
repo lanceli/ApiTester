@@ -238,27 +238,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (NSString *) formatRequest:(NSURLRequest *)request
-{
-    if (!request) return @"No request";
-    return [NSString stringWithFormat:@"%@ %@\n%@\n\n%@",
-           [request HTTPMethod],
-           [request URL],
-           [request allHTTPHeaderFields],
-           [request HTTPBody]];
-}
-
-- (NSString *) formatResponse:(NSURLResponse *)response withBody:(NSString *)body
-{
-    if (!response) return @"No response";
-    NSInteger code = [(NSHTTPURLResponse *) response statusCode];
-    return [NSString stringWithFormat:@"%d %@\n%@\n\n%@",
-           code,
-           [NSHTTPURLResponse localizedStringForStatusCode:code],
-           [(NSHTTPURLResponse *) response allHeaderFields],
-           body];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
