@@ -8,11 +8,13 @@
 
 #import "Provider.h"
 #import "ATTencentMutableURLRequest.h"
+#import "ATLinkedinMutableURLRequest.h"
 #import "Api.h"
 
 static NSString *kFacebookTitle  = @"Facebook";
 static NSString *kGithubTitle = @"Github";
 static NSString *kTencentTitle = @"Tencent Weibo";
+static NSString *kLinkedinTitle = @"LinkedIn";
 
 @implementation Provider
 @dynamic script;
@@ -78,6 +80,13 @@ static NSString *kTencentTitle = @"Tencent Weibo";
                                                              token:accessToken
                                                              realm:nil
                                                  signatureProvider:nil];
+    }
+    else if ([self.title isEqual:kLinkedinTitle]) {
+        request =  [[ATLinkedinMutableURLRequest alloc] initWithURL:url
+                                                           consumer:consumer
+                                                              token:accessToken
+                                                              realm:nil
+                                                  signatureProvider:nil];
     }
     else {
         request =  [[OAMutableURLRequest alloc] initWithURL:url

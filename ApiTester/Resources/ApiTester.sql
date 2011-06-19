@@ -42,7 +42,7 @@ VALUES ("7","1","1","4","statuses/home_timeline","GET","Returns the 20 most rece
 INSERT INTO ZAPI (Z_PK,Z_ENT,Z_OPT,ZPROVIDER,ZNAME,ZHTTPMETHOD,ZBRIEFING,ZENDPOINTURL,ZDESCRIPTIONURL)
 VALUES ("8","1","1","3","people/~","GET","the profile of the current user","http://api.linkedin.com/v1/people/~","http://developer.linkedin.com/docs/DOC-1002");
 INSERT INTO ZAPI (Z_PK,Z_ENT,Z_OPT,ZPROVIDER,ZNAME,ZHTTPMETHOD,ZBRIEFING,ZENDPOINTURL,ZDESCRIPTIONURL)
-VALUES ("9","1","1","3","people/id","GET","the profile of the member token","http://api.linkedin.com/v1/people/id=%@","http://developer.linkedin.com/docs/DOC-1002");
+VALUES ("9","1","1","3","people/id","GET","the profile of the member token","http://api.linkedin.com/v1/people/id=@id","http://developer.linkedin.com/docs/DOC-1002");
 
 -- API PARAMETERS
 -- Sina
@@ -111,13 +111,13 @@ VALUES ("28","2","1","1","7","include_entities","1","0");
 
 -- Linkedin
 INSERT INTO ZAPIPARAMETER (Z_PK,Z_ENT,Z_OPT,ZOPTIONAL,ZAPI,ZPARAMETERNAME,ZPARAMETERVALUE,ZCHECKED)
-VALUES ("29","2","1","1","8","selector","","0");
+VALUES ("29","2","1","1","8","@selector","","0");
 INSERT INTO ZAPIPARAMETER (Z_PK,Z_ENT,Z_OPT,ZOPTIONAL,ZAPI,ZPARAMETERNAME,ZPARAMETERVALUE,ZCHECKED)
 VALUES ("30","2","1","1","8","format","json","1");
 INSERT INTO ZAPIPARAMETER (Z_PK,Z_ENT,Z_OPT,ZOPTIONAL,ZAPI,ZPARAMETERNAME,ZPARAMETERVALUE,ZCHECKED)
-VALUES ("31","2","1","0","9","id","","1");
+VALUES ("31","2","1","0","9","@id","","1");
 INSERT INTO ZAPIPARAMETER (Z_PK,Z_ENT,Z_OPT,ZOPTIONAL,ZAPI,ZPARAMETERNAME,ZPARAMETERVALUE,ZCHECKED)
-VALUES ("32","2","1","1","9","selector","","0");
+VALUES ("32","2","1","1","9","@selector","","0");
 INSERT INTO ZAPIPARAMETER (Z_PK,Z_ENT,Z_OPT,ZOPTIONAL,ZAPI,ZPARAMETERNAME,ZPARAMETERVALUE,ZCHECKED)
 VALUES ("33","2","1","1","9","format","json","1");
 

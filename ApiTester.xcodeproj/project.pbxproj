@@ -72,6 +72,7 @@
 		60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60F967BF138B98BD009F7BCF /* InfoPlist.strings */; };
 		60F967C4138B98BD009F7BCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F967C3138B98BD009F7BCF /* main.m */; };
 		60F967CD138B98BD009F7BCF /* ApiTester.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60F967CB138B98BD009F7BCF /* ApiTester.xcdatamodeld */; };
+		60FD8C2913ADD5870016BC91 /* ATLinkedinMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FD8C2813ADD5870016BC91 /* ATLinkedinMutableURLRequest.m */; };
 		60FE81941394891200241246 /* ATModalAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FE81931394891200241246 /* ATModalAlert.m */; };
 /* End PBXBuildFile section */
 
@@ -197,6 +198,8 @@
 		60F967C2138B98BD009F7BCF /* ApiTester-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ApiTester-Prefix.pch"; sourceTree = "<group>"; };
 		60F967C3138B98BD009F7BCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60F967CC138B98BD009F7BCF /* ApiTester.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ApiTester.xcdatamodel; sourceTree = "<group>"; };
+		60FD8C2713ADD5870016BC91 /* ATLinkedinMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLinkedinMutableURLRequest.h; sourceTree = "<group>"; };
+		60FD8C2813ADD5870016BC91 /* ATLinkedinMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLinkedinMutableURLRequest.m; sourceTree = "<group>"; };
 		60FE81921394891200241246 /* ATModalAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATModalAlert.h; sourceTree = "<group>"; };
 		60FE81931394891200241246 /* ATModalAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATModalAlert.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -265,6 +268,7 @@
 		6027C2FD138CA3D800486667 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				60FD8C2613ADD50E0016BC91 /* Linkedin */,
 				60CC96FA139D15C20081ABB8 /* Entity */,
 				60F55E6F1397854600631D29 /* Tencent */,
 			);
@@ -554,6 +558,15 @@
 			path = ApiTester/Resources/IBFiles/Cells;
 			sourceTree = "<group>";
 		};
+		60FD8C2613ADD50E0016BC91 /* Linkedin */ = {
+			isa = PBXGroup;
+			children = (
+				60FD8C2713ADD5870016BC91 /* ATLinkedinMutableURLRequest.h */,
+				60FD8C2813ADD5870016BC91 /* ATLinkedinMutableURLRequest.m */,
+			);
+			path = Linkedin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -690,6 +703,7 @@
 				60EA8D3413A710B500D997DF /* ApiViewController.m in Sources */,
 				60DE66BE13AA0C0600654F79 /* ApiInfoViewController.m in Sources */,
 				600502BE13AB8F0E0036995E /* ApiResultViewController.m in Sources */,
+				60FD8C2913ADD5870016BC91 /* ATLinkedinMutableURLRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

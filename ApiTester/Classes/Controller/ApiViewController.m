@@ -77,7 +77,8 @@
 - (IBAction)testButtonAction:(id) sender
 {
     NSLog(@"test %@",self.api.name);
-    OAMutableURLRequest *request = [[self.api.provider oauthRequest:[NSURL URLWithString:self.api.endPointURL]] autorelease];
+    OAMutableURLRequest *request = [[self.api.provider oauthRequest:
+        [NSURL URLWithString:[self.api.endPointURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]] autorelease];
     [request setHTTPMethod:self.api.httpMethod];
 
     NSMutableArray *mandatoryParameters = [self.parameters objectAtIndex:0];
