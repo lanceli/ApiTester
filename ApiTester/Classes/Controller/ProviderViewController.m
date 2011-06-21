@@ -202,8 +202,9 @@
 {
     Provider *provider = [self.providers objectAtIndex:indexPath.row];
     if ([provider isFacebook]) {
+        [provider revoke];
         ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [appDelegate.facebook authorize:nil delegate:appDelegate];
+        [appDelegate.facebook authorize:nil delegate:self];
     }
     else {
         UIViewController<ProviderPropertyProtocol> *vc = [provider isGithub] ? 
@@ -215,8 +216,8 @@
         [vc setProvider:provider];
         [self presentModalViewController:vc animated:YES];
         [vc release];
-        self.reloadCell = indexPath;
     }
+    self.reloadCell = indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -243,4 +244,42 @@
     }
 }
 
+#pragma mark -
+#pragma mark FBSessionDelegate
+
+/**
+ * Your application should implement this delegate to receive session callbacks.
+ */
+- (void)fbDidLogin
+{
+    ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSLog(@"Facebook accessToken is :%@",appDelegate.facebook.accessToken);
+    NSLog(@"Facebook accessToken expires at :%@",appDelegate.facebook.expirationDate);
+    //[self.tableView deselectRowAtIndexPath:self.reloadCell animated:NO];
+    for (Provider *provider in self.providers) {
+        if ([provider isFacebook]) {
+            provider.accessTokenKey = appDelegate.facebook.accessToken;
+            provider.accessTokenSecret = [appDelegate.facebook.expirationDate description];
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:self.reloadCell] withRowAnimation:NO];
+            break;
+        }
+    }
+}
+
+/**
+ * Called when the user dismissed the dialog without logging in.
+ */
+- (void)fbDidNotLogin:(BOOL)cancelled
+{
+    NSLog(@"Facebook dismissed");
+    [self.tableView deselectRowAtIndexPath:self.reloadCell animated:NO];
+}
+
+/**
+ * Called when the user logged out.
+ */
+- (void)fbDidLogout
+{
+    NSLog(@"Facebook logout");
+}
 @end

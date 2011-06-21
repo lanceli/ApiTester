@@ -302,29 +302,4 @@
 {
     return [_facebook handleOpenURL:url];
 }
-
-#pragma mark -
-#pragma mark FBSessionDelegate
-
-/**
- * Your application should implement this delegate to receive session callbacks.
- */
-- (void)fbDidLogin
-{
-}
-
-/**
- * Called when the user dismissed the dialog without logging in.
- */
-- (void)fbDidNotLogin:(BOOL)cancelled
-{
-}
-
-/**
- * Called when the user logged out.
- */
-- (void)fbDidLogout
-{
-}
-
 @end

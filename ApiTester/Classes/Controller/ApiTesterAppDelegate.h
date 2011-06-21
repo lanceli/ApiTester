@@ -11,9 +11,8 @@
 
 #define kFacebookAppId @"156029251129430"
 
-@interface ApiTesterAppDelegate : NSObject <UIApplicationDelegate,FBSessionDelegate> {
+@interface ApiTesterAppDelegate : NSObject <UIApplicationDelegate> {
     Facebook *_facebook;
-
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

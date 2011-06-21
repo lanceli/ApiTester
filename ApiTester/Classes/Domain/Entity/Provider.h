@@ -15,8 +15,6 @@
 -(void)setProvider:(Provider *)provider;
 @end
 
-@class Api;
-
 @interface Provider : NSManagedObject {
 @private
 }

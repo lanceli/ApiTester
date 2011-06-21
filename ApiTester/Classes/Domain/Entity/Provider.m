@@ -59,7 +59,17 @@ static NSString *kLinkedinTitle = @"LinkedIn";
 
 -(BOOL)isAuthorized
 {
-    return [self.accessTokenSecret length] > 0;
+    if ([self isFacebook]) {
+        if ([self.accessTokenSecret length] == 0) return false;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        BOOL expired = [[formatter dateFromString:self.accessTokenSecret] compare:[NSDate date]] == NSOrderedAscending;
+        if (expired) NSLog(@"facebook authorization has expired");
+        [formatter release];
+        return !expired;
+    }
+    else {
+        return [self.accessTokenSecret length] > 0;
+    }
 }
 
 -(void)revoke
