@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
 
-@interface ProviderViewController : UITableViewController<FBSessionDelegate> {
+@interface ProviderViewController : UITableViewController<FBSessionDelegate,GHSessionDelegate> {
     NSArray *_providers;
     NSIndexPath *_reloadCell;
 }

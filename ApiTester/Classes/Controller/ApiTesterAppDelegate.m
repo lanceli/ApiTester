@@ -9,6 +9,10 @@
 #import "ApiTesterAppDelegate.h"
 #import "ProviderViewController.h"
 
+static NSString *kFacebookAppId = @"156029251129430";
+static NSString *kGithubClientId = @"82872477243db8921ab7";
+static NSString *kGithubClientSecret = @"bdbfd308fdb096df6589dd99ca2765bd945b315f";
+
 @implementation ApiTesterAppDelegate
 
 
@@ -18,6 +22,7 @@
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 @synthesize facebook=_facebook;
+@synthesize github=_github;
 
 - (void)initCoreData
 {
@@ -101,6 +106,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _facebook = [[Facebook alloc] initWithAppId:kFacebookAppId];
+    _github = [[Github alloc] initWithClientId:kGithubClientId Secret:kGithubClientSecret];
     //[self initCoreData];
     [self createEditableCopyOfDatabaseIfNeeded];
 
@@ -167,6 +173,8 @@
 
 - (void)dealloc
 {
+    [_facebook release];
+    [_github release];
     [_window release];
     [_navigationController release];
     [__managedObjectContext release];
@@ -300,6 +308,6 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return [_facebook handleOpenURL:url];
+    return [[url scheme] isEqual:@"iPhoneApiTester"] ? [_github handleOpenURL:url] : [_facebook handleOpenURL:url];;
 }
 @end

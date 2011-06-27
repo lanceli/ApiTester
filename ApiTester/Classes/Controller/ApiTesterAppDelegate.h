@@ -7,17 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Github.h"
 #import "FBConnect.h"
-
-#define kFacebookAppId @"156029251129430"
 
 @interface ApiTesterAppDelegate : NSObject <UIApplicationDelegate> {
     Facebook *_facebook;
+    Github *_github;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) Facebook *facebook;
+@property (nonatomic, retain) Github *github;
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;

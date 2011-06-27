@@ -201,10 +201,10 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     Provider *provider = [self.providers objectAtIndex:indexPath.row];
-    if ([provider isFacebook]) {
+    if ([provider isFacebook] || [provider isGithub]) {
         [provider revoke];
         ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [appDelegate.facebook authorize:nil delegate:self];
+        [provider isFacebook] ? [appDelegate.facebook authorize:nil delegate:self] : [appDelegate.github authorize:nil delegate:self];
     }
     else {
         UIViewController<ProviderPropertyProtocol> *vc = [provider isGithub] ? 
@@ -242,6 +242,33 @@
         NSLog(@"%@ is not yet authorized",provider.title);
         [self tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
     }
+}
+
+#pragma mark -
+#pragma mark GHSessionDelegate
+- (void)ghDidLogin
+{
+    ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSLog(@"Github accessToken is :%@",appDelegate.github.accessToken);
+    for (Provider *provider in self.providers) {
+        if ([provider isGithub]) {
+            provider.accessTokenKey = appDelegate.github.accessToken;
+            provider.accessTokenSecret = appDelegate.github.accessToken;
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:self.reloadCell] withRowAnimation:NO];
+            break;
+        }
+    }
+}
+
+- (void)ghDidNotLogin:(BOOL)cancelled
+{
+    NSLog(@"Github dismissed");
+    [self.tableView deselectRowAtIndexPath:self.reloadCell animated:NO];
+}
+
+- (void)ghDidLogout
+{
+    NSLog(@"Github logout");
 }
 
 #pragma mark -
