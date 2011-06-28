@@ -40,6 +40,7 @@ static NSString *kRedirectUri = @"iPhoneApiTester://authorize?provider=Github";
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
         _clientId, @"client_id",
         kRedirectUri, @"redirect_uri",
+        @"user,repo,gist", @"scope",
         nil];
     NSString *url = [FBRequest serializeURL:@"https://github.com/login/oauth/authorize" params:params];
     BOOL didOpenOtherApp = NO;

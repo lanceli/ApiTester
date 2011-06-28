@@ -29,7 +29,6 @@
 		601B3DE61393921D00FEFF49 /* ApiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601B3DE41393921D00FEFF49 /* ApiListViewController.m */; };
 		6027C323138D415100486667 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6027C322138D415100486667 /* Security.framework */; };
 		60412F50139F835300403376 /* ApiTester.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 60412F4F139F835300403376 /* ApiTester.sqlite */; };
-		60412F60139FB7F200403376 /* AuthorizeGithubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60412F5C139FB7F200403376 /* AuthorizeGithubViewController.xib */; };
 		60412F61139FB7F200403376 /* AuthorizeWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60412F5D139FB7F200403376 /* AuthorizeWebViewController.xib */; };
 		60412F62139FB7F200403376 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60412F5E139FB7F200403376 /* MainWindow.xib */; };
 		60412F67139FB83D00403376 /* linkedin.png in Resources */ = {isa = PBXBuildFile; fileRef = 60412F63139FB83D00403376 /* linkedin.png */; };
@@ -58,12 +57,12 @@
 		60E553231398B14700D3A55E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553131398B14700D3A55E /* SBJsonBase.m */; };
 		60E553241398B14700D3A55E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553151398B14700D3A55E /* SBJsonParser.m */; };
 		60E553251398B14700D3A55E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E553171398B14700D3A55E /* SBJsonWriter.m */; };
-		60E5532D1398C5E700D3A55E /* AuthorizeGithubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */; };
 		60EA8D1E13A706E300D997DF /* ApiListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D1D13A706E300D997DF /* ApiListViewController.xib */; };
 		60EA8D2913A70D4200D997DF /* ApiParameterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA8D2813A70D4200D997DF /* ApiParameterCell.m */; };
 		60EA8D2D13A70E2600D997DF /* ApiParameterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D2C13A70E2600D997DF /* ApiParameterCell.xib */; };
 		60EA8D3413A710B500D997DF /* ApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA8D3213A710B500D997DF /* ApiViewController.m */; };
 		60EA8D3713A7111500D997DF /* ApiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D3613A7111500D997DF /* ApiViewController.xib */; };
+		60F0DFFE13B9866A00EE032C /* ATGithubMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F0DFFD13B9866A00EE032C /* ATGithubMutableURLRequest.m */; };
 		60F55E731397858600631D29 /* ATTencentMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F55E721397858600631D29 /* ATTencentMutableURLRequest.m */; };
 		60F967B5138B98BD009F7BCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B4138B98BD009F7BCF /* UIKit.framework */; };
 		60F967B7138B98BD009F7BCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B6138B98BD009F7BCF /* Foundation.framework */; };
@@ -132,7 +131,6 @@
 		6027C322138D415100486667 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		60412F4F139F835300403376 /* ApiTester.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ApiTester.sqlite; sourceTree = "<group>"; };
 		60412F51139F842E00403376 /* ApiTester.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ApiTester.sql; sourceTree = "<group>"; };
-		60412F5C139FB7F200403376 /* AuthorizeGithubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AuthorizeGithubViewController.xib; path = ApiTester/Resources/IBFiles/AuthorizeGithubViewController.xib; sourceTree = SOURCE_ROOT; };
 		60412F5D139FB7F200403376 /* AuthorizeWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AuthorizeWebViewController.xib; path = ApiTester/Resources/IBFiles/AuthorizeWebViewController.xib; sourceTree = SOURCE_ROOT; };
 		60412F5E139FB7F200403376 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = ApiTester/Resources/IBFiles/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		60412F63139FB83D00403376 /* linkedin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = linkedin.png; path = ApiTester/Resources/Images/linkedin.png; sourceTree = SOURCE_ROOT; };
@@ -178,8 +176,6 @@
 		60E553151398B14700D3A55E /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		60E553161398B14700D3A55E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		60E553171398B14700D3A55E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		60E5532A1398C5E700D3A55E /* AuthorizeGithubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeGithubViewController.h; sourceTree = "<group>"; };
-		60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeGithubViewController.m; sourceTree = "<group>"; };
 		60EA8D1D13A706E300D997DF /* ApiListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiListViewController.xib; path = ApiTester/Resources/IBFiles/ApiListViewController.xib; sourceTree = SOURCE_ROOT; };
 		60EA8D2713A70D4200D997DF /* ApiParameterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiParameterCell.h; sourceTree = "<group>"; };
 		60EA8D2813A70D4200D997DF /* ApiParameterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiParameterCell.m; sourceTree = "<group>"; };
@@ -187,6 +183,8 @@
 		60EA8D3113A710B500D997DF /* ApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiViewController.h; sourceTree = "<group>"; };
 		60EA8D3213A710B500D997DF /* ApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiViewController.m; sourceTree = "<group>"; };
 		60EA8D3613A7111500D997DF /* ApiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiViewController.xib; path = ApiTester/Resources/IBFiles/ApiViewController.xib; sourceTree = SOURCE_ROOT; };
+		60F0DFFC13B9866A00EE032C /* ATGithubMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGithubMutableURLRequest.h; sourceTree = "<group>"; };
+		60F0DFFD13B9866A00EE032C /* ATGithubMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGithubMutableURLRequest.m; sourceTree = "<group>"; };
 		60F55E711397858600631D29 /* ATTencentMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTencentMutableURLRequest.h; sourceTree = "<group>"; };
 		60F55E721397858600631D29 /* ATTencentMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTencentMutableURLRequest.m; sourceTree = "<group>"; };
 		60F967B0138B98BD009F7BCF /* ApiTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -462,8 +460,6 @@
 				601B3DDC1393917600FEFF49 /* AuthorizeWebViewController.m */,
 				601B3DE31393921D00FEFF49 /* ApiListViewController.h */,
 				601B3DE41393921D00FEFF49 /* ApiListViewController.m */,
-				60E5532A1398C5E700D3A55E /* AuthorizeGithubViewController.h */,
-				60E5532B1398C5E700D3A55E /* AuthorizeGithubViewController.m */,
 				60EA8D3113A710B500D997DF /* ApiViewController.h */,
 				60EA8D3213A710B500D997DF /* ApiViewController.m */,
 				60DE66BB13AA0C0600654F79 /* ApiInfoViewController.h */,
@@ -502,7 +498,6 @@
 				60DE66C013AA0C4800654F79 /* ApiInfoViewController.xib */,
 				60EA8D3613A7111500D997DF /* ApiViewController.xib */,
 				60EA8D1D13A706E300D997DF /* ApiListViewController.xib */,
-				60412F5C139FB7F200403376 /* AuthorizeGithubViewController.xib */,
 				60412F5D139FB7F200403376 /* AuthorizeWebViewController.xib */,
 				60412F5E139FB7F200403376 /* MainWindow.xib */,
 				60F967F3138BF316009F7BCF /* Cells */,
@@ -567,6 +562,8 @@
 			children = (
 				60FBA95A13B746BA00FD7952 /* Github.h */,
 				60FBA95B13B746BA00FD7952 /* Github.m */,
+				60F0DFFC13B9866A00EE032C /* ATGithubMutableURLRequest.h */,
+				60F0DFFD13B9866A00EE032C /* ATGithubMutableURLRequest.m */,
 			);
 			path = Github;
 			sourceTree = "<group>";
@@ -649,7 +646,6 @@
 				60F967C1138B98BD009F7BCF /* InfoPlist.strings in Resources */,
 				60E5531C1398B14700D3A55E /* FBDialog.bundle in Resources */,
 				60412F50139F835300403376 /* ApiTester.sqlite in Resources */,
-				60412F60139FB7F200403376 /* AuthorizeGithubViewController.xib in Resources */,
 				60412F61139FB7F200403376 /* AuthorizeWebViewController.xib in Resources */,
 				60412F62139FB7F200403376 /* MainWindow.xib in Resources */,
 				60412F67139FB83D00403376 /* linkedin.png in Resources */,
@@ -708,7 +704,6 @@
 				60E553231398B14700D3A55E /* SBJsonBase.m in Sources */,
 				60E553241398B14700D3A55E /* SBJsonParser.m in Sources */,
 				60E553251398B14700D3A55E /* SBJsonWriter.m in Sources */,
-				60E5532D1398C5E700D3A55E /* AuthorizeGithubViewController.m in Sources */,
 				60020D38139E5F2A00D4A332 /* ApiParameter.m in Sources */,
 				60E47ACF13A0514F00A674BB /* Provider.m in Sources */,
 				6099438213A1E22E007EA2C7 /* Api.m in Sources */,
@@ -718,6 +713,7 @@
 				600502BE13AB8F0E0036995E /* ApiResultViewController.m in Sources */,
 				60FD8C2913ADD5870016BC91 /* ATLinkedinMutableURLRequest.m in Sources */,
 				60FBA95C13B746BA00FD7952 /* Github.m in Sources */,
+				60F0DFFE13B9866A00EE032C /* ATGithubMutableURLRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

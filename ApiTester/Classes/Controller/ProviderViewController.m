@@ -9,7 +9,6 @@
 #import "ApiTesterAppDelegate.h"
 #import "ProviderViewController.h"
 #import "AuthorizeWebViewController.h"
-#import "AuthorizeGithubViewController.h"
 #import "ApiListViewController.h"
 #import "Provider.h"
 
@@ -207,10 +206,7 @@
         [provider isFacebook] ? [appDelegate.facebook authorize:nil delegate:self] : [appDelegate.github authorize:nil delegate:self];
     }
     else {
-        UIViewController<ProviderPropertyProtocol> *vc = [provider isGithub] ? 
-            [[AuthorizeGithubViewController alloc] initWithNibName:@"AuthorizeGithubViewController" 
-                                                            bundle:nil]
-                                                                  : 
+        UIViewController<ProviderPropertyProtocol> *vc = 
                [[AuthorizeWebViewController alloc] initWithNibName:@"AuthorizeWebViewController"
                                                             bundle:nil];
         [vc setProvider:provider];

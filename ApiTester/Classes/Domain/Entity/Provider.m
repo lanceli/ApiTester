@@ -9,6 +9,7 @@
 #import "Provider.h"
 #import "ATTencentMutableURLRequest.h"
 #import "ATLinkedinMutableURLRequest.h"
+#import "ATGithubMutableURLRequest.h"
 #import "Api.h"
 
 static NSString *kFacebookTitle  = @"Facebook";
@@ -97,6 +98,13 @@ static NSString *kLinkedinTitle = @"LinkedIn";
                                                               token:accessToken
                                                               realm:nil
                                                   signatureProvider:nil];
+    }
+    else if ([self isGithub]) {
+        request =  [[ATGithubMutableURLRequest alloc] initWithURL:url
+                                                         consumer:consumer
+                                                            token:accessToken
+                                                            realm:nil
+                                                signatureProvider:nil];
     }
     else {
         request =  [[OAMutableURLRequest alloc] initWithURL:url
