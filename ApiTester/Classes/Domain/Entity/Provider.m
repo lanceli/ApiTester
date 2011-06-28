@@ -10,6 +10,7 @@
 #import "ATTencentMutableURLRequest.h"
 #import "ATLinkedinMutableURLRequest.h"
 #import "ATGithubMutableURLRequest.h"
+#import "ATFacebookMutableURLRequest.h"
 #import "Api.h"
 
 static NSString *kFacebookTitle  = @"Facebook";
@@ -105,6 +106,13 @@ static NSString *kLinkedinTitle = @"LinkedIn";
                                                             token:accessToken
                                                             realm:nil
                                                 signatureProvider:nil];
+    }
+    else if ([self isFacebook]) {
+        request =  [[ATFacebookMutableURLRequest alloc] initWithURL:url
+                                                           consumer:consumer
+                                                              token:accessToken
+                                                              realm:nil
+                                                  signatureProvider:nil];
     }
     else {
         request =  [[OAMutableURLRequest alloc] initWithURL:url

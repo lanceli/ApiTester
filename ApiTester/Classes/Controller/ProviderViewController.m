@@ -203,7 +203,34 @@
     if ([provider isFacebook] || [provider isGithub]) {
         [provider revoke];
         ApiTesterAppDelegate *appDelegate = (ApiTesterAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [provider isFacebook] ? [appDelegate.facebook authorize:nil delegate:self] : [appDelegate.github authorize:nil delegate:self];
+        NSArray *permissions = [NSArray arrayWithObjects:
+            @"user_about_me",
+            @"user_activities",
+            @"user_birthday",
+            @"user_checkins",
+            @"user_education_history",
+            @"user_events",
+            @"user_groups",
+            @"user_hometown",
+            @"user_interests",
+            @"user_likes",
+            @"user_location",
+            @"user_notes",
+            @"user_online_presence",
+            @"user_photos",
+            @"user_relationships",
+            @"user_status",
+            @"user_videos",
+            @"user_website",
+            @"user_work_history",
+            @"email",
+            @"read_friendlists",
+            @"read_insights",
+            @"read_mailbox",
+            @"read_requests",
+            @"read_stream",
+        nil];
+        [provider isFacebook] ? [appDelegate.facebook authorize:permissions delegate:self] : [appDelegate.github authorize:nil delegate:self];
     }
     else {
         UIViewController<ProviderPropertyProtocol> *vc = 

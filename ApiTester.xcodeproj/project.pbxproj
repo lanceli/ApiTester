@@ -63,6 +63,7 @@
 		60EA8D3413A710B500D997DF /* ApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA8D3213A710B500D997DF /* ApiViewController.m */; };
 		60EA8D3713A7111500D997DF /* ApiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D3613A7111500D997DF /* ApiViewController.xib */; };
 		60F0DFFE13B9866A00EE032C /* ATGithubMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F0DFFD13B9866A00EE032C /* ATGithubMutableURLRequest.m */; };
+		60F0E00213B9A0E700EE032C /* ATFacebookMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F0E00113B9A0E700EE032C /* ATFacebookMutableURLRequest.m */; };
 		60F55E731397858600631D29 /* ATTencentMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F55E721397858600631D29 /* ATTencentMutableURLRequest.m */; };
 		60F967B5138B98BD009F7BCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B4138B98BD009F7BCF /* UIKit.framework */; };
 		60F967B7138B98BD009F7BCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F967B6138B98BD009F7BCF /* Foundation.framework */; };
@@ -185,6 +186,8 @@
 		60EA8D3613A7111500D997DF /* ApiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiViewController.xib; path = ApiTester/Resources/IBFiles/ApiViewController.xib; sourceTree = SOURCE_ROOT; };
 		60F0DFFC13B9866A00EE032C /* ATGithubMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGithubMutableURLRequest.h; sourceTree = "<group>"; };
 		60F0DFFD13B9866A00EE032C /* ATGithubMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGithubMutableURLRequest.m; sourceTree = "<group>"; };
+		60F0E00013B9A0E700EE032C /* ATFacebookMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATFacebookMutableURLRequest.h; sourceTree = "<group>"; };
+		60F0E00113B9A0E700EE032C /* ATFacebookMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATFacebookMutableURLRequest.m; sourceTree = "<group>"; };
 		60F55E711397858600631D29 /* ATTencentMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTencentMutableURLRequest.h; sourceTree = "<group>"; };
 		60F55E721397858600631D29 /* ATTencentMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTencentMutableURLRequest.m; sourceTree = "<group>"; };
 		60F967B0138B98BD009F7BCF /* ApiTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +272,7 @@
 		6027C2FD138CA3D800486667 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				60F0DFFF13B99FAA00EE032C /* Facebook */,
 				60FBA95913B7468300FD7952 /* Github */,
 				60FD8C2613ADD50E0016BC91 /* Linkedin */,
 				60CC96FA139D15C20081ABB8 /* Entity */,
@@ -347,6 +351,16 @@
 			);
 			path = JSON;
 			sourceTree = "<group>";
+		};
+		60F0DFFF13B99FAA00EE032C /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				60F0E00013B9A0E700EE032C /* ATFacebookMutableURLRequest.h */,
+				60F0E00113B9A0E700EE032C /* ATFacebookMutableURLRequest.m */,
+			);
+			name = Facebook;
+			path = /Users/kaiwu/Documents/Github/ApiTester/ApiTester/Classes/Domain/Facebook;
+			sourceTree = "<absolute>";
 		};
 		60F55E6F1397854600631D29 /* Tencent */ = {
 			isa = PBXGroup;
@@ -714,6 +728,7 @@
 				60FD8C2913ADD5870016BC91 /* ATLinkedinMutableURLRequest.m in Sources */,
 				60FBA95C13B746BA00FD7952 /* Github.m in Sources */,
 				60F0DFFE13B9866A00EE032C /* ATGithubMutableURLRequest.m in Sources */,
+				60F0E00213B9A0E700EE032C /* ATFacebookMutableURLRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
