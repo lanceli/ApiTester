@@ -38,6 +38,7 @@ typedef enum {
 @property (nonatomic,retain) IBOutlet UIButton *parametersButton;
 @property (nonatomic,retain) IBOutlet UIButton *resultButton;
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UIView *overlay;
 
 - (IBAction)testButtonAction:(id) sender;
 - (IBAction)infoButtonAction:(id) sender;

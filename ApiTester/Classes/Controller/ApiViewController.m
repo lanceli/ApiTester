@@ -20,7 +20,7 @@
 @synthesize api=_api,ticket=_ticket,response=_response;
 @synthesize parameters=_parameters,activeField=_activeField;
 @synthesize parameterTable;
-@synthesize none,infoButton,parametersButton,resultButton,tableView=aTableView;
+@synthesize none,infoButton,parametersButton,resultButton,tableView=aTableView,overlay;
 
 - (id)init
 {
@@ -44,6 +44,7 @@
     [parametersButton release];
     [resultButton release];
     [aTableView release];
+    [overlay release];
     [super dealloc];
 }
 
@@ -57,6 +58,8 @@
 
 -(void)request:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
+    [(UIActivityIndicatorView *)[self.overlay viewWithTag:101] stopAnimating];
+    [self.overlay removeFromSuperview];
     self.ticket = ticket;
     NSString *body = [[NSString alloc] initWithData:data
                                            encoding:NSUTF8StringEncoding];
@@ -68,15 +71,17 @@
 
 -(void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+    [(UIActivityIndicatorView *)[self.overlay viewWithTag:101] stopAnimating];
+    [self.overlay removeFromSuperview];
     self.ticket = ticket;
     self.response = [error localizedDescription];
     self.parameterTable = NO;
     [self.tableView reloadData];
 }
 
-- (IBAction)testButtonAction:(id) sender
+
+-(void)loading
 {
-    NSLog(@"test %@",self.api.name);
     OAMutableURLRequest *request = [[self.api.provider oauthRequest:
         [NSURL URLWithString:[self.api.endPointURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]] autorelease];
     [request setHTTPMethod:self.api.httpMethod];
@@ -108,6 +113,14 @@
                          delegate:self
                 didFinishSelector:@selector(request:didFinishWithData:)
                   didFailSelector:@selector(request:didFailWithError:)];
+}
+
+- (IBAction)testButtonAction:(id) sender
+{
+    NSLog(@"test %@",self.api.name);
+    [self.view addSubview:self.overlay];
+    [(UIActivityIndicatorView *)[self.overlay viewWithTag:101] startAnimating];
+    [self performSelector:@selector(loading) withObject:nil afterDelay:0.01];
 }
 
 - (IBAction)infoButtonAction:(id) sender
@@ -167,6 +180,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.overlay removeFromSuperview];
     self.title = self.api.name;
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Test"
                                                                                style:UIBarButtonItemStylePlain
@@ -324,8 +338,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSArray *pTitles = [NSArray arrayWithObjects:@"Mandatory Parameters",@"Optional Parameters",nil];
-    NSArray *rTitles = [NSArray arrayWithObjects:@"Code",@"Headers",nil];
+    NSArray *pTitles = [NSArray arrayWithObjects:@"Mandatory Parameter",@"Optional Parameter",nil];
+    NSArray *rTitles = [NSArray arrayWithObjects:@"Code",@"Header",nil];
     return self.isParameterTable ? [pTitles objectAtIndex:section] : self.ticket == nil ? @"" : [rTitles objectAtIndex:section];
 }
 
@@ -381,6 +395,7 @@
      [detailViewController release];
      */
     // Toggle checked for optional parameters
+    if ([tableView cellForRowAtIndexPath:indexPath] == self.none) return;
     if (self.isParameterTable && indexPath.section == ApiOptionalSection) {
         ApiParameter *parameter = [[self.parameters objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         if ([parameter.checked boolValue]) {
