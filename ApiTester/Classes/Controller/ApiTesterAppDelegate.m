@@ -308,6 +308,6 @@ static NSString *kGithubClientSecret = @"bdbfd308fdb096df6589dd99ca2765bd945b315
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return [[url scheme] isEqual:@"iPhoneApiTester"] ? [_github handleOpenURL:url] : [_facebook handleOpenURL:url];;
+    return [[url scheme] isEqual:@"iPhoneApiTester"] ? [_github handleOpenURL:url] : [_facebook handleOpenURL:url];
 }
 @end
