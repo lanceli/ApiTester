@@ -62,7 +62,6 @@
 		60EA8D2D13A70E2600D997DF /* ApiParameterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D2C13A70E2600D997DF /* ApiParameterCell.xib */; };
 		60EA8D3413A710B500D997DF /* ApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EA8D3213A710B500D997DF /* ApiViewController.m */; };
 		60EA8D3713A7111500D997DF /* ApiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60EA8D3613A7111500D997DF /* ApiViewController.xib */; };
-		60ECB3ED13BEE5710059FDEF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 60ECB3EC13BEE5710059FDEF /* README.md */; };
 		60F0DFFE13B9866A00EE032C /* ATGithubMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F0DFFD13B9866A00EE032C /* ATGithubMutableURLRequest.m */; };
 		60F0E00213B9A0E700EE032C /* ATFacebookMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F0E00113B9A0E700EE032C /* ATFacebookMutableURLRequest.m */; };
 		60F55E731397858600631D29 /* ATTencentMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F55E721397858600631D29 /* ATTencentMutableURLRequest.m */; };
@@ -185,7 +184,6 @@
 		60EA8D3113A710B500D997DF /* ApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiViewController.h; sourceTree = "<group>"; };
 		60EA8D3213A710B500D997DF /* ApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiViewController.m; sourceTree = "<group>"; };
 		60EA8D3613A7111500D997DF /* ApiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApiViewController.xib; path = ApiTester/Resources/IBFiles/ApiViewController.xib; sourceTree = SOURCE_ROOT; };
-		60ECB3EC13BEE5710059FDEF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		60F0DFFC13B9866A00EE032C /* ATGithubMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGithubMutableURLRequest.h; sourceTree = "<group>"; };
 		60F0DFFD13B9866A00EE032C /* ATGithubMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGithubMutableURLRequest.m; sourceTree = "<group>"; };
 		60F0E00013B9A0E700EE032C /* ATFacebookMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATFacebookMutableURLRequest.h; sourceTree = "<group>"; };
@@ -417,7 +415,6 @@
 		60F967BD138B98BD009F7BCF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				60ECB3EC13BEE5710059FDEF /* README.md */,
 				60F967BE138B98BD009F7BCF /* ApiTester-Info.plist */,
 				60F967BF138B98BD009F7BCF /* InfoPlist.strings */,
 				60F967C2138B98BD009F7BCF /* ApiTester-Prefix.pch */,
@@ -680,7 +677,6 @@
 				60EA8D3713A7111500D997DF /* ApiViewController.xib in Resources */,
 				60DE66C113AA0C4800654F79 /* ApiInfoViewController.xib in Resources */,
 				600502C113AB8F420036995E /* ApiResultViewController.xib in Resources */,
-				60ECB3ED13BEE5710059FDEF /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
